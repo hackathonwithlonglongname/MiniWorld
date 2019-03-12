@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/found/found",
+    "pages/post/post",
+    "pages/lost/lost",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#800080",
+    "navigationBarTitleText": "南京大学失物招领平台",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/found.png",
+        "iconPath": "images/found.png",
+        "pagePath": "pages/found/found",
+        "text": "失物招领"
+      },
+      {
+        "selectedIconPath": "images/post.png",
+        "iconPath": "images/post.png",
+        "pagePath": "pages/post/post",
+        "text": "发布信息"
+      },
+      {
+        "selectedIconPath": "images/lost.png",
+        "iconPath": "images/lost.png",
+        "pagePath": "pages/lost/lost",
+        "text": "寻物启事"
+      }
+    ]
+  }
+}
