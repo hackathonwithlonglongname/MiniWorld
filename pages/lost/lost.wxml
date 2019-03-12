@@ -3,6 +3,7 @@
 
 <view class="section">
   <input placeholder="搜索物品信息…" focus="{{focus}}" type='text' confirm-type='search'></input>
+  <icon type='search' size='10rpx'></icon>
 </view>
 <view class="section">
   <scroll-view
