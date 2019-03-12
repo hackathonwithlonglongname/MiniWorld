@@ -5,15 +5,17 @@
   <icon type='search'></icon>
   <input placeholder="搜索" focus="{{focus}}" type='text' confirm-type='search' ></input>
 </view>
-<view class="section">
-  <scroll-view
-    scroll-y
-    style="height: 200px;"
-    bindscrolltoupper="upper"
-    bindscrolltolower="lower"
-    bindscroll="scroll"
-    scroll-into-view="{{toView}}"
-    scroll-top="{{scrollTop}}"
-  >
-  </scroll-view>
+<view class="section2">
+  <block wx:key="property" wx:for="{{array}}">
+    <view class="frame" bindtap='itemTap'>
+
+      <a class="brief-item">
+        <image class="smallimage" src="../../images/post.png" mode="widthFix"></image>
+        <text>{{index}}:{{item.message}}</text>        
+      </a>
+      <view class="content">
+        <h1>{{item.message}}</h1>
+      </view>
+    </view>
+  </block>
 </view>

@@ -1,1 +1,7 @@
 /* pages/found/found.wxss */
+.smallimage{
+  width: 50rpx
+}
+.frame{
+  margin: 20rpx
+}
