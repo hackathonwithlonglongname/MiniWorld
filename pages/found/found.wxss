@@ -1,5 +1,5 @@
 /* pages/found/found.wxss */
-@import "/search/search.wxss";
+@import "/pages/search/search.wxss";
 .smallimage{
   width: 100rpx
   

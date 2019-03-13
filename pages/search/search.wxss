@@ -41,7 +41,7 @@
 .search-button{
   height: 70rpx;
   margin-right: 0rpx;
-  background-color: rgb(171, 90, 247);
+  background-color: #6A005F;
   align-items: center;
   border-radius: 0px 18px 18px 0px;
   color:#fff;

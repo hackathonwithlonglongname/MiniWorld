@@ -1,6 +1,6 @@
 // pages/found/found.js
 //获取应用实例
-var search = require('../../search/search.js')
+var search = require('../search/search.js')
 var app = getApp()
 Page({
 
