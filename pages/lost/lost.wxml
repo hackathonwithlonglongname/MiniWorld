@@ -1,15 +1,42 @@
 <!--pages/lost/lost.wxml-->
 <!--<text>pages/lost/lost.wxml</text>-->
 
-<view class="section">
-  <input placeholder="搜索" focus="{{focus}}" type='text' confirm-type='search'></input>
-  <icon type='search'></icon>
-</view>
-<view class="section">
- `<view class="item">
-    <view class="subitem">
-      <image src="../../images/found.png"></image>
-    </view>
+<import src="/search/search.wxml"/>
+
+<view class="search-section">
+  <view class="search-pancel">
+    <!--<image src="/images/search-pic.png" class="search-icon" />-->
+    <icon class="search-icon" type="search"></icon>
+    <input bindinput="searchInput" bindfocus="serchFocus" value="{{searchData.value}}" bindblur="searchBlur" class="search-input" placeholder="搜索" />
+    <button class="search-button" bindtap="searchFn" size="mini">搜索</button>
   </view>
 </view>
-<button type="default" bindtap="item_lost"> 详细信息 </button>
+<template is="search" data="{{searchData}}"/>
+
+<view class="section2">
+  <block wx:key="property" wx:for="{{array}}">
+    <view class="frame" bindtap='itemTap'>
+      <view class="flex" style='padding:30rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#afb4db'>
+        <view style='display:flex;flex-direction:column'>
+          <text class="title">title</text>
+          <view class="brief-content" style="flex-wrap:wrap;height:150rpx;width:470rpx;line-height:28rpx">         
+            <text class="content" style='font-size:26rpx'>{{item.message}}</text>
+          </view>
+          
+          <view class="bottom-info" style='display:flex;flex-direction:row;'>
+            <view class="address">
+              <text decode="{{true}}" style="font-size:23rpx">*{{item.address}}&nbsp;&nbsp;&nbsp;</text>
+            </view>
+            <view class="posttime">
+              <text decode="{{true}}" style="font-size:23rpx">*{{item.posttime}} </text>
+            </view>
+            
+            
+          </view>
+        </view>
+        <image class="smallimage" mode='widthFix' src="../../images/post.png"></image>  
+      </view>
+      
+    </view>
+  </block>
+</view>
