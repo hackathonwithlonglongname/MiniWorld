@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  item_lost: function () {
+    wx.navigateTo({
+      url: '../item_lost/item_lost'
+    })
+  },
 })
