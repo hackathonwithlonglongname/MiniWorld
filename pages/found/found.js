@@ -86,7 +86,6 @@ Page({
   searchFn: function (e) {
     var that = this
     search.searchAddHisKey(that);
-
   },
 
   searchInput: function (e) {
