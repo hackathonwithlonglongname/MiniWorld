@@ -24,11 +24,21 @@
       </view>
       
       <view class="page-section">
+        <view class="page-section-title">校区</view>
+        <view class="page-section page-section-gap">
+          <radio-group name="campus">
+            <label><radio value="xianlin"/>仙林校区</label>
+            <label><radio value="gulou"/>鼓楼校区</label>
+          </radio-group>
+        </view>
+      </view>
+
+      <view class="page-section">
         <view class="page-section-title">地点</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <input class="weui-input" name="place" placeholder="仙一/仙二/逸夫楼/图书馆/..." />
+              <input class="weui-input" name="place" placeholder="教室/图书馆/体育馆/..." />
             </view>
           </view>
         </view>
