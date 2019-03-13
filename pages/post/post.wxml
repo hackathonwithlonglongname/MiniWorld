@@ -1,2 +1,89 @@
-<!--pages/post/post.wxml-->
-<text>pages/post/post.wxml</text>
+<view class="container">
+
+  <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+      <view class="page-section page-section-gap">
+        <view class="page-section-title">信息类型</view>
+        <radio-group name="infoType">
+          <label><radio value="found"/>失物招领</label>
+          <label><radio value="lost"/>寻物启事</label>
+        </radio-group>
+      </view>
+      
+      <view class="page-section">
+        <view class="page-section-title">时间</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker mode="date" value="{{date}}" start="2015-09-01" end="2049-09-01" bindchange="bindDateChange">
+                <view class="weui-input">{{date}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="page-section">
+        <view class="page-section-title">地点</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="place" placeholder="仙一/仙二/逸夫楼/图书馆/..." />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-body">
+        <view class="page-section">
+          <view class="page-section-title">物品描述</view>
+          <view class="textarea-wrp">
+            <textarea class="weui-input" name="description" bindblur="bindTextAreaBlur" auto-height />
+          </view>
+        </view>
+      </view>
+    
+      <view class="page-section">
+        <view class="page-section-title">联系方式（请注明类型）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="contact" placeholder="手机号/QQ/微信/邮箱/..." />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">上传图片</view>
+                <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files">
+                  <block wx:for="{{imageList}}" wx:for-item="image">
+                    <view class="weui-uploader__file">
+                      <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="btn-area">
+        <button type="primary" formType="submit">提交</button>
+        <button formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+
+</view>
