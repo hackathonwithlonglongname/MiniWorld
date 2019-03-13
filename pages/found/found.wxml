@@ -19,8 +19,8 @@
       <view class="flex" style='padding:30rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#afb4db'>
         <view style='display:flex;flex-direction:column'>
           <text class="title">title</text>
-          <view class="brief-content" style="flex-wrap:wrap;height:150rpx;width:470rpx;line-height:27rpx">         
-            <text class="content" style='font-size:25rpx'>{{item.message}}</text>
+          <view class="brief-content" style="flex-wrap:wrap;height:150rpx;width:470rpx;line-height:28rpx">         
+            <text class="content" style='font-size:26rpx'>{{item.message}}</text>
           </view>
           
           <view class="bottom-info" style='display:flex;flex-direction:row;'>
