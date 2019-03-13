@@ -8,17 +8,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: [
-      { message: '找到一把雨伞', address: "仙林校区", posttime: "2018.12.3 2:21" },
-      { message: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来', address: "鼓楼校区", posttime: "2018.12.3 2:21" }
+    foundItems:[
+      {
+        title:"标题",
+        foundtime:"2019.3.12 下午",
+        address:"仙林校区方肇周体育馆",
+        briefinfo:"这王钧睿小哥哥真好看，蓝色的衣服，对我很重要，求求各位了",
+        reward:"一杯奶茶（可有可无）",
+        detail:"超详细的关于王钧睿小哥哥的描述，总之就是帅！",
+        img:"图片（做成数组会不会好点？",
+        contactMethod:"644699280"
+      }
     ]
+    
   },
     // searchData:{
     //   view:{
     //     isShow: true
     //   }
     // }
-
 
   /**
    * 生命周期函数--监听页面加载
