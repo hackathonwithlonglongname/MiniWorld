@@ -1,66 +1,74 @@
 // pages/post/post.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  
   data: {
-
+    pickerHidden: true,
+    chosen: '',
+    imageList: [],
+    
+    countIndex: 8,
+    count: [1, 2, 3, 4, 5, 6, 7, 8, 9]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  pickerConfirm(e) {
+    this.setData({
+      pickerHidden: true
+    })
+    this.setData({
+      chosen: e.detail.value
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  pickerCancel() {
+    this.setData({
+      pickerHidden: true
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  pickerShow() {
+    this.setData({
+      pickerHidden: false
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  formSubmit(e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  formReset(e) {
+    console.log('form发生了reset事件，携带数据为：', e.detail.value)
+    this.setData({
+      chosen: ''
+    })
+  },
+  
+  bindDateChange(e) {
+    this.setData({
+      date: e.detail.value
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  chooseImage() {
+    const that = this
+    wx.chooseImage({
+      sourceType: sourceType[this.data.sourceTypeIndex],
+      sizeType: sizeType[this.data.sizeTypeIndex],
+      count: this.data.count[this.data.countIndex],
+      success(res) {
+        console.log(res)
+        that.setData({
+          imageList: res.tempFilePaths
+        })
+      }
+    })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  previewImage(e) {
+    const current = e.target.dataset.src
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    wx.previewImage({
+      current,
+      urls: this.data.imageList
+    })
   }
 })

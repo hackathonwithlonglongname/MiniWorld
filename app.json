@@ -4,13 +4,15 @@
     "pages/post/post",
     "pages/lost/lost",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/item_lost/item_lost",
+    "pages/item_found/item_found"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#800080",
-    "navigationBarTitleText": "南京大学失物招领平台",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "NJUer の 猟犬",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#a9b7b7",
