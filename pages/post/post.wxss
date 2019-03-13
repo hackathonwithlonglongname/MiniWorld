@@ -127,7 +127,7 @@ input {
 .page-foot{
   margin: 100rpx 0 30rpx 0;
   text-align: center;
-  color: #1aad19;
+  color: #800080;
   font-size: 0;
 }
 .icon-foot{
@@ -214,7 +214,7 @@ input {
   position: relative;
   align-items: center;
   justify-content: center;
-  background-color: #1AAD19;
+  background-color: #800080;
   color: #FFFFFF;
   font-size: 36rpx;
 }
