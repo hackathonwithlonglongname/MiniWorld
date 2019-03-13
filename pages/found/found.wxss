@@ -1,7 +1,12 @@
 /* pages/found/found.wxss */
 .smallimage{
-  width: 50rpx
+  width: 100rpx
+  
 }
 .frame{
-  margin: 20rpx
+  margin: 20rpx 40rpx
+}
+.bottom-info{
+  position: relative;
+  bottom:-40rpx
 }

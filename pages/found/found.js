@@ -6,8 +6,8 @@ Page({
    */
   data: {
     array: [
-      { message: 'a' },
-      { message: 'xx' }
+      { message: '找到一把雨伞',address:"仙林校区",posttime:"2018.12.3 2:21" },
+      { message: '今天丢了可爱的岳心淳小哥哥', address: "鼓楼校区", posttime: "2018.12.3 2:21"}
     ]
       
   },
