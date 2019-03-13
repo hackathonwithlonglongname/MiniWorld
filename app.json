@@ -10,7 +10,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#800080",
+    "navigationBarBackgroundColor": "#6A005F",
     "navigationBarTitleText": "NJUer の 猟犬",
     "navigationBarTextStyle": "white"
   },
@@ -33,7 +33,7 @@
       },
       {
         "selectedIconPath": "images/found.png",
-        "iconPath": "images/found.png",
+        "iconPath": "images/lost.png",
         "pagePath": "pages/lost/lost",
         "text": "寻物启事"
       }
