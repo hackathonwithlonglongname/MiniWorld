@@ -1,0 +1,40 @@
+<view class='container' style='display:block;'>
+  <view class='item'>
+    <view class='left'>捡到时间:</view>
+    <view class='right'>{{item_time}}</view>
+  </view>
+
+  <view class='item'>
+    <view class='left'>捡到时的地点:</view>
+    <view class='right'>{{item_location}}</view>
+  </view>
+
+  <view class='item'>
+    <view class='left'>联系方式:</view>
+    <view class='right'>{{item_contact}}</view>
+  </view>
+</view>
+
+<view class='item'>
+  <view class='left'>对捡到物品的描述：</view>
+</view>
+
+<view class='item_large'>
+  <view class='detail'> {{item_description}}</view>
+</view>
+
+<view wx:if="{{item_picture_url}}">
+<!--这里先判断信息中是否有图片信息，在失物招领时如果无图片则不显示以下内容-->
+  <view class='container' style='display:block;'>
+    <view class='item'>
+      <view class='left'>图片信息：</view>
+    </view>
+  </view>
+<!--遍历item_picture列表，显示所有图片-->
+  <view class='image' wx:for="{{item_picture_url}}">
+    <image class="widget__arrow" src="{{item}}" mode="aspectFit">
+    </image>
+  </view>
+</view>
+
+<button type="warn" bindtap="listenerStorageClear">清除信息</button>
