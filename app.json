@@ -4,7 +4,9 @@
     "pages/post/post",
     "pages/lost/lost",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/item_lost/item_lost",
+    "pages/item_found/item_found"
   ],
   "window": {
     "backgroundTextStyle": "light",
