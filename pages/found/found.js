@@ -10,7 +10,7 @@ Page({
   data: {
     array: [
       { message: '找到一把雨伞', address: "仙林校区", posttime: "2018.12.3 2:21" },
-      { message: '今天丢了可爱的岳心淳小哥哥', address: "鼓楼校区", posttime: "2018.12.3 2:21" }
+      { message: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来', address: "鼓楼校区", posttime: "2018.12.3 2:21" }
     ]
   },
     // searchData:{
@@ -80,8 +80,11 @@ Page({
 
   },
 
-  itemTap:function(){
-    console.log("hhh");
+  //事件处理函数
+  itemTap: function () {
+    wx.navigateTo({
+      url: '../item_found/item_found'
+    })
   },
 
   searchFn: function (e) {
