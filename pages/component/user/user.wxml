@@ -12,9 +12,9 @@
             <navigator url="/pages/component/information/information">个人信息</navigator>
         </view>
         <view wx:if="{{hasInformation}}" class="information-list">
-            <view>{{information.name}}</view>
-            <view>{{information.phone}}</view>
-            <view>{{information.stuID}}</view>
+            <view>Name: {{information.name}}</view>
+            <view>Phone: {{information.phone}}</view>
+            <view>StuID: {{information.stuID}}</view>
         </view>
     </view>
     <view class="orders-box">

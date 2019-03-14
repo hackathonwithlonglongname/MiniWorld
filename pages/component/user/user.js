@@ -58,7 +58,7 @@ Page({
       success: function(res){
         self.setData({
           hasInformation: true,
-          information: res.data
+          information: res.data,
         })
       }
     })

@@ -24,6 +24,7 @@
     border-bottom: 1rpx solid #ededed;
     color: #999;
     line-height: 90rpx;
+    font-family: Courier;
     font-size: 28rpx;
 }
 .information-box .information-manage{

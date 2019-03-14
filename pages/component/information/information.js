@@ -4,7 +4,7 @@ Page({
     information:{
       name:'',
       phone:'',
-      detail:''
+      stuID:''
     }
   },
   onLoad(){
@@ -21,7 +21,7 @@ Page({
   },
   formSubmit(e){
     const value = e.detail.value;
-    if (value.name && value.phone && value.detail){
+    if (value.name && value.phone && value.stuID){
       wx.setStorage({
         key: 'information',
         data: value,
