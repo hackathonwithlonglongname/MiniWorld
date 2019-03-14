@@ -1,7 +1,7 @@
 <!--pages/component/lost/lost.wxml-->
 <!--<text>pages/component/lost/lost.wxml</text>-->
 
-<import src="/pages/search/search.wxml"/>
+<import src="/pages/component/search/search.wxml"/>
 
 <view class="search-section">
   <view class="search-pancel">
