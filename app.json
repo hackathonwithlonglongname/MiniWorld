@@ -1,17 +1,18 @@
 {
   "pages": [
-    "pages/found/found",
-    "pages/post/post",
-    "pages/lost/lost",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/item_lost/item_lost",
-    "pages/item_found/item_found"
+    "pages/component/found/found",
+    "pages/component/post/post",
+    "pages/component/lost/lost",
+    "pages/component/index/index",
+    "pages/component/user/user",
+    "pages/component/logs/logs",
+    "pages/component/item_lost/item_lost",
+    "pages/component/item_found/item_found"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "NJUer の 猟犬",
+    "navigationBarTitleText": "南京大学失物招领平台",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -22,20 +23,26 @@
       {
         "selectedIconPath": "images/found.png",
         "iconPath": "images/found.png",
-        "pagePath": "pages/found/found",
+        "pagePath": "pages/component/found/found",
         "text": "失物招领"
       },
       {
         "selectedIconPath": "images/post.png",
         "iconPath": "images/post.png",
-        "pagePath": "pages/post/post",
+        "pagePath": "pages/component/post/post",
         "text": "发布信息"
       },
       {
         "selectedIconPath": "images/lost.png",
         "iconPath": "images/lost.png",
-        "pagePath": "pages/lost/lost",
+        "pagePath": "pages/component/lost/lost",
         "text": "寻物启事"
+      },
+      {
+        "selectedIconPath": "images/user.png",
+        "iconPath": "images/user.png",
+        "pagePath": "pages/component/user/user",
+        "text": "个人信息"
       }
     ]
   }
