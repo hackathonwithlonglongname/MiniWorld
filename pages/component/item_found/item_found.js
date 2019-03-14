@@ -9,7 +9,67 @@ Page({
     item_location: '',
     item_contact: '',
     item_description: '',
-    item_picture_url: null//此处为网址
+    item_picture_url: []//此处为网址
+  },
+  onShow: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'item_time',
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          item_time: res.data
+        })
+      }
+    })
+  },
+  onShow: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'item_location',
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          item_location: res.data
+        })
+      }
+    })
+  },
+  onShow: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'item_contact',
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          item_contact: res.data
+        })
+      }
+    })
+  },
+  onShow: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'item_description',
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          item_description: res.data
+        })
+      }
+    })
+  },
+  onShow: function () {
+    var that = this;
+    wx.getStorage({
+      data: 'item_picture_url',
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          item_picture_url: res.data
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -29,52 +89,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    wx.getStorage({
-      key: 'item_time',
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          item_time: res.data
-        })
-      }
-    }),
-      wx.getStorage({
-        key: 'item_location',
-        success: function (res) {
-          console.log(res.data)
-          that.setData({
-            item_location: res.data
-          })
-        }
-      }),
-      wx.getStorage({
-        key: 'item_contact',
-        success: function (res) {
-          console.log(res.data)
-          that.setData({
-            item_contact: res.data
-          })
-        }
-      }),
-      wx.getStorage({
-        key: 'item_description',
-        success: function (res) {
-          console.log(res.data)
-          that.setData({
-            item_description: res.data
-          })
-        }
-      }),
-      wx.getStorage({
-        key: 'item_picture_url',
-        success: function (res) {
-          console.log(res.data)
-          that.setData({
-            item_picture_url: res.data
-          })
-        }
-      })
+
   },
 
   /**

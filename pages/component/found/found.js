@@ -105,7 +105,7 @@ Page({
 
   },
 
-  //事件处理函数
+  //事件处理函数，此时抽取字典中的键值对到本地缓存中的键值对
   itemTap: function () {
     wx.navigateTo({
       url: '../item_found/item_found'
@@ -125,6 +125,11 @@ Page({
       wx.setStorage({
       key: 'item_description',
       data: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来'
+      }),
+      wx.setStorage({
+      key: 'item_picture_url',
+      data: ['http://superhero.wingzero.tw/wp-content/uploads/2015/11/deadpool_w.jpg',
+        'https://tse2-mm.cn.bing.net/th?id=OIP.H0gHHvYCk0-9XznefUvlOAHaLH&pid=Api']
       })
   },
 
