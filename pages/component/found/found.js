@@ -8,18 +8,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: [
-      { message: '找到一把雨伞', address: "仙林校区", posttime: "2018.12.3 2:21" },
-      { message: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来', address: "鼓楼校区", posttime: "2018.12.3 2:21" }
+    array: [{
+      message: '找到一把雨伞',
+      address: "仙林校区",
+      posttime: "2018.12.3 2:21"
+    },
+    {
+      message: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来',
+      address: "鼓楼校区",
+      posttime: "2018.12.3 2:21"
+    }
     ]
   },
-    // searchData:{
-    //   view:{
-    //     isShow: true
-    //   }
-    // }
+  // searchData:{
+  //   view:{
+  //     isShow: true
+  //   }
+  // }
 
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -41,7 +48,7 @@ Page({
    * 数据加载
    */
   dataLoad: function () {
-    
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -97,6 +104,27 @@ Page({
     wx.navigateTo({
       url: '../item_found/item_found'
     })
+    wx.setStorage({
+      key: 'item_time',
+      data: '2018.12.3 2:21'
+    }),
+      wx.setStorage({
+      key: 'item_location',
+      data: '鼓楼校区'
+      }),
+      wx.setStorage({
+        key: 'item_contact',
+        data: '15238059700'
+      }),
+      wx.setStorage({
+      key: 'item_description',
+      data: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来'
+      }),
+      wx.setStorage({
+      key: 'item_picture_url',
+      data: ['http://superhero.wingzero.tw/wp-content/uploads/2015/11/deadpool_w.jpg',
+        'https://tse2-mm.cn.bing.net/th?id=OIP.H0gHHvYCk0-9XznefUvlOAHaLH&pid=Api']
+      })
   },
 
   searchFn: function (e) {

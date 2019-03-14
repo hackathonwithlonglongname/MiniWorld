@@ -69,7 +69,27 @@ Page({
   itemTap: function () {
     wx.navigateTo({
       url: '../item_lost/item_lost'
-    })
+    }),
+      wx.setStorage({
+        key: 'item_time',
+        data: null
+      }),
+      wx.setStorage({
+        key: 'item_location',
+        data: null
+      }),
+      wx.setStorage({
+        key: 'item_contact',
+        data: null
+      }),
+      wx.setStorage({
+        key: 'item_description',
+        data: null
+      }),
+      wx.setStorage({
+        key: 'item_picture_url',
+        data: null
+      })
   },
   searchFn: function (e) {
     var that = this
