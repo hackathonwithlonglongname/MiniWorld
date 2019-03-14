@@ -1,9 +1,0 @@
-/* pages/found/found.wxss */
-@import "/pages/search/search.wxss";
-.smallimage{
-  width: 100rpx
-  
-}
-.frame{
-  margin: 20rpx 40rpx
-}
