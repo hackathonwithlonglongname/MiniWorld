@@ -6,7 +6,7 @@
     line-height: 100rpx;
     padding:30rpx 30rpx 30rpx 150rpx;
     box-sizing: border-box;
-    background: #AB956D;
+    background: #6A005F;
     font-size: 28rpx;
     color: #fff;
 }
@@ -74,7 +74,7 @@
 .orders-list:last-child{
     border-bottom: 0;
 }
-.orders-number{
+.orders-ID{
     height: 90rpx;
     line-height: 90rpx;
     border-bottom: 1rpx solid #e9e9e9;

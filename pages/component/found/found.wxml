@@ -37,7 +37,7 @@
             
           </view>
         </view>
-        <image class="smallimage" mode='widthFix' src="../../../images/post.png"></image>  
+        <image class="smallimage" mode='widthFix' src="/images/post.png"></image>  
       </view>
       
     </view>
