@@ -1,4 +1,8 @@
 // pages/component/post/post.js
+const cloud = wx.cloud
+cloud.init()
+const db = cloud.database()
+
 Page({
   
   data: {
@@ -33,6 +37,23 @@ Page({
 
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    db.collection('itemInfo').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        postTime: db.serverDate,
+        type: e.detail.value["infoType"],
+        time: e.detail.value["date"],
+        address: e.detail.value["place"],
+        briefInfo: e.detail.value["title"],
+        detail: e.detail.value["description"],
+        contactMethod: e.detail.value["contact"],
+        imgs:[]
+        }
+      })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(console.error)
   },
 
   formReset(e) {
@@ -70,5 +91,6 @@ Page({
       current,
       urls: this.data.imageList
     })
-  }
+  },
+
 })
