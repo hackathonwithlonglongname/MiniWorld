@@ -1,7 +1,9 @@
 <view class="main">
     <view class="header">
-        <image src="{{thumb}}" class="thumb"></image>
-        <text class="nickname">{{nickname}}</text>
+        
+        <open-data type="userAvatarUrl" class="thumb"></open-data>
+        <open-data type="userNickName" class="nickname"></open-data>
+        
         <text class="about">关于我们</text>
     </view>
     <view class="information-box">
