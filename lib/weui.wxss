@@ -315,7 +315,7 @@ icon {
   color: #999999;
 }
 .weui-form-preview__btn_primary {
-  color: #0BB20C;
+  color: #6A005F;
 }
 .weui-cell_select {
   padding: 0;

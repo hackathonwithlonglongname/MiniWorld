@@ -9,7 +9,8 @@ Page({
     item_location: 'if楼',
     item_contact: '15238059700',
     item_description: '他是我的好朋友，是我的微信头像，我的电脑壁纸，如果你看到他了，那我真的特别开心因为我代码终于过了哈哈哈哈哈哈哈哈哈哈',
-    item_picture_url: ['/images/deadpool.jpg', '/images/deadpool1.jpg']
+    item_picture_url: ['/images/deadpool.jpg', '/images/deadpool1.jpg'],
+    //item_reward : '一包薯片'
   },
   onShow: function () {
     var that = this;
@@ -71,6 +72,18 @@ Page({
       }
     })
   },
+/*  onShow: function () {
+    var that = this;
+    wx.getStorage({
+      data: 'item_reward',
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          item_picture_url: res.data
+        })
+      }
+    })
+  },*/
   /**
    * 生命周期函数--监听页面加载
    */
@@ -139,6 +152,7 @@ Page({
           item_contact: '',
           item_description: '',
           item_picture_url: null,
+          //item_reward:'',
         })
       }
     })
