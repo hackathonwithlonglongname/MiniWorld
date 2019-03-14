@@ -32,8 +32,8 @@
         "text": "发布信息"
       },
       {
-        "selectedIconPath": "images/found.png",
-        "iconPath": "images/found.png",
+        "selectedIconPath": "images/lost.png",
+        "iconPath": "images/lost.png",
         "pagePath": "pages/lost/lost",
         "text": "寻物启事"
       }
