@@ -10,9 +10,9 @@
     "pages/component/item_found/item_found"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "NJUer の 猟犬",
+    "navigationBarTitleText": "南京大学失物招领平台",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

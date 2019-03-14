@@ -7,7 +7,3 @@
 .frame{
   margin: 20rpx 40rpx
 }
-.bottom-info{
-  position: relative;
-  bottom:-40rpx
-}
