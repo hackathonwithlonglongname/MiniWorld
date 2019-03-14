@@ -1,0 +1,13 @@
+/* pages/component/found/found.wxss */
+@import "/pages/component/search/search.wxss";
+.smallimage{
+  width: 100rpx
+  
+}
+.frame{
+  margin: 20rpx 40rpx
+}
+.bottom-info{
+  position: relative;
+  bottom:-40rpx
+}

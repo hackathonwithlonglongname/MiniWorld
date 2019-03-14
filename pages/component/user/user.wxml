@@ -1,0 +1,29 @@
+<view class="main">
+    <view class="header">
+        <image src="{{thumb}}" class="thumb"></image>
+        <text class="nickname">{{nickname}}</text>
+        <text class="about">关于我们</text>
+    </view>
+    <view class="information-box">
+        <view class="information-manage">
+            <navigator url="/page/component/information/information">个人信息</navigator>
+        </view>
+        <view wx:if="{{hasInformation}}" class="information-list">
+            <view>{{information.name}}</view>
+            <view>{{information.phone}}</view>
+            <view>{{information.detail}}</view>
+        </view>
+    </view>
+    <view class="orders-box">
+        <view class="orders">我的公告</view>
+        <view class="orders-list" wx:for="{{orders}}" wx:key="index">
+            <view class="orders-number">启事编号：{{item.number}}</view>
+            <view class="orders-detail">
+                <image src="{{item.thumb}}"></image>
+                <view class="">{{item.name}}</view>
+                <view class="">{{item.count}}</view>
+                <text class="orders-status">{{item.status}}</text>
+            </view>
+        </view>
+    </view>
+</view>
