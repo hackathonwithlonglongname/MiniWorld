@@ -9,7 +9,7 @@ Page({
     item_location: '',
     item_contact: '',
     item_description: '',
-    item_picture_url: []
+    item_picture_url: []//此处为网址
   },
   onShow: function () {
     var that = this;
@@ -145,4 +145,12 @@ Page({
       }
     })
   },
+  //此函数为预览，调用了当前图片的地址和图片所在的列表
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: this.data.item_picture_url
+    })
+  }
 })

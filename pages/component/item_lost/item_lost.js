@@ -9,7 +9,8 @@ Page({
     item_location: 'if楼',
     item_contact: '15238059700',
     item_description: '他是我的好朋友，是我的微信头像，我的电脑壁纸，如果你看到他了，那我真的特别开心因为我代码终于过了哈哈哈哈哈哈哈哈哈哈',
-    item_picture_url: ['/images/deadpool.jpg', '/images/deadpool1.jpg']
+    item_picture_url: ['http://superhero.wingzero.tw/wp-content/uploads/2015/11/deadpool_w.jpg',
+    'https://tse2-mm.cn.bing.net/th?id=OIP.H0gHHvYCk0-9XznefUvlOAHaLH&pid=Api']
   },
   onShow: function () {
     var that = this;
@@ -143,4 +144,11 @@ Page({
       }
     })
   },
+  //此函数为预览，调用了当前图片的地址和图片所在的列表
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current, 
+      urls: this.data.item_picture_url
+      })}
 })
