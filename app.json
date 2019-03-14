@@ -28,16 +28,16 @@
         "text": "失物招领"
       },
       {
-        "selectedIconPath": "images/post.png",
-        "iconPath": "images/post.png",
-        "pagePath": "pages/component/post/post",
-        "text": "发布信息"
-      },
-      {
         "selectedIconPath": "images/lost.png",
         "iconPath": "images/lost.png",
         "pagePath": "pages/component/lost/lost",
         "text": "寻物启事"
+      },
+      {
+        "selectedIconPath": "images/post.png",
+        "iconPath": "images/post.png",
+        "pagePath": "pages/component/post/post",
+        "text": "发布信息"
       },
       {
         "selectedIconPath": "images/user.png",

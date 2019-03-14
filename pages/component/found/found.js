@@ -99,7 +99,7 @@ Page({
 
   },
 
-  //事件处理函数
+  //事件处理函数，此时抽取字典中的键值对到本地缓存中的键值对
   itemTap: function () {
     wx.navigateTo({
       url: '../item_found/item_found'
