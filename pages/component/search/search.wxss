@@ -45,7 +45,9 @@
   background-color: #6A005F;
   align-items: center;
   border-radius: 0px 18px 18px 0px;
-  color:#fff;
+  display: flex;
+  justify-content: center;
+  color: #fff;
   position: relative;
 }
 
