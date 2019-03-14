@@ -1,7 +1,7 @@
 <!--pages/component/lost/lost.wxml-->
 <!--<text>pages/component/lost/lost.wxml</text>-->
 
-<import src="/pages/component/search/search.wxml"/>
+<import src="../search/search.wxml"/>
 
 <view class="search-section">
   <view class="search-pancel">
@@ -14,7 +14,7 @@
 <template is="search" data="{{searchData}}"/>
 
 <view class="section2">
-  <block wx:key="property" wx:for="{{array}}">
+  <block wx:key="property" wx:for="{{items}}">
     <view class="frame" bindtap='itemTap'>
       <view class="flex" style='padding:25rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#feeeed'>
         <view style='display:flex;flex-direction:column'>
@@ -23,7 +23,7 @@
           </view>
           
           <view class="brief-content" style="margin:0rpx 0rpx 0rpx 30rpx;flex-wrap:wrap;height:150rpx;width:470rpx;line-height:28rpx">         
-            <text class="content" style='font-size:26rpx'>{{item.message}}</text>
+            <text class="content" style='font-size:26rpx'>{{item.briefInfo}}</text>
           </view>
           
           <view class="bottom-info" style='display:flex;flex-direction:row;'>
@@ -31,13 +31,13 @@
               <text decode="{{true}}" style="font-size:24rpx">*{{item.address}}&nbsp;&nbsp;&nbsp;</text>
             </view>
             <view class="posttime">
-              <text decode="{{true}}" style="font-size:24rpx">*{{item.posttime}} </text>
+              <text decode="{{true}}" style="font-size:24rpx">*{{item.postTime}} </text>
             </view>
             
             
           </view>
         </view>
-        <image class="smallimage" mode='widthFix' src="../../images/post.png"></image>  
+        <image class="smallimage" mode='widthFix' src="../../../images/post.png"></image>  
       </view>
       
     </view>

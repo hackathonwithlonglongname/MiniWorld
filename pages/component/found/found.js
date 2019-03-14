@@ -7,7 +7,7 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
+  data: {/*
     array: [{
       message: '找到一把雨伞',
       address: "仙林校区",
@@ -18,7 +18,8 @@ Page({
       address: "鼓楼校区",
       posttime: "2018.12.3 2:21"
     }
-    ]
+    ]*/
+    items:[]
   },
   // searchData:{
   //   view:{
@@ -40,7 +41,9 @@ Page({
     wx.request({
       url: 'https://api.idealclover.cn/hackathon/data.json',
       success: function (res) {
-        console.log(res.data)
+        console.log("success");
+        wx.setStorageSync("items", res.data.data.items);
+        
       }
     });
   },
@@ -61,7 +64,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var items=wx.getStorageSync("items");
+    this.setData({
+      items:items
+    })
   },
 
   /**
