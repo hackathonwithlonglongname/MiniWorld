@@ -7,26 +7,9 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {/*
-    array: [{
-      message: '找到一把雨伞',
-      address: "仙林校区",
-      posttime: "2018.12.3 2:21"
-    },
-    {
-      message: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来',
-      address: "鼓楼校区",
-      posttime: "2018.12.3 2:21"
-    }
-    ]*/
-    items:[]
+  data: {
+    items: []
   },
-  // searchData:{
-  //   view:{
-  //     isShow: true
-  //   }
-  // }
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -37,21 +20,26 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
-    //dataLoad();
+    wx.request({
+      url: 'https://api.idealclover.cn/hackathon/data.json',
+      method:'POST',
+      data:{
+        item:"hhhh"
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success:function(res){
+        console.log("succeed");
+      }
+    })
     wx.request({
       url: 'https://api.idealclover.cn/hackathon/data.json',
       success: function (res) {
         console.log("success");
         wx.setStorageSync("items", res.data.data.items);
-        
       }
     });
-  },
-  /**
-   * 数据加载
-   */
-  dataLoad: function () {
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -106,31 +94,12 @@ Page({
   },
 
   //事件处理函数，此时抽取字典中的键值对到本地缓存中的键值对
-  itemTap: function () {
+  itemTap: function (e) {
+    var index=0;
+    console.log(index);
     wx.navigateTo({
-      url: '../item_found/item_found'
+      url: '../item_found/item_found?item='+JSON.stringify(this.data.items[index])
     })
-    wx.setStorage({
-      key: 'item_time',
-      data: '2018.12.3 2:21'
-    }),
-      wx.setStorage({
-      key: 'item_location',
-      data: '鼓楼校区'
-      }),
-      wx.setStorage({
-        key: 'item_contact',
-        data: '15238059700'
-      }),
-      wx.setStorage({
-      key: 'item_description',
-      data: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来'
-      }),
-      wx.setStorage({
-      key: 'item_picture_url',
-      data: ['http://superhero.wingzero.tw/wp-content/uploads/2015/11/deadpool_w.jpg',
-        'https://tse2-mm.cn.bing.net/th?id=OIP.H0gHHvYCk0-9XznefUvlOAHaLH&pid=Api']
-      })
   },
 
   searchFn: function (e) {

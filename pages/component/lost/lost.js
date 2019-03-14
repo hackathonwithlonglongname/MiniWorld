@@ -1,21 +1,45 @@
 // pages/component/lost/lost.js
+//获取应用实例
+var search = require('../search/search.js')
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    array: [
-      { message: '找到一把雨伞', address: "仙林校区", posttime: "2018.12.3 2:21" },
-      { message: '今天丢了可爱的岳心淳小哥哥,啊，好难过，好想他，求求好心人把他带回来', address: "鼓楼校区", posttime: "2018.12.3 2:21" }
-    ]
+    items:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('onLoad')
+    var that = this
+    //初始化的时候渲染searchdata
+    search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
+    search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+    wx.request({
+      url: 'https://api.idealclover.cn/hackathon/data.json',
+      method: 'POST',
+      data: {
+        item: "hhhh"
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        console.log("succeed");
+      }
+    })
+    wx.request({
+      url: 'https://api.idealclover.cn/hackathon/data.json',
+      success: function (res) {
+        console.log("success");
+        wx.setStorageSync("items", res.data.data.items);
+      }
+    });
   },
 
   /**
@@ -29,7 +53,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var items = wx.getStorageSync("items");
+    this.setData({
+      items: items
+    })
   },
 
   /**
@@ -66,30 +93,12 @@ Page({
   onShareAppMessage: function () {
 
   },
-  itemTap: function () {
+  itemTap: function (e) {
+    var index = 0;
+    console.log(index);
     wx.navigateTo({
-      url: '../item_lost/item_lost'
-    }),
-      wx.setStorage({
-        key: 'item_time',
-        data: null
-      }),
-      wx.setStorage({
-        key: 'item_location',
-        data: null
-      }),
-      wx.setStorage({
-        key: 'item_contact',
-        data: null
-      }),
-      wx.setStorage({
-        key: 'item_description',
-        data: null
-      }),
-      wx.setStorage({
-        key: 'item_picture_url',
-        data: null
-      })
+      url: '../item_lost/item_lost?item=' + JSON.stringify(this.data.items[index])
+    })
   },
   searchFn: function (e) {
     var that = this

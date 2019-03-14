@@ -11,71 +11,20 @@ Page({
     item_description: '',
     item_picture_url: []//此处为网址
   },
-  onShow: function () {
-    var that = this;
-    wx.getStorage({
-      key: 'item_time',
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          item_time: res.data
-        })
-      }
-    })
-  },
-  onShow: function () {
-    var that = this;
-    wx.getStorage({
-      key: 'item_location',
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          item_location: res.data
-        })
-      }
-    })
-  },
-  onShow: function () {
-    var that = this;
-    wx.getStorage({
-      key: 'item_contact',
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          item_contact: res.data
-        })
-      }
-    })
-  },
-  onShow: function () {
-    var that = this;
-    wx.getStorage({
-      key: 'item_description',
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          item_description: res.data
-        })
-      }
-    })
-  },
-  onShow: function () {
-    var that = this;
-    wx.getStorage({
-      data: 'item_picture_url',
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          item_picture_url: res.data
-        })
-      }
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("接收到的参数是item=" + options.item);//此处打印出来的是字符串，解析如下    	
+    var item = JSON.parse(options.item);//解析得到集合
+    this.setData({
+      item_time:item.time,
+      item_location: item.address,
+      item_contact: item.contactMethod,
+      item_description: item.detail,
+      item_picture_url: item.imgs//此处为网址
+    })
   },
 
   /**
