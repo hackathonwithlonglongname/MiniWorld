@@ -36,5 +36,3 @@
     </image>
   </view>
 </view>
-
-<button type="warn" bindtap="listenerStorageClear">清除信息</button>

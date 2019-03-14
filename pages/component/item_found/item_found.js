@@ -88,7 +88,23 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+/*
+ * 清除数据，我的设想是点击详细信息时使用此函数，
+ * 清除先前的键值对。
+ * 并加载从字典中刷新键值对（就是要查看的那个字典中的的键值对）
+ */
+    var that = this;
+    wx.clearStorage({
+      success: function (res) {
+        that.setData({
+          item_time: '',
+          item_location: '',
+          item_contact: '',
+          item_description: '',
+          item_picture_url: null,
+        })
+      }
+    })
   },
 
   /**
@@ -110,25 +126,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  /**
- * 清除数据，我的设想是点击详细信息时使用此函数，
- * 清除先前的键值对。
- * 并加载从字典中刷新键值对（就是要查看的那个字典中的的键值对）
- */
-  listenerStorageClear: function () {
-    var that = this;
-    wx.clearStorage({
-      success: function (res) {
-        that.setData({
-          item_time: '',
-          item_location: '',
-          item_contact: '',
-          item_description: '',
-          item_picture_url: null,
-        })
-      }
-    })
   },
   //此函数为预览，调用了当前图片的地址和图片所在的列表
   previewImage: function (e) {
