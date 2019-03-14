@@ -19,6 +19,7 @@ Page({
     //   }
     // }
 
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -28,8 +29,20 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+    //dataLoad();
+    wx.request({
+      url: 'https://api.idealclover.cn/hackathon/data.json',
+      success: function (res) {
+        console.log(res.data)
+      }
+    });
   },
-
+  /**
+   * 数据加载
+   */
+  dataLoad: function () {
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
