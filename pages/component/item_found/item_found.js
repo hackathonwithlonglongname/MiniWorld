@@ -9,7 +9,7 @@ Page({
     item_location: '',
     item_contact: '',
     item_description: '',
-    item_picture_url: []//此处为网址
+    item_picture_url: null//此处为网址
   },
   onShow: function () {
     var that = this;
