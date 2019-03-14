@@ -9,9 +9,9 @@
     "pages/item_found/item_found"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "NJUer の 猟犬",
+    "navigationBarTitleText": "南京大学失物招领平台",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -32,8 +32,8 @@
         "text": "发布信息"
       },
       {
-        "selectedIconPath": "images/found.png",
-        "iconPath": "images/found.png",
+        "selectedIconPath": "images/lost.png",
+        "iconPath": "images/lost.png",
         "pagePath": "pages/lost/lost",
         "text": "寻物启事"
       }
