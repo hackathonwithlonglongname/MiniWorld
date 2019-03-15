@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: []
+    founditems: []
   },
 
   /**
@@ -22,33 +22,14 @@ Page({
     var that = this
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
-    search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);/*
-    wx.request({
-      url: 'https://api.idealclover.cn/hackathon/data.json',
-      method:'POST',
-      data:{
-        item:"hhhh"
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success:function(res){
-        console.log("succeed");
-      }
-    })
-    wx.request({
-      url: 'https://api.idealclover.cn/hackathon/data.json',
-      success: function (res) {
-        console.log("success");
-        wx.setStorageSync("items", res.data.data.items);
-      }
-    });*/
+    search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+    
     db.collection("itemInfo")
     .where({
       type:"found"
     }).get().then(res=>{
       console.log(res.data)
-      wx.setStorageSync("items", res.data)
+      wx.setStorageSync("founditems", res.data)
     })
 
   },
@@ -64,9 +45,9 @@ Page({
    */
   onShow: function () {
     console.log("onShow")
-    var items=wx.getStorageSync("items");
+    var items=wx.getStorageSync("founditems");
     this.setData({
-      items:items
+      founditems:items
     })
   },
 
@@ -88,14 +69,23 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    db.collection("itemInfo")
+      .where({
+        type: "found"
+      }).get().then(res => {
+        console.log(res.data)
+        wx.setStorageSync("founditems", res.data)
+        this.setData({
+          founditems: res.data
+        })
+      })
   },
 
   /**

@@ -2,13 +2,16 @@
 //获取应用实例
 var search = require('../search/search.js')
 var app = getApp()
+const cloud = wx.cloud
+cloud.init()
+const db = cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    items:[]
+    lostitems:[]
   },
 
   /**
@@ -20,28 +23,15 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
-    wx.request({
-      url: 'https://api.idealclover.cn/hackathon/data.json',
-      method: 'POST',
-      data: {
-        item: "hhhh"
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: function (res) {
-        console.log("succeed");
-      }
-    })
-    wx.request({
-      url: 'https://api.idealclover.cn/hackathon/data.json',
-      success: function (res) {
-        console.log("success");
-        wx.setStorageSync("items", res.data.data.items);
-      }
-    });
+    db.collection("itemInfo")
+      .where({
+        type: "lost"
+      }).get().then(res => {
+        console.log(res.data)
+        wx.setStorageSync("lostitems", res.data)
+      })
+    
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -53,9 +43,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var items = wx.getStorageSync("items");
+    var items = wx.getStorageSync("lostitems");
     this.setData({
-      items: items
+      lostitems: items
     })
   },
 
@@ -84,7 +74,16 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    db.collection("itemInfo")
+      .where({
+        type: "lost"
+      }).get().then(res => {
+        console.log(res.data)
+        wx.setStorageSync("lostitems", res.data)
+        this.setData({
+          lostitems: res.data
+        })
+      })
   },
 
   /**
