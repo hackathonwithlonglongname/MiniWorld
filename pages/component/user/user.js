@@ -38,10 +38,10 @@ Page({
       }
     })*/
 
-    db.collection('userInfo[items]').get({
+    db.collection('userInfo.items').get({
       success(res) {
         // res.data 包含该记录的数据
-        console.log(res.data)
+        // console.log(res.data)
         self.setData({
           orders: res.data
         })

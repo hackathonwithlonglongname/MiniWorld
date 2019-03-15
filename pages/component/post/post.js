@@ -6,6 +6,20 @@ const db = cloud.database()
 const sourceType = [['camera'], ['album'], ['camera', 'album']]
 const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 
+/*exports.main = async (event, context) => {
+  const {
+    OPENID,
+    APPID,
+    UNIONID,
+  } = cloud.getWXContext()
+
+  return {
+    OPENID,
+    APPID,
+    UNIONID,
+  }
+}*/
+
 Page({
   
   data: {
