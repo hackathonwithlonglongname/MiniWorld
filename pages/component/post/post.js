@@ -17,7 +17,7 @@ Page({
 
     //openid: '',
     docID: '',
-    imageID: '',
+    //imageID: '',
   },
 
   pickerConfirm(e) {
@@ -130,8 +130,6 @@ Page({
       }).catch(error => {
         // handle error
       })
-
-      
     }
   },
 
