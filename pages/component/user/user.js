@@ -17,14 +17,14 @@ Page({
     /**
      * 获取用户信息
      */
-    wx.getUserInfo({
+    /*wx.getUserInfo({
       success: function(res){
         self.setData({
           thumb: res.userInfo.avatarUrl,
           nickname: res.userInfo.nickName
         })
       }
-    }),
+    }),*/
 
     /**
      * 发起请求获取订单列表信息
@@ -58,7 +58,7 @@ Page({
       success: function(res){
         self.setData({
           hasInformation: true,
-          information: res.data
+          information: res.data,
         })
       }
     })

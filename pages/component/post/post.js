@@ -1,4 +1,25 @@
 // pages/component/post/post.js
+const cloud = wx.cloud
+cloud.init()
+const db = cloud.database()
+
+const sourceType = [['camera'], ['album'], ['camera', 'album']]
+const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
+
+exports.main = async (event, context) => {
+  const {
+    OPENID,
+    APPID,
+    UNIONID,
+  } = cloud.getWXContext()
+
+  return {
+    OPENID,
+    APPID,
+    UNIONID,
+  }
+}
+
 Page({
   
   data: {
@@ -33,6 +54,37 @@ Page({
 
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    
+    var fileId = []
+    for (let img in Page.data.imageList){
+      wx.cloud.uploadFile({
+        cloudPath: '/userImages/' + OPENID + db.serverDate() + img,
+        filePath: img, // 文件路径
+      }).then(res => {
+        // get resource ID
+        console.log(res.fileID)
+        fileId.push(res.fileID)
+      }).catch(error => {
+        // handle error
+      })
+    }
+    
+    db.collection('itemInfo').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        postTime: db.serverDate(),
+        userId: OPENID,
+        type: e.detail.value["infoType"],
+        time: e.detail.value["date"],
+        address: e.detail.value["place"],
+        briefInfo: e.detail.value["title"],
+        detail: e.detail.value["description"],
+        contactMethod: e.detail.value["contact"],
+        imgs: fileId
+        }
+      }).then(res => {
+        console.log(res)
+      }).catch(console.error)
   },
 
   formReset(e) {
@@ -70,5 +122,6 @@ Page({
       current,
       urls: this.data.imageList
     })
-  }
+  },
+
 })

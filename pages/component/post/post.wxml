@@ -15,7 +15,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <picker mode="date" value="{{date}}" start="2015-09-01" end="2049-09-01" bindchange="bindDateChange">
+              <picker mode="date" value="{{date}}" start="2015-09-01" end="2049-09-01" bindchange="bindDateChange" name="date">
                 <view class="weui-input">{{date}}</view>
               </picker>
             </view>
@@ -29,6 +29,17 @@
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
               <input class="weui-input" name="place" placeholder="仙一/仙二/逸夫楼/图书馆/..." />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">简要描述</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="title" placeholder="用一句话描述你找到或丢失的东西" />
             </view>
           </view>
         </view>

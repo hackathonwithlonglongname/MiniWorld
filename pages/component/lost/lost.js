@@ -111,7 +111,7 @@ Page({
     search.searchInput(e, that);
   },
 
-  serchFocus: function (e) {
+  searchFocus: function (e) {
     var that = this
     search.searchFocus(e, that);
   },
