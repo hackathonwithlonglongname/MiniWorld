@@ -5,8 +5,8 @@
       <view class="page-section page-section-gap">
         <view class="page-section-title">信息类型</view>
         <radio-group name="infoType">
-          <label><radio value="found"/>失物招领</label>
-          <label><radio value="lost"/>寻物启事</label>
+          <label><radio value="found" checked="{{check}}" />失物招领</label>
+          <label><radio value="lost" checked="{{check}}" />寻物启事</label>
         </radio-group>
       </view>
       
@@ -15,7 +15,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <picker mode="date" value="{{date}}" start="2015-09-01" end="2049-09-01" bindchange="bindDateChange" name="date">
+              <picker mode="date" value="{{date}}" end="{{nowDate}}" bindchange="bindDateChange" name="date">
                 <view class="weui-input">{{date}}</view>
               </picker>
             </view>
@@ -28,7 +28,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <input class="weui-input" name="place" placeholder="仙一/仙二/逸夫楼/图书馆/..." />
+              <input class="weui-input" name="place" placeholder="仙一/仙二/逸夫楼/图书馆/..." value="{{info}}" />
             </view>
           </view>
         </view>
@@ -39,7 +39,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <input class="weui-input" name="title" placeholder="用一句话描述你找到或丢失的东西" />
+              <input class="weui-input" name="title" placeholder="用一句话描述你捡到或丢失的东西" value="{{info}}" />
             </view>
           </view>
         </view>
@@ -49,7 +49,7 @@
         <view class="page-section">
           <view class="page-section-title">详细描述</view>
           <view class="textarea-wrp">
-            <textarea class="weui-input" name="description" bindblur="bindTextAreaBlur" auto-height />
+            <textarea class="weui-input" name="description" bindblur="bindTextAreaBlur" auto-height value="{{info}}" />
           </view>
         </view>
       </view>
@@ -59,7 +59,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <input class="weui-input" name="contact" placeholder="手机号/QQ/微信/邮箱/..." />
+              <input class="weui-input" name="contact" placeholder="手机号/QQ/微信/邮箱/..." value="{{info}}" />
             </view>
           </view>
         </view>
@@ -92,7 +92,7 @@
 
       <view class="btn-area">
         <button type="primary" formType="submit">提交</button>
-        <button formType="reset">重置</button>
+        <!--<button formType="reset">重置</button>-->
       </view>
     </form>
   </view>
