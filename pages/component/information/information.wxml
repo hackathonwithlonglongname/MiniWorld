@@ -1,10 +1,30 @@
 <view class="main">
-    <view class="form-box">
-        <form bindsubmit="formSubmit">
-            <input value="{{information.name}}" name="name" placeholder="姓名"/>
-            <input type="number" name="phone" value="{{information.phone}}" placeholder="联系方式"/>
-            <input type="number" name="stuID" value="{{information.stuID}}" placeholder="学号"/>
-            <button form-type="submit">保存</button>
-        </form>
-    </view>
+  <view class="form-box">
+    <form bindsubmit="formSubmit">
+      <view class='item'>
+        <text>姓名</text>
+        <input value="{{information.name}}" name="name" placeholder="Name" />
+      </view>
+      <view class='item'>
+        <text>手机</text>
+        <input type="number" name="phone" value="{{information.phone}}" placeholder="Phone" />
+      </view>
+      <view class='item'>
+        <text>学号</text>
+        <input type="number" name="stuID" value="{{information.stuID}}" placeholder="StuID" />
+      </view>
+      <view class='item'>
+        <text>地区</text>
+        <picker mode="region" bindchange="bindRegionChange" value="{{information.region}}" custom-item="{{customItem}}">
+          <view class="picker">
+            {{region[0]}} {{region[1]}} {{region[2]}}
+          </view>
+        </picker>
+        <view class='icon'>
+          <image src='/images/my_order.png'></image>
+        </view>
+      </view>
+      <button form-type="submit">保存</button>
+    </form>
+  </view>
 </view>
