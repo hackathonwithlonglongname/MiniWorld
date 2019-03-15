@@ -1,49 +1,44 @@
 @import '../../common/common.wxss';
 
 .form-box{
-  padding-left: 50rpx;
-  padding-right: 50rpx;
+  padding-left:50rpx;
+  padding-right:50rpx;
 }
 .item{
-  display: flex;
-  border-bottom: 1px solid #d8d8d8;
-  line-height: 50px;
-  padding: 15px 0 0 0;
-}
-.item .icon{
-  flex: 0 1 10%;
-  text-align: right;
-}
-
-.item picker{
- flex: 1 1 auto;
- font-size:16px;
-}
-
-.item .icon image{
-  width:8px;
-  height:15px;
-  line-height: 50px;
+  display:flex;
+  border-bottom:1px solid #d8d8d8;
+  line-height:50px;
+  
 }
 .item text {
-  padding-left: 15px;
-  width: 70rpx;
+  padding-left:15px;
+  width:70rpx;
   font-size: 30rpx;
   color: #333333;
-  line-height: 50px;
-  height: 90rpx;
+  line-height:50px;
+  height:90rpx;
 }
 .item input{
-  flex: 1 1 auto;
-  font-size: 32rpx;
+  flex:1 1 auto;
+  font-size:32rpx;
   color: #999;
-  line-height: 40px;
-  height: 90rpx;
-  padding-left: 20px;
+  line-height:40px;
+  height:90rpx;
+  padding-left:20px;
 }
 .item .input-placeholder{
-    color: #aaa;
+  color: #aaa;
 }
+
+.picker-detail{
+  height:90rpx;
+  background-color: #fff;
+  color: #999;
+  font-size:32rpx;
+  padding-left:20px;
+  overflow:hidden;
+}
+
 .form-box button{
     margin:30rpx 0rpx 0 0;
 }
