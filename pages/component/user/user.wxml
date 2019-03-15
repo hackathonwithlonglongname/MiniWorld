@@ -1,33 +1,34 @@
 <view class="main">
     <view class='top'>
-      <!-- <navigator url="/pages/bindPhone/index" class='img'>
-        
-      </navigator> -->
       <view>
         <view class='img'><open-data type="userAvatarUrl"></open-data></view><view class='text'><open-data type="userNickName"></open-data></view>
       </view>
     </view>
-    <view class="information-box">
-        <view class="information-manage">
-            <navigator url="/pages/component/information/information">个人信息</navigator>
+
+    <view class='information-box'>
+        <view class='information-manage'>
+            <navigator url="/pages/component/information/information">信息管理</navigator>
         </view>
-        <view wx:if="{{hasInformation}}" class="information-list">
+        <view wx:if="{{hasInformation}}" class='information-list'>
             <view>Name: {{information.name}}</view>
             <view>Phone: {{information.phone}}</view>
             <view>StuID: {{information.stuID}}</view>
         </view>
     </view>
-    <view class="orders-box">
-        <view class="orders">我的公告</view>
-        <view class="orders-list" wx:for="{{orders}}" wx:key="index">
-            <view class="orders-ID">启事编号：{{item.ID}}</view>
-            <view class="orders-detail">
-                <image src="{{item.thumb}}"></image>
-                <view class="">{{item.title}}</view>
-                <view class="">{{item.foundtime}}</view>
-                <view class="">{{item.address}}</view>
-                <text class="orders-status">{{item.status}}</text>
-            </view>
-        </view>
+
+    <navigator url="/pages/component/order/order" class='orders-box'>
+      <view class='orders-manage'>
+        我的公告
+      </view>
+    </navigator>
+    <view class='icon'>
+      <navigator url="/pages/component/order/order?type=1" hover-class="none" >
+        <image src='/images/uncompleted.png' mode="aspectFit"></image>
+        <text>未结束</text>
+      </navigator>
+      <navigator url="/pages/component/order/order?type=2" hover-class="none" >
+        <image src='/images/completed.png' mode="aspectFit"></image>
+        <text>已完成</text>
+      </navigator>
     </view>
 </view>

@@ -143,7 +143,7 @@ Page({
     search.searchInput(e, that);
   },
 
-  searchFocus: function (e) {
+  serchFocus: function (e) {
     var that = this
     search.searchFocus(e, that);
   },

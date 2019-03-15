@@ -6,7 +6,7 @@ const db = cloud.database()
 const sourceType = [['camera'], ['album'], ['camera', 'album']]
 const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 
-exports.main = async (event, context) => {
+/*exports.main = async (event, context) => {
   const {
     OPENID,
     APPID,
@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
     APPID,
     UNIONID,
   }
-}
+}*/
 
 Page({
   
