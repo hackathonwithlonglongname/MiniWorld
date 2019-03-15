@@ -14,7 +14,7 @@
 <template is="search" data="{{searchData}}"/>
 
 <view class="section2">
-  <block  wx:key="property" wx:for="{{founditems}}">
+  <block  wx:for="{{founditems}}">
     <view id="{{index}}" class="frame" bindtap='itemTap'>
       <view class="flex" style='padding:25rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#feeeed'>
         <view style='display:flex;flex-direction:column'>
@@ -35,7 +35,7 @@
             
           </view>
         </view>
-        <image class="smallimage" mode='widthFix' src="/images/post.png"></image>  
+        <image mode='scaleToFill' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>  
       </view>
       
     </view>

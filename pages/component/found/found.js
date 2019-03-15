@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    founditems: []
+    founditems: [],
   },
 
   /**
@@ -23,14 +23,15 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
-    
+     
     db.collection("itemInfo")
-    .where({
-      type:"found"
-    }).get().then(res=>{
-      console.log(res.data)
-      wx.setStorageSync("founditems", res.data)
-    })
+      .where({
+        type: "found"
+      }).limit(20).skip(0).get().then(res => {
+        wx.setStorageSync("founditems", res.data)
+      })    
+    
+    
 
   },
   /**
@@ -100,7 +101,7 @@ Page({
     var index=0;
     console.log(index);
     wx.navigateTo({
-      url: '../item_found/item_found?item='+JSON.stringify(this.data.items[index])
+      url: '../item_found/item_found?item='+JSON.stringify(this.data.founditems[index])
     })
   },
 
