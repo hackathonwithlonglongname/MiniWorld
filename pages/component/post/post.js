@@ -8,17 +8,22 @@ const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 
 Page({
   data: {
+    //picker组件相关：
     pickerHidden: true,
     chosen: '',
+    nowDate: '2049-9-1', //onShow时修改为当前日期
+
+    //image组件相关：
     imageList: [],
     countIndex: 8,
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 
+    //ID相关：
     //openid: '',
     docID: '',
     //imageID: '',
-    nowDate: '2049-9-1',
 
+    //提交后清空表单用：
     info: '',
     check: false,
   },
@@ -41,6 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //将nowDate修改为当前日期
     var date = new Date()
     this.setData({
       nowDate: date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString()
@@ -82,6 +88,7 @@ Page({
 
   },
 
+  //picker组件相关：
   pickerConfirm(e) {
     this.setData({
       pickerHidden: true
@@ -109,10 +116,12 @@ Page({
     })
   },
 
+  //textarea组件相关：
   bindTextAreaBlur(e) {
     console.log(e.detail.value)
   },
 
+  //image组件相关：
   chooseImage() {
     const that = this
     wx.chooseImage({
@@ -137,6 +146,7 @@ Page({
     })
   },
 
+  //form组件相关：
   formReset(e) {
     console.log('form发生了reset事件，携带数据为：', e.detail.value)
     this.setData({
@@ -146,7 +156,7 @@ Page({
 
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    /*
+    /* 获取openid，暂不需要
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
@@ -157,6 +167,8 @@ Page({
       }
     })
     */
+
+    //必选逻辑判断：
     if (e.detail.value['infoType'] == '') {
       wx.showToast({
         title: '请填写信息类型！',
@@ -206,6 +218,7 @@ Page({
     }
 
     else{
+      //将物品信息写入数据库
       db.collection('itemInfo').add({
         // data 字段表示需新增的 JSON 数据
         data: {
@@ -219,12 +232,14 @@ Page({
           imgs: []
         }
       }).then(res => {
+        //获得记录(Document)ID
         this.setData({
           docID: res._id
         })
         console.log(res)
       }).catch(console.error)
 
+      //上传图片
       for (let id = 0; id < this.data.imageList.length; id++) {
         const img = this.data.imageList[id]
         console.log(img)
@@ -235,21 +250,22 @@ Page({
           cloudPath,
           filePath
         }).then(res => {
-          // get resource ID
+          //将图片文件ID写入数据库
           console.log(res)
           db.collection("itemInfo").doc(this.data.docID).update({
             data: {
               imgs: db.command.push([res.fileID])
             }
-          })/*
-        this.setData({
-          imageID: res.fileID
-        })*/
+          })/* 获取图片文件ID，暂不需要
+          this.setData({
+            imageID: res.fileID
+          })*/
         }).catch(error => {
           // handle error
         })
       }
 
+      //消息框提醒
       wx.showToast({
         title: '信息发布成功！',
         icon: 'success',
@@ -257,11 +273,14 @@ Page({
       })
 
       var that = this
+      //延迟处理，等待消息框结束
       setTimeout(function () {
+        //跳转至found或lost页
         wx.switchTab({
           url: '../' + e.detail.value['infoType'] + '/' + e.detail.value['infoType'],
         })
 
+        //重置并刷新post页
         that.setData({
           info: '',
           date: '',
