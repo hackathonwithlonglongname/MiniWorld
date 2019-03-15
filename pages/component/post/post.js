@@ -91,6 +91,27 @@ Page({
 
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    //获取当前时间戳
+    var timestamp0 = Date.parse(new Date());
+    timestamp0 = timestamp0 / 1000;
+
+    //获取当前时间
+    var n = timestamp0 * 1000;
+    var date = new Date(n);
+    //年
+    var Y = date.getFullYear();
+    //月
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    //日
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    //时
+    var h = date.getHours();
+    //分
+    var m = date.getMinutes();
+    //秒
+    var s = date.getSeconds();
+
+    console.log(Y + M + D + " " + h + ":" + m + ":" + s);
     /*
     wx.cloud.callFunction({
       name: 'get_id',
@@ -105,7 +126,7 @@ Page({
     db.collection('itemInfo').add({
       // data 字段表示需新增的 JSON 数据
       data: {
-        postTime: db.serverDate(),
+        postTime: Y + M + D + " " + h + ":" + m + ":" + s,
         type: e.detail.value["infoType"],
         time: e.detail.value["date"],
         address: e.detail.value["place"],

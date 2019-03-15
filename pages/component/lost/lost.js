@@ -28,8 +28,8 @@ Page({
       .where({
         type: "lost"
       }).get().then(res => {
-        console.log(res.data)
         wx.setStorageSync("lostitems", res.data)
+        console.log(res.data)
       })
     
   },
@@ -44,6 +44,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    db.collection("itemInfo")
+      .where({
+        type: "lost"
+      }).get().then(res => {
+        wx.setStorageSync("lostitems", res.data)
+        console.log(res.data)
+      })
     var items = wx.getStorageSync("lostitems");
     this.setData({
       lostitems: items

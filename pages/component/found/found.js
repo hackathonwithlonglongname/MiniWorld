@@ -23,16 +23,11 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
-     
-    db.collection("itemInfo")
-      .where({
-        type: "found"
-      }).limit(20).skip(0).get().then(res => {
-        wx.setStorageSync("founditems", res.data)
-      })    
-    
+
+
     
 
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -45,11 +40,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow")
-    var items=wx.getStorageSync("founditems");
-    this.setData({
-      founditems:items
-    })
+
+    db.collection("itemInfo")
+      .where({
+        type: "found"
+      }).get().then(res => {
+        this.setData({
+          founditems: res.data
+        })
+        console.log(res.data)
+      })    
+    
   },
 
   /**
@@ -96,7 +97,7 @@ Page({
 
   },
 
-  //事件处理函数，此时抽取字典中的键值对到本地缓存中的键值对
+  //事件处理函数
   itemTap: function (e) {
     var index=0;
     console.log(index);
