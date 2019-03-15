@@ -23,6 +23,7 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+    
     db.collection("itemInfo")
       .where({
         type: "lost"
@@ -74,6 +75,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    console.log("上拉触底")
     db.collection("itemInfo")
       .where({
         type: "lost"
@@ -96,7 +98,7 @@ Page({
     var index = 0;
     console.log(index);
     wx.navigateTo({
-      url: '../item_lost/item_lost?item=' + JSON.stringify(this.data.items[index])
+      url: '../item_lost/item_lost?item=' + JSON.stringify(this.data.lostitems[index])
     })
   },
   searchFn: function (e) {
