@@ -47,7 +47,7 @@
 
       <view class="page-body">
         <view class="page-section">
-          <view class="page-section-title">物品描述</view>
+          <view class="page-section-title">详细描述</view>
           <view class="textarea-wrp">
             <textarea class="weui-input" name="description" bindblur="bindTextAreaBlur" auto-height />
           </view>
