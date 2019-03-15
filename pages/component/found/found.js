@@ -12,7 +12,6 @@ Page({
    */
   data: {
     founditems: [],
-    num:0
   },
 
   /**
@@ -24,34 +23,15 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
+     
+    db.collection("itemInfo")
+      .where({
+        type: "found"
+      }).limit(20).skip(0).get().then(res => {
+        wx.setStorageSync("founditems", res.data)
+      })    
     
     
-    db.collection('itemInfo').where({
-      type:"found"
-    }).count().then(res => {
-      this.setData({
-        num:res.total
-      })
-    })
-    console.log("count="+this.data.num)
-    var items = []
-    var tmp=[]
-    for (var i = 0; i < this.data.num; ) { 
-      db.collection("itemInfo")
-        .where({
-          type: "found"
-        }).limit(100).get().then(res => {
-          tmp=res.data
-          items=items.concat(tmp)
-          console.log(items)
-        })    
-        i=i+20
-        console.log(i)
-    }
-    this.setData({
-      founditems: items
-    })
-    //console.log(items)
 
   },
   /**
