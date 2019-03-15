@@ -181,7 +181,6 @@ Page({
     /*
 
     /* 获取openid，暂不需要
->>>>>>> 43097fbdcdb1df2d6e36129eef783c1f77f71ff8
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
@@ -320,5 +319,4 @@ Page({
       }, 1500)
     }
   },
-
 })
