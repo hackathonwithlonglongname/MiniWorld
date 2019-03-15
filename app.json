@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/component/login/login",
     "pages/component/found/found",
     "pages/component/post/post",
     "pages/component/lost/lost",
