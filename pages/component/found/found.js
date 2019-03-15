@@ -43,14 +43,14 @@ Page({
         wx.setStorageSync("items", res.data.data.items);
       }
     });*/
-    db.collection("itemInfo").get({
-      success(res){
-        console.log(res)
-        this.setData({
-          items:res.data
-        })
-      }
+    db.collection("itemInfo")
+    .where({
+      type:"found"
+    }).get().then(res=>{
+      console.log(res.data)
+      wx.setStorageSync("items", res.data)
     })
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -63,6 +63,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("onShow")
     var items=wx.getStorageSync("items");
     this.setData({
       items:items
