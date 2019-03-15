@@ -24,14 +24,6 @@ Page({
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
     
-    db.collection("itemInfo")
-      .where({
-        type: "lost"
-      }).get().then(res => {
-        wx.setStorageSync("lostitems", res.data)
-        console.log(res.data)
-      })
-    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -48,13 +40,11 @@ Page({
       .where({
         type: "lost"
       }).get().then(res => {
-        wx.setStorageSync("lostitems", res.data)
+        this.setData({
+          founditems: res.data
+        })
         console.log(res.data)
-      })
-    var items = wx.getStorageSync("lostitems");
-    this.setData({
-      lostitems: items
-    })
+      })  
   },
 
   /**
@@ -75,7 +65,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    
   },
 
   /**

@@ -12,6 +12,8 @@ Page({
    */
   data: {
     founditems: [],
+    currentIndex:0,
+    count:0
   },
 
   /**
@@ -23,9 +25,7 @@ Page({
     //初始化的时候渲染searchdata
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
-
-
-    
+    console.log("currentIndex:"+this.data.currentIndex)
 
     
   },
@@ -40,13 +40,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    db.collection('itemInfo').where({
+      type:"found"
+    }).count().then(res => {
+      this.setData({
+        count:res.total
+      })
+    })
+    console.log(this.data.count)
+    
     db.collection("itemInfo")
       .where({
         type: "found"
-      }).get().then(res => {
+      }).skip(this.data.currentIndex).limit(5).get().then(res => {
         this.setData({
-          founditems: res.data
+          founditems: res.data,
+          currentIndex:5
         })
         console.log(res.data)
       })    
@@ -78,14 +87,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    console.log("chudile")
+    var l=this.data.count-this.data.currentIndex
+    if(l<=0)return
+    if(l>5)l=5
     db.collection("itemInfo")
       .where({
         type: "found"
-      }).get().then(res => {
+      }).skip(this.data.currentIndex).limit(l).get().then(res => {
+        var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
-        wx.setStorageSync("founditems", res.data)
         this.setData({
-          founditems: res.data
+          founditems: tmp,
+          currentIndex:this.data.currentIndex+l
         })
       })
   },

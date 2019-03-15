@@ -15,7 +15,7 @@
 
 <view class="section2">
   <block wx:for="{{lostitems}}">
-    <view id="{{index}}" class="frame" bindtap='itemTap'>
+    <view class="frame" bindtap='itemTap' data-index="{{index}}">
       <view class="flex" style='padding:25rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#feeeed'>
         <view style='display:flex;flex-direction:column'>
           
