@@ -48,7 +48,9 @@ Page({
       })
     })
     console.log(this.data.count)
-    
+    this.setData({
+      currentIndex:0
+    })
     db.collection("itemInfo")
       .where({
         type: "found"
