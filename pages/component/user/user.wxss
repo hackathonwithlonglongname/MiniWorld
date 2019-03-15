@@ -45,16 +45,6 @@
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-.information-box .information-list{
-    padding-left: 30rpx;
-}
-.information-box .information-list view{
-    height: 90rpx;
-    border-bottom: 1rpx solid #e9e9e9;
-}
-.information-box .information-list view:last-child{
-    border-bottom: 2rpx solid #e9e9e9;
-}
 
 .orders-box{
     border-bottom: 1rpx solid #ededed;
@@ -63,7 +53,7 @@
     font-family: Courier;
     font-size: 28rpx;
 }
-.orders-manage{
+.orders-box .orders-manage{
     position: relative;
     height: 90rpx;
     border-bottom: 1rpx solid #e9e9e9;
@@ -100,7 +90,7 @@
 }*/
 
 .icon{
-  border-bottom:1px solid #EDEDED; 
+  border-bottom:2px solid #EDEDED; 
   display: flex;
   padding: 10px 0;
 }

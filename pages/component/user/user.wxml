@@ -5,22 +5,11 @@
       </view>
     </view>
 
-    <view class='information-box'>
-        <view class='information-manage'>
-            <navigator url="/pages/component/information/information">信息管理</navigator>
-        </view>
-        <view wx:if="{{hasInformation}}" class='information-list'>
-            <view>Name: {{information.name}}</view>
-            <view>Phone: {{information.phone}}</view>
-            <view>StuID: {{information.stuID}}</view>
-        </view>
-    </view>
-
-    <navigator url="/pages/component/order/order" class='orders-box'>
+    <view class='orders-box'>
       <view class='orders-manage'>
-        我的公告
+          <navigator url="/pages/component/order/order">我的公告</navigator>
       </view>
-    </navigator>
+    </view>
     <view class='icon'>
       <navigator url="/pages/component/order/order?type=1" hover-class="none" >
         <image src='/images/uncompleted.png' mode="aspectFit"></image>
@@ -31,4 +20,16 @@
         <text>已完成</text>
       </navigator>
     </view>
+
+    <view class='information-box'>
+        <view class='information-manage'>
+            <navigator url="/pages/component/information/information">信息管理</navigator>
+        </view>
+        <!--<view wx:if="{{hasInformation}}" class='information-list'>
+            <view>Name: {{information.name}}</view>
+            <view>Phone: {{information.phone}}</view>
+            <view>StuID: {{information.stuID}}</view>
+        </view>-->
+    </view>
+
 </view>
