@@ -99,11 +99,12 @@ Page({
 
   //事件处理函数
   itemTap: function (e) {
-    var index=0;
-    console.log(index);
+    var x=e.currentTarget.dataset.index
+    //console.log(e.currentTarget.dataset.index);
+    
     wx.navigateTo({
-      url: '../item_found/item_found?item='+JSON.stringify(this.data.founditems[index])
-    })
+      url: '../item_found/item_found?item='+JSON.stringify(this.data.founditems[x])
+    })/**/
   },
 
   searchFn: function (e) {
