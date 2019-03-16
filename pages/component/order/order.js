@@ -15,6 +15,7 @@ Page({
     currentTab: 0,
     tabCont: [{ "title": "招领", "type": "found", "index": "0" }, { "title": "寻物", "type": "lost", "index": "1" }],
     count: 0,
+
   },
 
   /**
@@ -50,7 +51,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
+    var that = this
+    wx.cloud.callFunction({
+      name: 'get_id',
+      complete: res => {
+        console.log('callFunction test result: ', res)
+        this.setData({
+          openid: res.result.openid
+        })
+      }
+    })
     /*wx.getStorage({
       key: '_openid',
       success: function(res) {
