@@ -39,7 +39,7 @@
   padding-right: 30rpx;
 }
 .image_view{
-  margin-left: 30rpx; 
+  margin-left: 60rpx; 
 }
 .image{
   background: #800080;
