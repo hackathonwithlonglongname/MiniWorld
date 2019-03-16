@@ -32,11 +32,12 @@
   padding-left: 40rpx;
 }
 .left{
-  padding-left: 30rpx;
+  display: flex;
+  padding-left: 20rpx;
   color: rgb(80, 80, 80);
 }
 .right{
-  padding-right: 30rpx;
+  margin-right: 30rpx;
 }
 .image_view{
   margin-left: 60rpx; 
@@ -47,3 +48,11 @@
   margin-left:15rpx;
   margin-top:15rpx; 
 }
+.user_icon{
+  display: flex;
+  width:40rpx;
+  height: 40rpx;
+  margin-top: 5rpx;
+  margin-right: 5rpx;
+}
+
