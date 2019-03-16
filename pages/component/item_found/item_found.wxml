@@ -33,8 +33,17 @@
 
   <!--遍历item_picture列表，显示所有图片-->
 
-  <!--判断为2*2显示还是3*3显示-->
-  <view wx:if="{{item_picture_url.length==2 || item_picture_url.length==4}}">
+  <!--判断为1*1显示，2*2显示还是3*3显示-->
+  <view wx:if="{{item_picture_url.length==1}}">
+    <view class='image_view'>
+      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+        </image>
+      </view>
+    </view>
+  </view>
+
+  <view wx:elif="{{item_picture_url.length==2 || item_picture_url.length==4}}">
     <view class='image_view'>
       <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
         <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_2}}px;height:{{img_width_2}}px'>

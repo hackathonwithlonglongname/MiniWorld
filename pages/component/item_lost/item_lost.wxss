@@ -38,7 +38,12 @@
 .right{
   padding-right: 30rpx;
 }
+.image_view{
+  margin-left: 60rpx; 
+}
 .image{
-  display: flex;
-  padding-left: 30rpx;  
+  background: #800080;
+  float: left;
+  margin-left:15rpx;
+  margin-top:15rpx; 
 }

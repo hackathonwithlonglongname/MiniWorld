@@ -158,26 +158,25 @@ Page({
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
 
     //获取当前时间戳
-    var timestamp0 = Date.parse(new Date());
-    timestamp0 = timestamp0 / 1000;
+    var timestamp = Date.parse(new Date())
+    var date = new Date(timestamp)
+    timestamp = timestamp / 1000
 
     //获取当前时间
-    var n = timestamp0 * 1000;
-    var date = new Date(n);
     //年
-    var Y = date.getFullYear();
+    var Y = date.getFullYear()
     //月
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
     //日
-    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
     //时
-    var h = date.getHours();
+    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
     //分
-    var m = date.getMinutes();
+    var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
     //秒
-    var s = date.getSeconds();
-
-    console.log(Y + M + D + " " + h + ":" + m + ":" + s);
+    var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+    var postTime = Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s
+    console.log(postTime);
     /*
 
     /* 获取openid，暂不需要
@@ -191,7 +190,6 @@ Page({
       }
     })
     */
-
 
     //必选逻辑判断：
     if (e.detail.value['infoType'] == '') {
@@ -247,7 +245,7 @@ Page({
       db.collection('itemInfo').add({
         // data 字段表示需新增的 JSON 数据
         data: {
-          postTime: Y + M + D + " " + h + ":" + m + ":" + s,
+          postTime,
           type: e.detail.value["infoType"],
           time: e.detail.value["date"],
           address: e.detail.value["place"],
@@ -269,7 +267,6 @@ Page({
         const img = this.data.imageList[id]
         console.log(img)
         const filePath = img // 文件路径
-        let timestamp = Date.parse(new Date())
         const cloudPath = "itemImages/" + timestamp + "_" + id + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
           cloudPath,
