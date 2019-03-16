@@ -40,19 +40,19 @@ Page({
   formSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     const value = e.detail.value;
-    if (value.name && value.phone && value.stuID && value.region) {
+    //if (value.name && value.phone && value.stuID && value.region) {
       // 同步方式存储表单数据
-      wx.setStorageSync('name', value.name);
-      wx.setStorageSync('phone', value.phone);
-      wx.setStorageSync('stuID', value.stuID);
-      wx.setStorageSync('region', value.region);
-      wx.navigateBack();
-    } else {
+    wx.setStorageSync('name', value.name);
+    wx.setStorageSync('phone', value.phone);
+    wx.setStorageSync('stuID', value.stuID);
+    wx.setStorageSync('region', value.region);
+    wx.navigateBack();
+    /*} else {
       wx.showModal({
         title: '提示',
         content: '请填写完整资料',
         showCancel: false
       })
-    }
+    }*/
   }
 })

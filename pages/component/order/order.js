@@ -13,7 +13,9 @@ Page({
     founditems2: [],
     openid: "OPENID",
     currentTab: 0,
+
     tabCont: [{ "title": "未结束", "type": "lost", "index": "0" }, { "title": "已完成", "type": "found", "index": "1" }],
+
   },
 
   /**
@@ -61,12 +63,15 @@ Page({
     })*/
     console.log(wx.getStorageInfoSync('openid'))
     db.collection('itemInfo').where({
+
       _openid: wx.getStorageInfoSync('openid'),
+
     }).count().then(res => {
       this.setData({
-        count: res.total
+        count_lost: res.total
       })
     })
+
     console.log(this.data.count)
     this.setData({
       currentIndex: 0
@@ -121,19 +126,21 @@ Page({
    */
   onReachBottom: function () {
     console.log("chulilalala")
-    var l = this.data.count - this.data.currentIndex
-    if (l <= 0) return
-    if (l > 5) l = 5
+    var lf = this.data.count_found - this.data.currentIndex
+    if (lf <= 0) return
+    if (lf > 5) lf = 5
 
-    var l = this.data.count - this.data.currentIndex
-    if (l <= 0) return
-    if (l > 20) l = 20
+    var ll = this.data.count_lost - this.data.currentIndex
+    if (ll <= 0) return
+    if (ll > 20) ll = 20
 
     db.collection("itemInfo")
       .where({
+
         type: this.data.type,
         _openid: wx.getStorageInfoSync('openid'),
       }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
+
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
         this.setData({
