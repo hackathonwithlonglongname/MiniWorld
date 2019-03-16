@@ -12,6 +12,7 @@ Page({
     founditems2: [],
     openid: "OPENID",
     currentTab: 0,
+    count: 0,
     tabCont: [{ "title": "未结束", "type": "lost", "index": "0" }, { "title": "已完成", "type": "found", "index": "1" }],
   },
 
@@ -41,7 +42,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
+    var that = this
+    wx.cloud.callFunction({
+      name: 'get_id',
+      complete: res => {
+        console.log('callFunction test result: ', res)
+        this.setData({
+          openid: res.result.openid
+        })
+      }
+    })
     /*wx.getStorage({
       key: '_openid',
       success: function(res) {
@@ -52,7 +62,7 @@ Page({
       }
     })*/
     db.collection('itemInfo').where({
-      _openid: that.data.openid,
+      _openid: this.data.openid,
     }).count().then(res => {
       this.setData({
         count: res.total
@@ -65,7 +75,7 @@ Page({
     db.collection("itemInfo")
       .where({
         type: "lost",
-        _openid: that.data.openid,
+        _openid: this.data.openid,
       }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         that.setData({
           founditems1: res.data,
@@ -128,7 +138,7 @@ Page({
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
         this.setData({
-          founditems: tmp,
+          founditems1: tmp,
           currentIndex: this.data.currentIndex + l
         })
       })
