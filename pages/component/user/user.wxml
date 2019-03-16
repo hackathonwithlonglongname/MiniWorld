@@ -12,12 +12,12 @@
     </view>
     <view class='icon'>
       <navigator url="/pages/component/order/order?type=1" hover-class="none" >
-        <image src='/images/uncompleted.png' mode="aspectFit"></image>
-        <text>未结束</text>
+        <image src='/images/found.png' mode="aspectFit"></image>
+        <text>招领</text>
       </navigator>
       <navigator url="/pages/component/order/order?type=2" hover-class="none" >
-        <image src='/images/completed.png' mode="aspectFit"></image>
-        <text>已完成</text>
+        <image src='/images/lost.png' mode="aspectFit"></image>
+        <text>寻物</text>
       </navigator>
     </view>
 
