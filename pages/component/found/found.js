@@ -54,7 +54,7 @@ Page({
     db.collection("itemInfo")
       .where({
         type: "found"
-      }).skip(this.data.currentIndex).limit(5).get().then(res => {
+      }).skip(this.data.currentIndex).limit(3).orderBy("postTime","desc").get().then(res => {
         this.setData({
           founditems: res.data,
           currentIndex:5
@@ -92,11 +92,11 @@ Page({
     console.log("chudile")
     var l=this.data.count-this.data.currentIndex
     if(l<=0)return
-    if(l>5)l=5
+    if(l>3)l=3
     db.collection("itemInfo")
       .where({
         type: "found"
-      }).skip(this.data.currentIndex).limit(l).get().then(res => {
+      }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
         this.setData({
