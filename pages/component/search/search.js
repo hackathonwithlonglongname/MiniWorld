@@ -95,6 +95,7 @@ function searchFocus(e, that, callBack) {
   that.setData({
     searchData: temData
   });
+  //console.log(that.data.searchData)
   //回调
   if (typeof(callBack) == "function") {
     callBack();
@@ -136,7 +137,7 @@ function searchKeyTap(e, that, callBack) {
     searchData: temData
   });
   if (typeof(callBack) == "function") {
-    callBack();
+    callBack(temData.value);
   }
 }
 
