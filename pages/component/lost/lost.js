@@ -11,7 +11,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    lostitems:[]
+    lostitems:[],
+    currentIndex:0,
+    count:0
+
   },
 
   /**
@@ -36,15 +39,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    db.collection('itemInfo').where({
+      type: "lost"
+    }).count().then(res => {
+      this.setData({
+        count: res.total
+      })
+    })
+    console.log(this.data.count)
+    this.setData({
+      currentIndex: 0
+    })
     db.collection("itemInfo")
       .where({
         type: "lost"
-      }).get().then(res => {
+      }).skip(this.data.currentIndex).limit(5).get().then(res => {
         this.setData({
-          founditems: res.data
+          lostitems: res.data,
+          currentIndex: 5
         })
         console.log(res.data)
-      })  
+      })
   },
 
   /**
@@ -72,15 +87,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("上拉触底")
+    console.log("chudile")
+    var l = this.data.count - this.data.currentIndex
+    if (l <= 0) return
+    if (l > 5) l = 5
     db.collection("itemInfo")
       .where({
-        type: "lost"
-      }).get().then(res => {
+        type: "found"
+      }).skip(this.data.currentIndex).limit(l).get().then(res => {
+        var tmp = this.data.lostitems.concat(res.data)
         console.log(res.data)
-        wx.setStorageSync("lostitems", res.data)
         this.setData({
-          lostitems: res.data
+          lostitems: tmp,
+          currentIndex: this.data.currentIndex + l
         })
       })
   },
@@ -92,10 +111,9 @@ Page({
 
   },
   itemTap: function (e) {
-    var index = 0;
-    console.log(index);
+    var x = e.currentTarget.dataset.index
     wx.navigateTo({
-      url: '../item_lost/item_lost?item=' + JSON.stringify(this.data.lostitems[index])
+      url: '../item_lost/item_lost?item=' + JSON.stringify(this.data.lostitems[x])
     })
   },
   searchFn: function (e) {
