@@ -140,16 +140,56 @@ Page({
     }) /**/
   },
 
+  printSearchResult:function() {
+    var tmpItems=this.data.founditems
+    for (var i = 0, len = tmpItems.length; i < len;) {
+      let b = tmpItems[i].briefInfo
+      let a = tmpItems[i].address
+      let d = tmpItems[i].detail
+      if (b.indexOf(this.data.searchTarget) != -1 || a.indexOf(this.data.searchTarget) != -1 || d.indexOf(this.data.searchTarget) != -1) {
+        i++;
+        //console.log("nothing")
+        continue
+      }
+      tmpItems.splice(i, 1);
+      len--
+    }
+    this.setData({
+      founditems:tmpItems
+    })
+  },
+
   searchFn: function(e) {
     console.log("searchFn")
     var that = this
     search.searchAddHisKey(that);
+    this.printSearchResult()
   },
 
   searchInput: function(e) {
     console.log("searchInput")
     var that = this
-    search.searchInput(e, that);
+    search.searchInput(e, that,function (res) {
+      if(typeof(res)!="undefined"){
+        that.setData({
+          searchTarget: res
+        })
+      }
+    
+    });
+    this.setData({
+      currentIndex: 0
+    })
+    db.collection("itemInfo")
+      .where({
+        type: "found"
+      }).skip(this.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
+        this.setData({
+          founditems: res.data,
+          currentIndex: 20
+        })
+      })
+    console.log("target",this.data.searchTarget)
   },
 
   serchFocus: function(e) {
@@ -162,6 +202,7 @@ Page({
     console.log("searchBlur")
     var that = this
     search.searchBlur(e, that);
+    
   },
 
   searchKeyTap: function(e) {
@@ -172,6 +213,7 @@ Page({
         searchTarget:res
       })
     });
+    console.log("target"+this.data.searchTarget)
   },
 
   searchDeleteKey: function(e) {
@@ -190,17 +232,6 @@ Page({
     console.log("searchTap")
     var that = this
     search.searchHiddenPancel(that);
-    console.log(this.data.foundItems.length)/*length居然tm的未定义？？？？？什么鬼？？
-    for (var i = 0, len = this.data.foundItems.length; i < len; ) {
-      let b = this.data.founditems[i].briefInfo
-      let a = this.data.founditems[i].address
-      let d = this.data.founditems[i].detail
-      if (b.indexOf(this.data.searchTarget) != -1 || a.indexOf(this.data.searchTarget) != -1 || d.indexOf(this.data.searchTarget) != -1){
-        i++;
-        continue;
-      }
-      this.data.foundItems.splice(i,1);
-    }*/
-    console.log("target:"+this.data.searchTarget)
+    
   }
 })

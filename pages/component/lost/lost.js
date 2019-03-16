@@ -13,8 +13,8 @@ Page({
   data: {
     lostitems:[],
     currentIndex:0,
-    count:0
-
+    count:0,
+    searchTarget: ""
   },
 
   /**
@@ -116,15 +116,56 @@ Page({
       url: '../item_lost/item_lost?item=' + JSON.stringify(this.data.lostitems[x])
     })
   },
+
+  printSearchResult: function () {
+    var tmpItems = this.data.lostitems
+    for (var i = 0, len = tmpItems.length; i < len;) {
+      let b = tmpItems[i].briefInfo
+      let a = tmpItems[i].address
+      let d = tmpItems[i].detail
+      if (b.indexOf(this.data.searchTarget) != -1 || a.indexOf(this.data.searchTarget) != -1 || d.indexOf(this.data.searchTarget) != -1) {
+        i++;
+        //console.log("nothing")
+        continue
+      }
+      tmpItems.splice(i, 1);
+      len--
+    }
+    this.setData({
+      lostitems: tmpItems
+    })
+  },
+
   searchFn: function (e) {
     var that = this
     search.searchAddHisKey(that);
-
+    this.printSearchResult()
   },
 
   searchInput: function (e) {
     var that = this
-    search.searchInput(e, that);
+    search.searchInput(e, that, function (res) {
+      if (typeof (res) != "undefined") {
+        that.setData({
+          searchTarget: res
+        })
+      }
+    });
+    this.setData({
+      currentIndex: 0
+    })
+    db.collection("itemInfo")
+      .where({
+        type: "lost"
+      }).skip(this.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
+        this.setData({
+          lostitems: res.data,
+          currentIndex: 20
+        })
+      })
+      
+    
+    console.log("target", this.data.searchTarget)
   },
 
   searchFocus: function (e) {
@@ -139,7 +180,12 @@ Page({
 
   searchKeyTap: function (e) {
     var that = this
-    search.searchKeyTap(e, that);
+    search.searchKeyTap(e, that, function (res) {
+      that.setData({
+        searchTarget: res
+      })
+    });
+    console.log("target" + this.data.searchTarget)
   },
 
   searchDeleteKey: function (e) {

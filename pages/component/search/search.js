@@ -88,6 +88,9 @@ function searchInput(e, that, callBack) {
       }
     }
   }
+  if (typeof (callBack) == "function") {
+    callBack(text);
+  }
 }
 
 function searchFocus(e, that, callBack) {
