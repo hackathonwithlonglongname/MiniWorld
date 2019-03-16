@@ -1,4 +1,7 @@
 // pages/component/item/item.js
+const cloud = wx.cloud
+const db = cloud.database()
+
 Page({
 
   /**
@@ -12,7 +15,10 @@ Page({
     item_picture_url: null, //此处为网址
     img_width_2: wx.getSystemInfoSync().windowWidth / 2.6,
     img_width_3: wx.getSystemInfoSync().windowWidth / 4,
-    img_width_1: wx.getSystemInfoSync().windowWidth / 1.3
+    img_width_1: wx.getSystemInfoSync().windowWidth / 1.3,
+    item_id: '', //记录(Document)ID
+    item_openid: '', //发布者ID
+    openid: '', //访问者ID
   },
 
   /**
@@ -26,7 +32,18 @@ Page({
       item_location: item.address,
       item_contact: item.contactMethod,
       item_description: item.detail,
-      item_picture_url: item.imgs //此处为网址
+      item_picture_url: item.imgs, //此处为网址
+      item_id: item._id,
+      item_openid: item._openid,
+    })
+    wx.cloud.callFunction({
+      name: 'get_id',
+      complete: res => {
+        console.log('callFunction test result: ', res)
+        this.setData({
+          openid: res.result.openid
+        })
+      }
     })
   },
 
@@ -105,4 +122,59 @@ Page({
       urls: this.data.item_picture_url
     })
   },
+
+  //按钮响应函数，功能为删除本条信息（当发布者ID与访问者ID一致时）
+  deleteItem: function (e) {
+    var that = this
+    
+    //显示确定/取消对话框
+    wx.showModal({
+      title: '删除招领信息',
+      content: '确认删除这条信息？删除后不可恢复',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          
+          //再次验证发布者ID与访问者ID是否一致
+          if (that.data.item_openid == that.data.openid) {
+            //从数据库中删除本条记录(Document)
+            db.collection('itemInfo').doc(that.data.item_id).remove()
+              .then(console.log)
+              .catch(console.error)
+
+            //从存储管理中删除图片
+            wx.cloud.deleteFile({
+              fileList: that.data.item_picture_url
+            }).then(res => {
+              // handle success
+              console.log(res.fileList)
+            }).catch(error => {
+              // handle error
+            })
+
+            //显示删除成功对话框
+            wx.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 1500,
+            })
+
+            //返回列表页
+            wx.navigateBack({
+              delta: 1,
+            })
+          }
+          else { //非正常功能，当删除按钮误显示在界面时报错
+            wx.showToast({
+              title: '错误：非本人发布信息。请联系开发者解决问题。',
+              icon: 'none',
+              duration: 1500,
+            })
+          }
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
 })

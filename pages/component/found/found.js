@@ -14,7 +14,8 @@ Page({
   data: {
     founditems: [],
     currentIndex: 0,
-    count: 0
+    count: 0,
+    searchTarget:""
   },
 
   /**
@@ -140,42 +141,66 @@ Page({
   },
 
   searchFn: function(e) {
+    console.log("searchFn")
     var that = this
     search.searchAddHisKey(that);
   },
 
   searchInput: function(e) {
+    console.log("searchInput")
     var that = this
     search.searchInput(e, that);
   },
 
   serchFocus: function(e) {
+    console.log("searchFocus")
     var that = this
     search.searchFocus(e, that);
   },
 
   searchBlur: function(e) {
+    console.log("searchBlur")
     var that = this
     search.searchBlur(e, that);
   },
 
   searchKeyTap: function(e) {
+    console.log("searchKeyTap")
     var that = this
-    search.searchKeyTap(e, that);
+    search.searchKeyTap(e, that, function(res){
+      that.setData({
+        searchTarget:res
+      })
+    });
   },
 
   searchDeleteKey: function(e) {
+    console.log("searchDeleteKey")
     var that = this
     search.searchDeleteKey(e, that);
   },
 
   searchDeleteAll: function(e) {
+    console.log("searchDeleteAll")
     var that = this;
     search.searchDeleteAll(that);
   },
 
   searchTap: function(e) {
+    console.log("searchTap")
     var that = this
     search.searchHiddenPancel(that);
+    console.log(this.data.foundItems.length)/*length居然tm的未定义？？？？？什么鬼？？
+    for (var i = 0, len = this.data.foundItems.length; i < len; ) {
+      let b = this.data.founditems[i].briefInfo
+      let a = this.data.founditems[i].address
+      let d = this.data.founditems[i].detail
+      if (b.indexOf(this.data.searchTarget) != -1 || a.indexOf(this.data.searchTarget) != -1 || d.indexOf(this.data.searchTarget) != -1){
+        i++;
+        continue;
+      }
+      this.data.foundItems.splice(i,1);
+    }*/
+    console.log("target:"+this.data.searchTarget)
   }
 })
