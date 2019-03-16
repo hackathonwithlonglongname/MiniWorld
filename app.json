@@ -28,13 +28,13 @@
         "selectedIconPath": "images/found.png",
         "iconPath": "images/found.png",
         "pagePath": "pages/component/found/found",
-        "text": "捡到东西了"
+        "text": "招领"
       },
       {
         "selectedIconPath": "images/lost.png",
         "iconPath": "images/lost.png",
         "pagePath": "pages/component/lost/lost",
-        "text": "丢东西了"
+        "text": "寻物"
       },
       {
         "selectedIconPath": "images/post.png",
