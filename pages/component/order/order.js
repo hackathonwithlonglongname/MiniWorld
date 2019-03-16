@@ -1,5 +1,7 @@
 // pages/component/order/order.js
 const app = getApp()
+const cloud = wx.cloud
+const db = cloud.database()
 Page({
 
   /**
