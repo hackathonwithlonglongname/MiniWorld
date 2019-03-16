@@ -13,7 +13,8 @@ Page({
   data: {
     founditems: [],
     currentIndex: 0,
-    count: 0
+    count: 0,
+    searchTarget:""
   },
 
   /**
@@ -165,7 +166,11 @@ Page({
   searchKeyTap: function(e) {
     console.log("searchKeyTap")
     var that = this
-    search.searchKeyTap(e, that);
+    search.searchKeyTap(e, that, function(res){
+      that.setData({
+        searchTarget:res
+      })
+    });
   },
 
   searchDeleteKey: function(e) {
@@ -184,5 +189,17 @@ Page({
     console.log("searchTap")
     var that = this
     search.searchHiddenPancel(that);
+    console.log(this.data.foundItems.length)/*length居然tm的未定义？？？？？什么鬼？？
+    for (var i = 0, len = this.data.foundItems.length; i < len; ) {
+      let b = this.data.founditems[i].briefInfo
+      let a = this.data.founditems[i].address
+      let d = this.data.founditems[i].detail
+      if (b.indexOf(this.data.searchTarget) != -1 || a.indexOf(this.data.searchTarget) != -1 || d.indexOf(this.data.searchTarget) != -1){
+        i++;
+        continue;
+      }
+      this.data.foundItems.splice(i,1);
+    }*/
+    console.log("target:"+this.data.searchTarget)
   }
 })
