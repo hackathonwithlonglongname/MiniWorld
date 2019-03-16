@@ -157,28 +157,6 @@ Page({
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
 
-    //获取当前时间戳
-    var timestamp = Date.parse(new Date())
-    var date = new Date(timestamp)
-    timestamp = timestamp / 1000
-
-    //获取当前时间
-    //年
-    var Y = date.getFullYear()
-    //月
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
-    //日
-    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-    //时
-    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
-    //分
-    var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-    //秒
-    var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
-    var postTime = Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s
-    console.log(postTime);
-    /*
-
     /* 获取openid，暂不需要
     wx.cloud.callFunction({
       name: 'get_id',
@@ -241,6 +219,27 @@ Page({
     }
 
     else{
+      //获取当前时间戳
+      var timestamp = Date.parse(new Date())
+      var date = new Date(timestamp)
+      timestamp = timestamp / 1000
+
+      //获取当前时间
+      //年
+      var Y = date.getFullYear()
+      //月
+      var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+      //日
+      var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      //时
+      var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
+      //分
+      var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+      //秒
+      var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+      var postTime = Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s
+      console.log(postTime);
+      
       //将物品信息写入数据库
       db.collection('itemInfo').add({
         // data 字段表示需新增的 JSON 数据

@@ -67,4 +67,8 @@
     </view>
   </view>
 
+  <!--只有发布者ID与访问者ID一致时才会显示此button-->
+  <view class="item_large" wx:if="{{item_openid==openid}}">
+    <button type="warn" bindtap="deleteItem">已找到物品，删除信息</button>
+  </view>
 </view>
