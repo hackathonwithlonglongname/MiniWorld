@@ -5,6 +5,7 @@ var app = getApp()
 const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
+const cmd = db.command
 Page({
 
   /**
@@ -34,7 +35,7 @@ Page({
         success(res) {
           // res.data 是包含以上定义记录的数组
           console.log(res.data)
-          search.initMindKeys(res.data.value);
+          search.init(that, 43, res.data.value);
         }
       })*/
   },

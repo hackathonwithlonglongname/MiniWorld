@@ -1,49 +1,68 @@
 // pages/component/order/order.js
-const app = getApp()
 const cloud = wx.cloud
 const db = cloud.database()
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tabIndex: 1,
-    list: []
+    openid: "OPENID",
+    currentTab: 0,
+    tabCont: [{ "title": "未结束", "type": "lost", "index": "0" }, { "title": "已完成", "type": "found", "index": "1" }],
   },
-  tabFun(e) {
-    this.setData({
-      tabIndex: e.currentTarget.dataset.index
-    })
-    this.getList()
-  },
-  getList(){
-    app.http('/v1/order/list', { state: this.data.tabIndex }).then(res => {
-      this.setData({list:res.data})
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      tabIndex: options.type||1
-    })
-    this.getList()
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    /*wx.getStorage({
+      key: '_openid',
+      success: function(res) {
+        console.log(res.data)
+        that.setData({
+          openid: res.data,
+        })
+      }
+    })*/
+    db.collection('itemInfo').where({
+      type: that.data.type,
+    }).count().then(res => {
+      this.setData({
+        count: res.total
+      })
+    })
+    console.log(this.data.count)
+    this.setData({
+      currentIndex: 0
+    })
+    db.collection("itemInfo")
+      .where({
+        type: that.data.type,
+        //_openid: wx.getStorageSync('openid'),
+      }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
+        that.setData({
+          founditems: res.data,
+          currentIndex: 20
+        })
+        console.log(res.data)
+      })
   },
 
   /**
@@ -71,7 +90,27 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    console.log("chulilalala")
+    var l = this.data.count - this.data.currentIndex
+    if (l <= 0) return
+    if (l > 5) l = 5
 
+    var l = this.data.count - this.data.currentIndex
+    if (l <= 0) return
+    if (l > 20) l = 20
+
+    db.collection("itemInfo")
+      .where({
+        type: this.data.type,
+        //_openid: wx.getStorageSync('openid'),
+      }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
+        var tmp = this.data.founditems.concat(res.data)
+        console.log(res.data)
+        this.setData({
+          founditems: tmp,
+          currentIndex: this.data.currentIndex + l
+        })
+      })
   },
 
   /**
@@ -79,5 +118,32 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+
+  // swiper滑动时触发bindchange事件，获取事件对象e获取当前所在滑块的index，并将其更新至data的currentTab中，视图渲染通过判断currentTab的让对应的tab hover。
+  GetCurrentTab: function (e) {
+    console.log(e.detail.current);
+    var that = this
+    this.setData({
+      currentTab: e.detail.current
+    });
+    // console.log("11111"+this.data.currentTab);
+  },
+  swithNav: function (e) {
+    var that = this;
+    that.setData({
+      currentTab: e.target.dataset.current
+    });
+  },
+
+  // 事件处理函数
+  itemTap: function (e) {
+    var x = e.currentTarget.dataset.index
+    // console.log(e.currentTarget.dataset.index);
+
+    wx.navigateTo({
+      url: '../item_found/item_found?item=' + JSON.stringify(this.data.founditems[x])
+    }) /**/
+  },
 })

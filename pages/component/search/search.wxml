@@ -4,7 +4,7 @@
         <view class="searchMindKey">
             <view class="searchMindKeyList">
                 <block wx:for="{{searchData.mindKeys}}">
-                    <view class="searchMindKeyItem" bindtap="searchKeyTap" data-key="{{item}}">{{item}}</view>
+                    <view class="searchMindKeyItem" bindtap="searchKeyTap" data-key="{{item.value}}">{{item}}</view>
                 </block>
             </view>
         </view>

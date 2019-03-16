@@ -17,6 +17,7 @@
  * 
  * 
  */
+
 const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
