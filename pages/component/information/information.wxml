@@ -19,7 +19,7 @@
           <view class="picker-detail">{{region[0]}} - {{region[1]}} - {{region[2]}}</view>
         </picker>
       </view>
-      <button type="primary" form-type="submit">保存</button>
+      <button form-type="submit" >保存</button>
     </form>
   </view>
 </view>
