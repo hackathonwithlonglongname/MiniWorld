@@ -16,7 +16,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#6a005f",
-    "navigationBarTitleText": "南京大学失物招领平台",
+    "navigationBarTitleText": "南京大学Lost&Found",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -28,13 +28,13 @@
         "selectedIconPath": "images/found.png",
         "iconPath": "images/found.png",
         "pagePath": "pages/component/found/found",
-        "text": "失物招领"
+        "text": "我捡到东西了"
       },
       {
         "selectedIconPath": "images/lost.png",
         "iconPath": "images/lost.png",
         "pagePath": "pages/component/lost/lost",
-        "text": "寻物启事"
+        "text": "我丢东西了"
       },
       {
         "selectedIconPath": "images/post.png",
