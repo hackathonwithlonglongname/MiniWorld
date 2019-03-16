@@ -92,7 +92,7 @@
 .icon{
   border-bottom:2px solid #EDEDED; 
   display: flex;
-  padding: 10px 0;
+  padding: 5px 0;
 }
 .icon image{
   display: block;
