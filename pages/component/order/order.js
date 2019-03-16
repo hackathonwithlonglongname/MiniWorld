@@ -8,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    founditems1: [],
+    founditems2: [],
     openid: "OPENID",
     currentTab: 0,
     tabCont: [{ "title": "未结束", "type": "lost", "index": "0" }, { "title": "已完成", "type": "found", "index": "1" }],
@@ -17,7 +19,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.cloud.callFunction({
+      name: 'get_id',
+      complete: res => {
+        console.log('callFunction test result: ', res)
+        this.setData({
+          openid: res.result.openid
+        })
+      }
+    })
   },
 
   /**
@@ -42,7 +52,7 @@ Page({
       }
     })*/
     db.collection('itemInfo').where({
-      type: that.data.type,
+      _openid: that.data.openid,
     }).count().then(res => {
       this.setData({
         count: res.total
@@ -54,11 +64,22 @@ Page({
     })
     db.collection("itemInfo")
       .where({
-        type: that.data.type,
-        //_openid: wx.getStorageSync('openid'),
+        type: "lost",
+        _openid: that.data.openid,
       }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         that.setData({
-          founditems: res.data,
+          founditems1: res.data,
+          currentIndex: 20
+        })
+        console.log(res.data)
+      })
+    db.collection("itemInfo")
+      .where({
+        type: "found",
+        _openid: that.data.openid,
+      }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
+        that.setData({
+          founditems2: res.data,
           currentIndex: 20
         })
         console.log(res.data)
@@ -102,7 +123,7 @@ Page({
     db.collection("itemInfo")
       .where({
         type: this.data.type,
-        //_openid: wx.getStorageSync('openid'),
+        _openid: that.data.openid,
       }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
