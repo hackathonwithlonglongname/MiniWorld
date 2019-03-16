@@ -9,13 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    founditems: [],
-    lostitems: [],
+    founditems1: [],
+    founditems2: [],
     openid: "OPENID",
     currentTab: 0,
-    tabCont: [{ "title": "招领", "type": "found", "index": "0" }, { "title": "寻物", "type": "lost", "index": "1" }],
-    count: 0,
-
+    tabCont: [{ "title": "未结束", "type": "lost", "index": "0" }, { "title": "已完成", "type": "found", "index": "1" }],
   },
 
   /**
@@ -51,16 +49,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this
-    wx.cloud.callFunction({
-      name: 'get_id',
-      complete: res => {
-        console.log('callFunction test result: ', res)
-        this.setData({
-          openid: res.result.openid
-        })
-      }
-    })
+    var that = this;
     /*wx.getStorage({
       key: '_openid',
       success: function(res) {
@@ -70,9 +59,9 @@ Page({
         })
       }
     })*/
-    console.log(wx.getStorageSync('openid'))
+    console.log(wx.getStorageInfoSync('openid'))
     db.collection('itemInfo').where({
-      _openid: wx.getStorageSync('openid'),
+      _openid: wx.getStorageInfoSync('openid'),
     }).count().then(res => {
       this.setData({
         count: res.total
@@ -88,7 +77,7 @@ Page({
         _openid: wx.getStorageSync('openid'),
       }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         that.setData({
-          lostitems: res.data,
+          founditems1: res.data,
           currentIndex: 20
         })
         console.log(res.data)
@@ -99,7 +88,7 @@ Page({
         _openid: wx.getStorageSync('openid'),
       }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         that.setData({
-          founditems: res.data,
+          founditems2: res.data,
           currentIndex: 20
         })
         console.log(res.data)
@@ -142,13 +131,13 @@ Page({
 
     db.collection("itemInfo")
       .where({
-        type: this.data.tabCont[this.data.currentTab]['type'],
-        _openid: wx.getStorageSync('openid'),
+        type: this.data.type,
+        _openid: wx.getStorageInfoSync('openid'),
       }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
         this.setData({
-          founditems1: tmp,
+          founditems: tmp,
           currentIndex: this.data.currentIndex + l
         })
       })
