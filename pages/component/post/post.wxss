@@ -38,6 +38,8 @@ checkbox, radio{
 button{
   margin-top: 20rpx;
   margin-bottom: 20rpx;
+  background-color: #6a005f;
+  color: white;
 }
 form{
   width: 100%;
