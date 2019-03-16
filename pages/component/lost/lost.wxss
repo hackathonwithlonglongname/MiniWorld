@@ -5,5 +5,5 @@
   
 }
 .frame{
-  margin: 20rpx 40rpx
+  margin: 20rpx 0rpx
 }

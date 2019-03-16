@@ -7,35 +7,45 @@
   <view class="search-pancel">
     <!--<image src="/images/search-pic.png" class="search-icon" />-->
     <icon class="search-icon" type="search"></icon>
-    <input bindinput="searchInput" bindfocus="serchFocus" value="{{searchData.value}}" bindblur="searchBlur" class="search-input" placeholder="搜索" />
-    <button class="search-button" bindtap="searchFn" size="mini">搜索</button>
+    <input bindinput="searchInput" bindfocus="searchFocus" value="{{searchData.value}}" bindblur="searchBlur" class="search-input" placeholder="搜索" />
+    <button class="search-button" bindtap="searchFn" style="font-size:26rpx">搜索</button>
   </view>
 </view>
 <template is="search" data="{{searchData}}"/>
 
-<view class="section2">
-  <block wx:for="{{lostitems}}">
-    <view class="frame" bindtap='itemTap' data-index="{{index}}">
-      <view class="flex" style='padding:25rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#feeeed'>
+<view class="section2" style="background:#ececec">
+  <block wx:for="{{lostitems}}" >
+    <view class="frame" bindtap='itemTap' data-index="{{index}}" >
+      <view class="flex" style='padding:10rpx 20rpx 5rpx 20rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#ffffff'>
         <view style='display:flex;flex-direction:column'>
+          <view class="headtitle" style='font-size:30rpx;font-weight:bold;color:#424242;height:32rpx;width:180rpx;'><text style='background-color:#d8d8d8;border-radius:10px' decode="{{true}}">&nbsp;&nbsp;寻物启事&nbsp;&nbsp;</text></view>
           
-          
-          <view class="brief-content" style="margin:20rpx 0rpx 0rpx 30rpx;flex-wrap:wrap;height:150rpx;width:470rpx;line-height:32rpx">         
-            <text class="content" style='font-size:28rpx'>{{item.briefInfo}}</text>
+          <view class="brief-content" style="margin:20rpx 0rpx 0rpx 25rpx;flex-wrap:wrap;height:150rpx;width:470rpx;line-height:32rpx">         
+            <text class="content" style='font-size:27rpx'>{{item.briefInfo}}</text>
+          </view>
+          <view wx:if="{{item.address.length<8}}">
+            <view class="bottom-info" style='display:flex;flex-direction:row;'>
+              <view class="address" style='color:#888888'>
+                <text decode="{{true}}" style="font-size:24rpx">{{item.address}}&nbsp;&nbsp;&nbsp;</text>
+              </view>
+              <view class="posttime" style='color:#888888'>
+                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
+              </view>      
+            </view>
+          </view>
+          <view wx:else>
+            <view class="bottom-info" style='display:flex;flex-direction:column'>
+              <view class="address" style='height:28rpx;color:#888888'>
+                <text class="address" decode="{{true}}" style="font-size:24rpx">{{item.address}}</text>
+              </view>
+              <view class="posttime" style='color:#888888'>
+                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
+              </view>      
+            </view>
           </view>
           
-          <view class="bottom-info" style='display:flex;flex-direction:row;'>
-            <view class="address">
-              <text decode="{{true}}" style="font-size:24rpx">*{{item.address}}&nbsp;&nbsp;&nbsp;</text>
-            </view>
-            <view class="posttime">
-              <text decode="{{true}}" style="font-size:24rpx">*{{item.postTime}} </text>
-            </view>
-            
-            
-          </view>
         </view>
-        <image class="smallimage" mode='widthFix' src="/images/post.png"></image>  
+        <image mode='scaleToFill' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>  
       </view>
       
     </view>

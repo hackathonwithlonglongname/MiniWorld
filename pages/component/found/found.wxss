@@ -1,6 +1,10 @@
 /* pages/component/found/found.wxss */
 @import "/pages/component/search/search.wxss";
-
-.frame{
-  margin: 20rpx 40rpx
+.smallimage{
+  width: 100rpx
+  
 }
+.frame{
+  margin: 20rpx 0rpx
+}
+
