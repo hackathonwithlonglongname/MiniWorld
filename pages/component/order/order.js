@@ -14,8 +14,8 @@ Page({
     openid: "OPENID",
     currentTab: 0,
     tabCont: [{ "title": "招领", "type": "found", "index": "0" }, { "title": "寻物", "type": "lost", "index": "1" }],
-    count: 0,
-
+    count_found: 0,
+    count_lost: 0,
   },
 
   /**
@@ -72,12 +72,22 @@ Page({
     })*/
     console.log(wx.getStorageSync('openid'))
     db.collection('itemInfo').where({
+      type: "found",
       _openid: wx.getStorageSync('openid'),
     }).count().then(res => {
       this.setData({
-        count: res.total
+        count_found: res.total
       })
     })
+    db.collection('itemInfo').where({
+      type: "lost",
+      _openid: wx.getStorageSync('openid'),
+    }).count().then(res => {
+      this.setData({
+        count_lost: res.total
+      })
+    })
+
     console.log(this.data.count)
     this.setData({
       currentIndex: 0
@@ -132,19 +142,19 @@ Page({
    */
   onReachBottom: function () {
     console.log("chulilalala")
-    var l = this.data.count - this.data.currentIndex
-    if (l <= 0) return
-    if (l > 5) l = 5
+    var lf = this.data.count_found - this.data.currentIndex
+    if (lf <= 0) return
+    if (lf > 5) lf = 5
 
-    var l = this.data.count - this.data.currentIndex
-    if (l <= 0) return
-    if (l > 20) l = 20
+    var ll = this.data.count_lost - this.data.currentIndex
+    if (ll <= 0) return
+    if (ll > 20) ll = 20
 
     db.collection("itemInfo")
       .where({
         type: this.data.tabCont[this.data.currentTab]['type'],
         _openid: wx.getStorageSync('openid'),
-      }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
+      }).skip(this.data.currentIndex).limit(currentTap==0 ? lf : lc).orderBy("postTime", "desc").get().then(res => {
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
         this.setData({
