@@ -16,7 +16,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#6a005f",
-    "navigationBarTitleText": "南京大学 Lost&Found",
+    "navigationBarTitleText": "Lost & Found in NJU",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

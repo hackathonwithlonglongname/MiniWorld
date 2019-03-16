@@ -15,7 +15,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd">
-              <picker mode="date" value="{{date}}" end="{{nowDate}}" bindchange="bindDateChange" name="date">
+              <picker mode="date" value="{{date}}" start="2015-01-01" end="{{nowDate}}" bindchange="bindDateChange">
                 <view class="weui-input">{{date}}</view>
               </picker>
             </view>

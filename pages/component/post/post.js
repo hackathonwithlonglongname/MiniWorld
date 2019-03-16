@@ -11,7 +11,7 @@ Page({
     //picker组件相关：
     pickerHidden: true,
     chosen: '',
-    nowDate: '2049-9-1', //onShow时修改为当前日期
+    nowDate: '2049-09-01', //onShow时修改为当前日期
 
     //image组件相关：
     imageList: [],
@@ -49,7 +49,7 @@ Page({
     //将nowDate修改为当前日期
     var date = new Date()
     this.setData({
-      nowDate: date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString()
+      nowDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
     })
   },
 
