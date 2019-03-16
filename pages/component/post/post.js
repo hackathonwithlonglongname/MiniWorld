@@ -232,7 +232,7 @@ Page({
       })
     }
 
-    else if (e.detail.value['infoType'] == 'found' && this.data.imageList.lenth == 0) {
+    else if (e.detail.value['infoType'] == 'found' && this.data.imageList.length == 0) {
       wx.showToast({
         title: '请上传捡到物品的图片',
         icon: 'none',
