@@ -9,12 +9,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    founditems1: [],
-    founditems2: [],
+    founditems: [],
+    lostitems: [],
     openid: "OPENID",
     currentTab: 0,
+<<<<<<< HEAD
 
     tabCont: [{ "title": "未结束", "type": "lost", "index": "0" }, { "title": "已完成", "type": "found", "index": "1" }],
+=======
+    tabCont: [{ "title": "招领", "type": "found", "index": "0" }, { "title": "寻物", "type": "lost", "index": "1" }],
+    count: 0,
+>>>>>>> parent of 151902a... bsverb
 
   },
 
@@ -51,7 +56,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
+    var that = this
+    wx.cloud.callFunction({
+      name: 'get_id',
+      complete: res => {
+        console.log('callFunction test result: ', res)
+        this.setData({
+          openid: res.result.openid
+        })
+      }
+    })
     /*wx.getStorage({
       key: '_openid',
       success: function(res) {
@@ -61,11 +75,15 @@ Page({
         })
       }
     })*/
-    console.log(wx.getStorageInfoSync('openid'))
+    console.log(wx.getStorageSync('openid'))
     db.collection('itemInfo').where({
+<<<<<<< HEAD
 
       _openid: wx.getStorageInfoSync('openid'),
 
+=======
+      _openid: wx.getStorageSync('openid'),
+>>>>>>> parent of 151902a... bsverb
     }).count().then(res => {
       this.setData({
         count_lost: res.total
@@ -82,7 +100,7 @@ Page({
         _openid: wx.getStorageSync('openid'),
       }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         that.setData({
-          founditems1: res.data,
+          lostitems: res.data,
           currentIndex: 20
         })
         console.log(res.data)
@@ -93,7 +111,7 @@ Page({
         _openid: wx.getStorageSync('openid'),
       }).skip(that.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         that.setData({
-          founditems2: res.data,
+          founditems: res.data,
           currentIndex: 20
         })
         console.log(res.data)
@@ -136,15 +154,20 @@ Page({
 
     db.collection("itemInfo")
       .where({
+<<<<<<< HEAD
 
         type: this.data.type,
         _openid: wx.getStorageInfoSync('openid'),
+=======
+        type: this.data.tabCont[this.data.currentTab]['type'],
+        _openid: wx.getStorageSync('openid'),
+>>>>>>> parent of 151902a... bsverb
       }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
 
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
         this.setData({
-          founditems: tmp,
+          founditems1: tmp,
           currentIndex: this.data.currentIndex + l
         })
       })

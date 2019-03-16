@@ -96,10 +96,10 @@
 }
 .icon image{
   display: block;
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
   margin: 0 auto;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 .icon text{
   display: block;
