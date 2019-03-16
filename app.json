@@ -8,7 +8,6 @@
     "pages/component/user/user",
     "pages/component/information/information",
     "pages/component/order/order",
-    "pages/component/order_details/order_details",
     "pages/component/logs/logs",
     "pages/component/item_lost/item_lost",
     "pages/component/item_found/item_found"
