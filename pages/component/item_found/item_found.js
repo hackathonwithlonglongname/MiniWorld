@@ -10,8 +10,9 @@ Page({
     item_contact: '',
     item_description: '',
     item_picture_url: null, //此处为网址
-    img_width_2: wx.getSystemInfoSync().windowWidth / 3,
-    img_width_3: wx.getSystemInfoSync().windowWidth / 4
+    img_width_2: wx.getSystemInfoSync().windowWidth / 2.6,
+    img_width_3: wx.getSystemInfoSync().windowWidth / 4,
+    img_width_1: wx.getSystemInfoSync().windowWidth / 1.3
   },
 
   /**

@@ -1,40 +1,55 @@
 <view class='container' style='display:block;'>
   <view class='item'>
-    <view class='left'>捡到时间:</view>
+    <view class='left'>
+      <image class='user_icon' src='/images/time.png'></image>
+      <view>捡到时间:</view>
+    </view>
     <view class='right'>{{item_time}}</view>
   </view>
-
   <view class='item'>
-    <view class='left'>捡到时的地点:</view>
+    <view class='left'>
+      <image class='user_icon' src='/images/location.png'></image>
+      <view>捡到地点:</view>
+    </view>
     <view class='right'>{{item_location}}</view>
   </view>
-
   <view class='item'>
-    <view class='left'>联系方式:</view>
+    <view class='left'>
+      <image class='user_icon' src='/images/contact.png'></image>
+      <view>捡到者的联系方式:</view>
+    </view>
     <view class='right'>{{item_contact}}</view>
   </view>
 </view>
-
 <view class='item'>
-  <view class='left'>对捡到物品的描述：</view>
+  <view class='left'>
+    <image class='user_icon' src='/images/details.png'></image>
+    <view>物品描述：</view>
+  </view>
 </view>
-
 <view class='item_large'>
   <view class='detail'> {{item_description}}</view>
 </view>
-
 <view wx:if="{{item_picture_url}}">
-  <!--这里先判断信息中是否有图片信息，在失物招领时如果无图片则不显示以下内容-->
   <view class='container' style='display:block;'>
     <view class='item'>
-      <view class='left'>图片信息：</view>
+      <view class='left'>
+        <image class='user_icon' src='/images/img.png'></image>
+        <view>图片信息：</view>
+      </view>
     </view>
   </view>
 
-  <!--遍历item_picture列表，显示所有图片-->
+  <view wx:if="{{item_picture_url.length==1}}">
+    <view class='image_view'>
+      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+        </image>
+      </view>
+    </view>
+  </view>
 
-  <!--判断为2*2显示还是3*3显示-->
-  <view wx:if="{{item_picture_url.length==2 || item_picture_url.length==4}}">
+  <view wx:elif="{{item_picture_url.length==2 || item_picture_url.length==4}}">
     <view class='image_view'>
       <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
         <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_2}}px;height:{{img_width_2}}px'>

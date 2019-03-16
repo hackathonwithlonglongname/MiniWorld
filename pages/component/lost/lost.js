@@ -53,10 +53,10 @@ Page({
     db.collection("itemInfo")
       .where({
         type: "lost"
-      }).skip(this.data.currentIndex).limit(5).get().then(res => {
+      }).skip(this.data.currentIndex).limit(20).orderBy("postTime","desc").get().then(res => {
         this.setData({
           lostitems: res.data,
-          currentIndex: 5
+          currentIndex: 20
         })
         console.log(res.data)
       })
@@ -90,11 +90,11 @@ Page({
     console.log("chudile")
     var l = this.data.count - this.data.currentIndex
     if (l <= 0) return
-    if (l > 5) l = 5
+    if (l > 20) l = 20
     db.collection("itemInfo")
       .where({
-        type: "found"
-      }).skip(this.data.currentIndex).limit(l).get().then(res => {
+        type: "lost"
+      }).skip(this.data.currentIndex).limit(l).orderBy("postTime","desc").get().then(res => {
         var tmp = this.data.lostitems.concat(res.data)
         console.log(res.data)
         this.setData({
