@@ -22,6 +22,9 @@ Page({
    */
   onLoad: function (options) {
     this.getOpenid();
+    this.setData({
+      currentTab: options.currentTab
+    })
   },
 
   getOpenid() {

@@ -11,11 +11,11 @@
       </view>
     </view>
     <view class='icon'>
-      <navigator url="/pages/component/order/order?type=1" hover-class="none" >
+      <navigator url="/pages/component/order/order?currentTab=0" hover-class="none" >
         <image src='/images/found.png' mode="aspectFit"></image>
         <text>招领</text>
       </navigator>
-      <navigator url="/pages/component/order/order?type=2" hover-class="none" >
+      <navigator url="/pages/component/order/order?currentTab=1" hover-class="none" >
         <image src='/images/lost.png' mode="aspectFit"></image>
         <text>寻物</text>
       </navigator>
