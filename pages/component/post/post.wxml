@@ -91,7 +91,7 @@
       </view>
 
       <view class="btn-area">
-        <button type="primary" formType="submit">提交</button>
+        <button formType="submit">提交</button>
         <!--<button formType="reset">重置</button>-->
       </view>
     </form>
