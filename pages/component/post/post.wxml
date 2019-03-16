@@ -5,8 +5,8 @@
       <view class="page-section page-section-gap">
         <view class="page-section-title">信息类型</view>
         <radio-group name="infoType">
-          <label><radio value="found" checked="{{check}}" />失物招领</label>
-          <label><radio value="lost" checked="{{check}}" />寻物启事</label>
+          <label><radio value="found" checked="{{check}}" />我捡到东西了</label>
+          <label><radio value="lost" checked="{{check}}" />我丢失东西了</label>
         </radio-group>
       </view>
       

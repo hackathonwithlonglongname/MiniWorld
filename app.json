@@ -40,13 +40,13 @@
         "selectedIconPath": "images/post.png",
         "iconPath": "images/post.png",
         "pagePath": "pages/component/post/post",
-        "text": "发布信息"
+        "text": "发布"
       },
       {
         "selectedIconPath": "images/user.png",
         "iconPath": "images/user.png",
         "pagePath": "pages/component/user/user",
-        "text": "个人信息"
+        "text": "我的"
       }
     ]
   }
