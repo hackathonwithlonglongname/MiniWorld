@@ -45,7 +45,7 @@
           </view>
           
         </view>
-        <image mode='scaleToFill' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>  
+        <image mode='scaleToFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>  
       </view>
       
     </view>
