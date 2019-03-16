@@ -1,6 +1,5 @@
 # MiniWorld
-NJUer の 猟犬
-
+南京大学失物招领平台
 ## 前言
 XXXXXX
 
