@@ -17,8 +17,11 @@
  * 
  * 
  */
-var __keysColor = [];
+const cloud = wx.cloud
+cloud.init()
+const db = cloud.database()
 
+var __keysColor = [];
 var __mindKeys = [];
 
 function initColors(colors){
@@ -70,15 +73,13 @@ function searchInput(e, that, callBack){
     var temData = that.data.searchData;
     var text = e.detail.value;
     var mindKeys = [];
-    if(typeof(text) == "undefined" || text.length == 0){
-        
-    }else{
-        for(var i = 0; i < __mindKeys.length; i++){
-            var mindKey = __mindKeys[i];
-            if(mindKey.indexOf(text) > -1){
-                mindKeys.push(mindKey);
-            }
+    if(typeof(text) != "undefined" && text.length != 0){
+      for (var i = 0; i < __mindKeys.length; i++) {
+        var mindKey = __mindKeys[i];
+        if (mindKey.indexOf(text) > -1) {
+          mindKeys.push(mindKey);
         }
+      }        
     }
     temData.value = text;
     temData.mindKeys = mindKeys;

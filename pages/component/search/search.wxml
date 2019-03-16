@@ -1,7 +1,6 @@
 <template name="search">
   <view class="search" bindtap="searchTap"  style="display:{{searchData.view.isShow ? 'block':'none'}};height:{{searchData.view.seachHeight}}px;top:{{searchData.view.barHeight}}px;">
     <view  class="searchInner">
-
         <view class="searchMindKey">
             <view class="searchMindKeyList">
                 <block wx:for="{{searchData.mindKeys}}">

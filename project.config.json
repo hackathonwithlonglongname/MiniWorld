@@ -19,6 +19,7 @@
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"cloudfunctionRoot": "functions/",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -36,6 +37,5 @@
 			"current": -1,
 			"list": []
 		}
-	},
-  "cloudfunctionRoot": "./functions/"
+	}
 }

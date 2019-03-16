@@ -26,8 +26,6 @@ Page({
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
     console.log("currentIndex:"+this.data.currentIndex)
-
-    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -133,7 +131,7 @@ Page({
     search.searchInput(e, that);
   },
 
-  serchFocus: function (e) {
+  searchFocus: function (e) {
     var that = this
     search.searchFocus(e, that);
   },
