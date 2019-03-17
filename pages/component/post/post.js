@@ -3,8 +3,8 @@ const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
 
-const sourceType = [['camera'], ['album'], ['camera', 'album']]
-const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
+var sourceType = [['camera'], ['album'], ['camera', 'album']]
+var sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 
 Page({
   data: {
@@ -125,8 +125,8 @@ Page({
   chooseImage() {
     const that = this
     wx.chooseImage({
-      sourceType: sourceType[this.data.sourceTypeIndex],
-      sizeType: sizeType[this.data.sizeTypeIndex],
+      //sourceType: sourceType[this.data.sourceTypeIndex],
+      //sizeType: sizeType[this.data.sizeTypeIndex],
       count: this.data.count[this.data.countIndex],
       success(res) {
         console.log(res)
