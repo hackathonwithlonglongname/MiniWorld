@@ -31,7 +31,7 @@ Page({
       item_time: item.time,
       item_location: item.address,
       item_contact: item.contactMethod,
-      item_description: item.detail,
+      item_description: item.briefInfo + "\n" + item.detail,
       item_picture_url: item.imgs, //此处为网址
       item_id: item._id,
       item_openid: item._openid,
