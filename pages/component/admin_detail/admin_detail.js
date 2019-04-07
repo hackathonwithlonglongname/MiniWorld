@@ -1,6 +1,6 @@
 const cloud = wx.cloud
-const db = cloud.database()
 cloud.init()
+const db = cloud.database()
 Page({
 
   /**
