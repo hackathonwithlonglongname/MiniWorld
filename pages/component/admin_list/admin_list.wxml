@@ -1,0 +1,44 @@
+<!--pages/component/found/found.wxml-->
+<!--<text>pages/component/found/found.wxml</text>-->
+
+<import src="../search/search.wxml"/>
+
+<view class="section2" style="background:#ececec">
+  <block wx:for="{{founditems}}" >
+    <view class="frame" bindtap='itemTap' data-index="{{index}}" >
+      <view class="flex" style='padding:10rpx 20rpx 5rpx 20rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#ffffff'>
+        <view style='display:flex;flex-direction:column'>
+          <view wx:if="{{item.type=='found'}}"class="headtitle" style='font-size:30rpx;font-weight:bold;color:#424242;height:32rpx;width:180rpx;'><text style='background-color:#d8d8d8;border-radius:10px' decode="{{true}}">&nbsp;&nbsp;失物招领&nbsp;&nbsp;</text></view>
+          <view wx:elif="{{item.type=='lost'}}"class="headtitle" style='font-size:30rpx;font-weight:bold;color:#424242;height:32rpx;width:180rpx;'><text style='background-color:#d8d8d8;border-radius:10px' decode="{{true}}">&nbsp;&nbsp;寻物启事&nbsp;&nbsp;</text></view>
+          
+          <view class="brief-content" style="margin:20rpx 0rpx 0rpx 25rpx;flex-wrap:wrap;height:150rpx;width:470rpx;line-height:32rpx">         
+            <text class="content" style='font-size:27rpx'>{{item.briefInfo}}</text>
+          </view>
+          <view wx:if="{{item.address.length<8}}">
+            <view class="bottom-info" style='display:flex;flex-direction:row;'>
+              <view class="address" style='color:#888888'>
+                <text decode="{{true}}" style="font-size:24rpx">{{item.address}}&nbsp;&nbsp;&nbsp;</text>
+              </view>
+              <view class="posttime" style='color:#888888'>
+                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
+              </view>      
+            </view>
+          </view>
+          <view wx:else>
+            <view class="bottom-info" style='display:flex;flex-direction:column'>
+              <view class="address" style='height:28rpx;color:#888888'>
+                <text class="address" decode="{{true}}" style="font-size:24rpx">{{item.address}}</text>
+              </view>
+              <view class="posttime" style='color:#888888'>
+                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
+              </view>      
+            </view>
+          </view>
+          
+        </view>
+        <image mode='scaleToFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>  
+      </view>
+      
+    </view>
+  </block>
+</view>

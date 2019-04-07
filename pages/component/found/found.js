@@ -52,7 +52,8 @@ Page({
    */
   onShow: function() {
     db.collection('itemInfo').where({
-      type: "found"
+      type: "found",
+      state: "pass"
     }).count().then(res => {
       this.setData({
         count: res.total
@@ -64,7 +65,8 @@ Page({
     })
     db.collection("itemInfo")
       .where({
-        type: "found"
+        type: "found",
+        state: "pass"
       }).skip(this.data.currentIndex).limit(20).orderBy("postTime","desc").get().then(res => {
         this.setData({
           founditems: res.data,
@@ -112,7 +114,8 @@ Page({
 
     db.collection("itemInfo")
       .where({
-        type: "found"
+        type: "found",
+        state:"pass"
       }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
         var tmp = this.data.founditems.concat(res.data)
         console.log(res.data)
@@ -181,7 +184,8 @@ Page({
     })
     db.collection("itemInfo")
       .where({
-        type: "found"
+        type: "found",
+        state: "pass"
       }).skip(this.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         this.setData({
           founditems: res.data,
