@@ -10,7 +10,8 @@ Page({
     nickname:'',
     orders:[],
     hasinformation:false,
-    information:{}
+    information:{},
+    is_admin:false
   },
   onLoad(){
     var self = this;

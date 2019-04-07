@@ -123,6 +123,7 @@ Page({
     db.collection("itemInfo")
       .where(db.command.or([{
         type: "lost",
+        state: "pass",
         briefInfo: db.RegExp({
           regexp: this.data.searchTarget,
           options: 'i'
@@ -130,6 +131,7 @@ Page({
       },
       {
         type: "lost",
+        state: "pass",
         detail: db.RegExp({
           regexp: this.data.searchTarget,
           options: 'i'
@@ -137,6 +139,7 @@ Page({
       },
         {
           type: "lost",
+          state: "pass",
           address: db.RegExp({
             regexp: this.data.searchTarget,
             options: 'i'

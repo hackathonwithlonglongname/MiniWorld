@@ -1,4 +1,6 @@
 //app.js
+const cloud = wx.cloud
+cloud.init()
 App({
   onLaunch: function () {
     console.log('App Launch')

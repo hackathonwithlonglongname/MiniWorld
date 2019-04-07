@@ -31,9 +31,14 @@
             <view>StuID: {{information.stuID}}</view>
         </view>-->
     </view>
-    <view class='information-box'>
+    <view class='information-box' wx:if="{{is_admin==true}}"><!--这里留了个接口，是管理员才显示-->
         <view class='information-manage'>
             <navigator url="/pages/component/admin_list/admin_list">审核</navigator>
+        </view>
+    </view>
+    <view class='information-box'>
+        <view class='information-manage'>
+            <navigator url="">关于我们</navigator> <!--url待填-->
         </view>
     </view>
 </view>
