@@ -171,7 +171,8 @@ Page({
       let a = tmpItems[i].address
       let d = tmpItems[i].detail
       if (b.indexOf(this.data.searchTarget) != -1 || a.indexOf(this.data.searchTarget) != -1 || d.indexOf(this.data.searchTarget) != -1) {
-        i++
+        i++;
+        //console.log("nothing")
         continue
       }
       tmpItems.splice(i, 1);
