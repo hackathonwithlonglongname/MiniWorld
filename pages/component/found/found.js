@@ -29,16 +29,6 @@ Page({
     search.init(that, 43, ['校园卡', '雨伞', '钥匙', '数码设备', '文件']);
     search.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
     console.log("currentIndex:" + this.data.currentIndex)
-
-    /*db.collection('itemInfo').where({
-      type: 'found'
-    }).get({
-        success(res) {
-          // res.data 是包含以上定义记录的数组
-          console.log(res.data)
-          search.init(that, 43, res.data.value);
-        }
-      })*/
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
