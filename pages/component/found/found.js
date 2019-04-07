@@ -139,7 +139,38 @@ Page({
       url: '../item_found/item_found?item=' + JSON.stringify(this.data.founditems[x])
     }) /**/
   },
-
+  printSearchResult2:function(){
+    db.collection("itemInfo")
+      .where(db.command.or([{
+        type:"found",
+        briefInfo:db.RegExp({
+          regexp:this.data.searchTarget,
+          options:'i'
+        })
+      },
+      {
+        type:"found",
+        detail:db.RegExp({
+          regexp:this.data.searchTarget,
+          options:'i'
+        })
+      },
+        {
+          type: "found",
+          address: db.RegExp({
+            regexp: this.data.searchTarget,
+            options: 'i'
+          })
+        }
+      ])).limit(100).orderBy("postTime", "desc").get().then(res => {
+        //var tmp = this.data.founditems.concat(res.data)
+        //console.log(res.data)
+        this.setData({
+          founditems: res.data,
+          //currentIndex: 100
+        })
+      })
+  },
   printSearchResult:function() {
     var tmpItems=this.data.founditems
     for (var i = 0, len = tmpItems.length; i < len;) {
@@ -162,7 +193,7 @@ Page({
     console.log("searchFn")
     var that = this
     search.searchAddHisKey(that);
-    this.printSearchResult()
+    this.printSearchResult2()
   },
 
   searchInput: function(e) {

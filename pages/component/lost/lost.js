@@ -116,7 +116,38 @@ Page({
       url: '../item_lost/item_lost?item=' + JSON.stringify(this.data.lostitems[x])
     })
   },
-
+  printSearchResult2: function () {
+    db.collection("itemInfo")
+      .where(db.command.or([{
+        type: "lost",
+        briefInfo: db.RegExp({
+          regexp: this.data.searchTarget,
+          options: 'i'
+        })
+      },
+      {
+        type: "lost",
+        detail: db.RegExp({
+          regexp: this.data.searchTarget,
+          options: 'i'
+        })
+      },
+        {
+          type: "lost",
+          address: db.RegExp({
+            regexp: this.data.searchTarget,
+            options: 'i'
+          })
+        }
+      ])).limit(100).orderBy("postTime", "desc").get().then(res => {
+        //var tmp = this.data.founditems.concat(res.data)
+        //console.log(res.data)
+        this.setData({
+          founditems: res.data,
+          //currentIndex: 100
+        })
+      })
+  },
   printSearchResult: function () {
     var tmpItems = this.data.lostitems
     for (var i = 0, len = tmpItems.length; i < len;) {
@@ -139,7 +170,7 @@ Page({
   searchFn: function (e) {
     var that = this
     search.searchAddHisKey(that);
-    this.printSearchResult()
+    this.printSearchResult2()
   },
 
   searchInput: function (e) {
