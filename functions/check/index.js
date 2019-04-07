@@ -7,7 +7,7 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   try {
-      db.collection("itemInfo").doc(event._id).update({
+    return await db.collection("itemInfo").doc(event._id).update({
       data: {
         state: event.property
       }
