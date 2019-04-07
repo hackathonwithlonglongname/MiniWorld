@@ -40,7 +40,8 @@ Page({
    */
   onShow: function () {
     db.collection('itemInfo').where({
-      type: "lost"
+      type: "lost",
+      state: "pass"
     }).count().then(res => {
       this.setData({
         count: res.total
@@ -52,7 +53,8 @@ Page({
     })
     db.collection("itemInfo")
       .where({
-        type: "lost"
+        type: "lost",
+        state: "pass"
       }).skip(this.data.currentIndex).limit(20).orderBy("postTime","desc").get().then(res => {
         this.setData({
           lostitems: res.data,
@@ -93,7 +95,8 @@ Page({
     if (l > 20) l = 20
     db.collection("itemInfo")
       .where({
-        type: "lost"
+        type: "lost",
+        state: "pass"
       }).skip(this.data.currentIndex).limit(l).orderBy("postTime","desc").get().then(res => {
         var tmp = this.data.lostitems.concat(res.data)
         console.log(res.data)
@@ -187,7 +190,8 @@ Page({
     })
     db.collection("itemInfo")
       .where({
-        type: "lost"
+        type: "lost",
+        state: "pass"
       }).skip(this.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         this.setData({
           lostitems: res.data,

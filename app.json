@@ -10,7 +10,9 @@
     "pages/component/order/order",
     "pages/component/logs/logs",
     "pages/component/item_lost/item_lost",
-    "pages/component/item_found/item_found"
+    "pages/component/item_found/item_found",
+    "pages/component/admin_detail/admin_detail",
+    "pages/component/admin_list/admin_list"
   ],
   "window": {
     "backgroundTextStyle": "dark",

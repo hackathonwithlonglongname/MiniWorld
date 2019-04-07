@@ -251,6 +251,7 @@ Page({
           briefInfo: e.detail.value["title"],
           detail: e.detail.value["description"],
           contactMethod: e.detail.value["contact"],
+          state: 'uncheck',
           imgs: []
         }
       }).then(res => {
