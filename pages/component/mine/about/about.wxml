@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="header">
+    <view class="black-cover"></view>
+    <image class="logo" src="/images/more/logo.png"></image>
+    <image class="title" src="/images/more/title.png"></image>
+  </view>
+  <view class="content">
+    <view class="version">
+      <view class="version-title">
+        <text class="title-name">南寻</text>
+        <text class="version-text">{{version}}</text>
+        <text class="version-text">公测先行</text>
+      </view>
+      <view bindtap="toggleLog">
+        <text class="version-log-link update-log" wx:if="{{!showLog}}">更新日志</text> 
+        <text class="version-log-link" wx:else>简介</text> 
+      </view>
+    </view>
+    <view class="describe" wx:if="{{!showLog}}">
+        <text class="desc-title">简介</text>
+        <view class="desc-list">
+          <text class="desc-list-item">NJUer 认证：http://xsgl.nju.edu.cn/index.portal</text>
+        </view>
+        <text class="desc-content">南寻是一款微信小程序，由队名超长组开发，有别于公众号的一种全新的连接用户与服务的方式，无需下载与安装即可在微信内被便捷地获取和传播，同时具有出色的使用体验。</text>
+        <text class="desc-content">南寻是一站式权服侠移动门户，适用于学生和教师，集招领、寻物等功能于一身。</text>
+        <text class="desc-content">南寻更是/更有... （期待您的发现）</text>
+    </view>
+    <view class="log-list" wx:else>
+      <view class="describe">
+          <view class="desc-title">
+            <text class="desc-v">v0.0.3 公测先行版</text>
+            <text class="desc-time">2019.04.08</text>
+          </view>
+          <text class="desc-content">修复BUG</text>
+          <view class="desc-list">
+            <text class="desc-list-item">新增管理员功能</text>
+          </view>
+          <text class="desc-content">优化完善</text>
+          <view class="desc-list">
+            <text class="desc-list-item">实现学号登录机制</text>
+          </view>
+      </view>
+      <view class="describe">
+          <view class="desc-title">
+            <text class="desc-v">v0.0.2 内测版</text>
+            <text class="desc-time">2019.03.16</text>
+          </view>
+          <text class="desc-content">提交Hackthon作品</text>
+          <view class="desc-list">
+            <text class="desc-list-item">修复iOS设备无法上传照片的问题</text>
+          </view>
+          <text class="desc-content">优化完善</text>
+          <view class="desc-list">
+            <text class="desc-list-item">UI完善化</text>
+          </view>
+      </view>
+      <view class="describe">
+          <view class="desc-title">
+            <text class="desc-v">v0.0.1 内测版</text>
+            <text class="desc-time">2019.03.14</text>
+          </view>
+          <text class="desc-content">开启内测</text>
+      </view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="footer-nanxun">
+        <image src="/images/more/nanxun.png"></image>
+        <text>队名超长组</text>
+    </view>
+    <text>权服侠 · 特聘团队</text>
+    <text>Copyright @ {{year}} All Rights Reserved</text>
+  </view>
+</view>

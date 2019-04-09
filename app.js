@@ -1,39 +1,29 @@
 //app.js
-const cloud = wx.cloud
-cloud.init()
 App({
+  isAu: false,
+  version: 'v0.0.3', //版本号
+  /**
+   * 
+   */
   onLaunch: function () {
-    console.log('App Launch')
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+
   },
-  getUserInfo: function (cb) {
-    var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
-        }
-      })
-    }
+  showErrorModal: function (content, title) {
+    wx.showModal({
+      title: title || '加载失败',
+      content: content || '未知错误',
+      showCancel: false
+    });
   },
-  onShow: function () {
-    console.log('App Show')
+  showLoadToast: function (title, duration) {
+    wx.showToast({
+      title: title || '加载中',
+      icon: 'loading',
+      mask: true,
+      duration: duration || 10000
+    });
   },
-  onHide: function () {
-    console.log('App Hide')
-  },
-  globalData: {
-    hasLogin: false
-  }
-})
+  util: require('./utils/util'),
+  key: function (data) { return this.util.key(data) },
+  enCodeBase64: function (data) { return this.util.base64.encode(data) },
+});

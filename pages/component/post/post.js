@@ -269,8 +269,8 @@ Page({
         const filePath = img // 文件路径
         const cloudPath = "itemImages/" + timestamp + "_" + id + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
-          cloudPath,
-          filePath
+          filePath,
+          cloudPath
         }).then(res => {
           //将图片文件ID写入数据库
           console.log(res)
