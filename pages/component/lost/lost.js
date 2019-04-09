@@ -146,11 +146,9 @@ Page({
           })
         }
       ])).limit(100).orderBy("postTime", "desc").get().then(res => {
-        //var tmp = this.data.founditems.concat(res.data)
         //console.log(res.data)
         this.setData({
-          founditems: res.data,
-          //currentIndex: 100
+          lostitems: res.data,
         })
       })
   },
