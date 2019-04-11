@@ -222,9 +222,9 @@ form {
 }
 
 .input-lable-authcd {
-  width: 120rpx;
+  width: 122rpx;
   height: 50rpx;
-  padding: 0 10rpx;
+  padding: 0 9rpx;
   border-right: 1px solid #d8d8d8;
 }
 
