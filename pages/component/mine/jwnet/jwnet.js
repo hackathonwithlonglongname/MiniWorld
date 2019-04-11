@@ -13,11 +13,11 @@ Page({
     passwd: '',
     authcd: '',
     angle: 0,
-    cookie: 'cer.nju.edu.cn=96260894; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1; JSESSIONID=5780F4E3181942BF4743D7F01AE950C6; amlbcookie=02; ',
-    img: ''
+    cookie: 'cookie',
+    img: 'img'
   },
-  onLoad: function(){
-    var _this = this;
+  onLoad: function() {
+    const _this = this;
     wx.request({
       method: 'GET',
       //url: 'http://elite.nju.edu.cn/jiaowu/',
@@ -26,13 +26,48 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         'Cookie': _this.data.cookie
       },
-      success: function (res) {
+      success: res => {
         _this.setData({
-          cookie: _this.data.cookie + res.header['Set-cookie']
-        });
-      }, fail: function (res) {
+          cookie: res.header['Set-cookie'] + ',' + res.header['Set-Cookie'].replace(/ path=\//g, '')
+        })
+        console.log(_this.data.cookie)
+        _this.setData({
+          cookie: _this.data.cookie.replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ')
+        })
+        console.log(_this.data.cookie)
+        _this.setData({
+          cookie: _this.data.cookie.replace(/Path=\/,/g, ' ')
+        })
+        console.log(_this.data.cookie)
+        _this.requet()
       }
-    }),
+    })
+  },
+  
+  onReady: function() {
+    const _this = this;
+    setTimeout(function() {
+      _this.setData({
+        remind: ''
+      });
+    }, 1000);
+    wx.onAccelerometerChange(function(res) {
+      var angle = -(res.x * 30).toFixed(1);
+      if (angle > 14) {
+        angle = 14;
+      } else if (angle < -14) {
+        angle = -14;
+      }
+      if (_this.data.angle !== angle) {
+        _this.setData({
+          angle: angle
+        });
+      }
+    });
+  },
+
+  requet: function() {
+    const _this = this;
     wx.request({
       method: 'GET',
       //url: 'http://elite.nju.edu.cn/jiaowu/ValidateCode.jsp',
@@ -44,44 +79,33 @@ Page({
         'Accept-Language': 'zh-CN,zh'
       },
       success: function (res) {
+        console.log(_this.data.cookie)
         //_this.data.img = 'data:image/png;base64,' + res.data
         _this.setData({
-          cookie: _this.data.cookie + res.header['Set-cookie'],
-          img: wx.arrayBufferToBase64(res.data),
-        });
+          cookie: _this.data.cookie + res.header['Set-cookie'] + ',' + res.header['Set-Cookie']
+        }),
         _this.setData({
+          img: wx.arrayBufferToBase64(res.data)
+        }),
+        _this.setData({
+          cookie: _this.data.cookie.replace(/Path=\/,/g, ' '),
           img: 'data:image/jpg;base64,' + _this.data.img
-        })
-      }, fail: function (res) {
-
-      }
-    })
-  },
-  onReady: function(){
-    var _this = this;
-    setTimeout(function(){
-      _this.setData({
-        remind: ''
-      });
-    }, 1000);
-    wx.onAccelerometerChange(function(res) {
-      var angle = -(res.x*30).toFixed(1);
-      if(angle>14){ angle=14; }
-      else if(angle<-14){ angle=-14; }
-      if(_this.data.angle !== angle){
+        }),
         _this.setData({
-          angle: angle
-        });
+          cookie: _this.data.cookie.replace(/Path=\//g, ''),
+        }),
+        console.log(_this.data.cookie)
       }
     });
   },
+
   bind: function() {
-    var _this = this;
-    if(app.g_status == '未授权'){
+    const _this = this;
+    if (app.g_status == '未授权') {
       app.showErrorModal(app.g_status, '登录失败');
       return;
     }
-    if(!_this.data.userid || !_this.data.passwd || !_this.data.authcd){
+    if (!_this.data.userid || !_this.data.passwd || !_this.data.authcd) {
       app.showErrorModal('账号、密码及验证码不能为空', '提醒');
       return false;
     }
@@ -91,7 +115,7 @@ Page({
       return false;
     }
     */
-    app.showLoadToast('登录中');  
+    app.showLoadToast('登录中');
     wx.request({
       method: 'POST',
       //url: 'http://elite.nju.edu.cn/jiaowu/login.do',
@@ -102,8 +126,8 @@ Page({
         'returnUrl': "null",
         'ValidateCode': _this.data.authcd*/
         'encoded': 'false',
-        'goto': '',
-        'gotoOnFail': '',
+        'goto': 'aHR0cDovL3hzZ2wubmp1LmVkdS5jbi9pbmRleC5wb3J0YWw=',
+        'gotoOnFail': 'aHR0cDovL3hzZ2wubmp1LmVkdS5jbi9pZGVudGl0eS9sb2dpbmVyci5qc3A=',
         'IDToken0': '',
         'IDButton': 'Submit',
         'IDToken1': _this.data.userid,
@@ -115,9 +139,10 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         'Cookie': _this.data.cookie
       },
-      success: function (res) {
+      success: function(res) {
+        console.log(_this.data.cookie)
         console.log(res.header)
-        if (res.header['Server'] == "IBM_HTTP_Server") {
+        if (!res.header['Am_client_type']) {
           app.showLoadToast('请稍候');
           wx.setStorageSync('isAu', true);
           wx.showToast({
@@ -134,13 +159,13 @@ Page({
           app.showErrorModal('您输入的账号或密码错误，请重新输入', '登录失败');
         }
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.hideToast();
         app.showErrorModal(res.errMsg, '登录失败');
       }
     });
   },
-  useridInput: function (e) {
+  useridInput: function(e) {
     this.setData({
       userid: e.detail.value
     });
@@ -150,7 +175,7 @@ Page({
       passwd: e.detail.value
     });
   },
-  authcdInput: function (e) {
+  authcdInput: function(e) {
     this.setData({
       authcd: e.detail.value
     });
@@ -158,12 +183,12 @@ Page({
       wx.hideKeyboard();
     }
   },
-  inputFocus: function(e){
-    if(e.target.id == 'userid'){
+  inputFocus: function(e) {
+    if (e.target.id == 'userid') {
       this.setData({
         'userid_focus': true
       });
-    }else if(e.target.id == 'passwd'){
+    } else if (e.target.id == 'passwd') {
       this.setData({
         'passwd_focus': true
       });
@@ -173,12 +198,12 @@ Page({
       });
     }
   },
-  inputBlur: function(e){
-    if(e.target.id == 'userid'){
+  inputBlur: function(e) {
+    if (e.target.id == 'userid') {
       this.setData({
         'userid_focus': false
       });
-    }else if(e.target.id == 'passwd'){
+    } else if (e.target.id == 'passwd') {
       this.setData({
         'passwd_focus': false
       });
@@ -188,17 +213,17 @@ Page({
       });
     }
   },
-  tapHelp: function(e){
-    if(e.target.id == 'help'){
+  tapHelp: function(e) {
+    if (e.target.id == 'help') {
       this.hideHelp();
     }
   },
-  showHelp: function(e){
+  showHelp: function(e) {
     this.setData({
       'help_status': true
     });
   },
-  hideHelp: function(e){
+  hideHelp: function(e) {
     this.setData({
       'help_status': false
     });
