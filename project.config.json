@@ -3,6 +3,12 @@
 	"packOptions": {
 		"ignore": []
 	},
+	"projectname": "LostAndFoundDemo",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"cloudfunctionRoot": "functions/",
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
@@ -11,15 +17,7 @@
 		"newFeature": true,
 		"autoAudits": false
 	},
-	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
 	"appid": "wx5bac0b73ecf59914",
-	"projectname": "LostAndFoundDemo",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"cloudfunctionRoot": "functions/",
 	"condition": {
 		"search": {
 			"current": -1,

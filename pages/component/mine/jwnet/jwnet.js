@@ -1,5 +1,6 @@
 //jwnet.js
 //获取应用实例
+
 var app = getApp();
 Page({
   data: {
@@ -11,11 +12,51 @@ Page({
     userid: '',
     passwd: '',
     authcd: '',
-    angle: 0
+    angle: 0,
+    cookie: 'cer.nju.edu.cn=96260894; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1; JSESSIONID=5780F4E3181942BF4743D7F01AE950C6; amlbcookie=02; ',
+    img: ''
   },
-  /* onLoad: function(){
-    
-  },*/
+  onLoad: function(){
+    var _this = this;
+    wx.request({
+      method: 'GET',
+      //url: 'http://elite.nju.edu.cn/jiaowu/',
+      url: 'http://cer.nju.edu.cn/amserver/UI/Login',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': _this.data.cookie
+      },
+      success: function (res) {
+        _this.setData({
+          cookie: _this.data.cookie + res.header['Set-cookie']
+        });
+      }, fail: function (res) {
+      }
+    }),
+    wx.request({
+      method: 'GET',
+      //url: 'http://elite.nju.edu.cn/jiaowu/ValidateCode.jsp',
+      url: 'http://cer.nju.edu.cn/amserver/verify/image.jsp',
+      responseType: 'arraybuffer',
+      header: {
+        'Accept': 'image/jpg',
+        'Cookie': _this.data.cookie,
+        'Accept-Language': 'zh-CN,zh'
+      },
+      success: function (res) {
+        //_this.data.img = 'data:image/png;base64,' + res.data
+        _this.setData({
+          cookie: _this.data.cookie + res.header['Set-cookie'],
+          img: wx.arrayBufferToBase64(res.data),
+        });
+        _this.setData({
+          img: 'data:image/jpg;base64,' + _this.data.img
+        })
+      }, fail: function (res) {
+
+      }
+    })
+  },
   onReady: function(){
     var _this = this;
     setTimeout(function(){
@@ -50,22 +91,33 @@ Page({
       return false;
     }
     */
-    app.showLoadToast('登录中');
+    app.showLoadToast('登录中');  
     wx.request({
       method: 'POST',
-      url: 'http://cer.nju.edu.cn/amserver/UI/Login',// 请求登录api
-      // 无法解决加密问题，不进行加密
+      //url: 'http://elite.nju.edu.cn/jiaowu/login.do',
+      url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       data: {
-        IDButton: 'Submit',
-        IDToken1: _this.data.userid,
-        IDToken2: _this.data.passwd,
-        inputCode: _this.data.authcd
+        /*'userName': _this.data.userid,
+        'password': _this.data.passwd,
+        'returnUrl': "null",
+        'ValidateCode': _this.data.authcd*/
+        'encoded': 'false',
+        'goto': '',
+        'gotoOnFail': '',
+        'IDToken0': '',
+        'IDButton': 'Submit',
+        'IDToken1': _this.data.userid,
+        'IDToken2': _this.data.passwd,
+        'inputCode': _this.data.authcd,
+        'gx_charset': 'UTF-8'
       },
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': _this.data.cookie
       },
-      success: function(res){
-        if (!res.Expires){
+      success: function (res) {
+        console.log(res.header)
+        if (res.header['Server'] == "IBM_HTTP_Server") {
           app.showLoadToast('请稍候');
           wx.setStorageSync('isAu', true);
           wx.showToast({
@@ -76,25 +128,22 @@ Page({
           wx.switchTab({
             url: '/pages/component/found/found'
           })
-        }else{
+        } else {
           wx.hideToast();
           // app.showErrorModal(res.data.message, '登录失败');
-          app.showErrorModal('您输入的账号或密码错误，请重新输入','登录失败');
+          app.showErrorModal('您输入的账号或密码错误，请重新输入', '登录失败');
         }
       },
-      fail: function(res){
+      fail: function (res) {
         wx.hideToast();
         app.showErrorModal(res.errMsg, '登录失败');
       }
     });
   },
-  useridInput: function(e) {
+  useridInput: function (e) {
     this.setData({
       userid: e.detail.value
     });
-    if(e.detail.value.length >= 9){
-      wx.hideKeyboard();
-    }
   },
   passwdInput: function(e) {
     this.setData({

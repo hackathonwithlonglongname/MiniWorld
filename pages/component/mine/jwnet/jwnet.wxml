@@ -22,7 +22,7 @@
             <input password="true" cursor-spacing="30" id="passwd" placeholder="请输入对应密码" bindinput="passwdInput" bindfocus="inputFocus" bindblur="inputBlur" />
           </view>
           <view class="input-group {{authcd_focus ? 'active' : ''}}">
-            <image class="input-lable-authcd" src="http://cer.nju.edu.cn/amserver/verify/image.jsp" mode="aspectFill"></image>
+            <image class="input-lable-authcd" src="{{img}}" mode="aspectFit"></image>
             <!--<text class="input-label">验证</text>-->
             <input cursor-spacing="30" id="authcd" maxlength="4" placeholder="输入图中验证码" bindinput="authcdInput" bindfocus="inputFocus" bindblur="inputBlur" />
           </view>
