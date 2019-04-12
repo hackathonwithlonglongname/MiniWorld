@@ -2,99 +2,84 @@
 
   <view class="page-body">
     <form catchsubmit="formSubmit" catchreset="formReset">
-      <view class="page-section page-section-gap">
-        <view class="page-section-title">信息类型</view>
-        <radio-group name="infoType">
-          <label><radio value="found" checked="{{check}}" />我捡到东西了</label>
-          <label><radio value="lost" checked="{{check}}" />我丢失东西了</label>
-        </radio-group>
-      </view>
-      
-      <view class="page-section">
-        <view class="page-section-title">时间</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <picker mode="date" value="{{date}}" start="2015-01-01" end="{{nowDate}}" bindchange="bindDateChange" name="date">
-                <view class="weui-input">{{date}}</view>
-              </picker>
-            </view>
-          </view>
+      <view class="cu-bar margin-top bg-white">
+        <view class="action">
+          <text class="icon-title text-purple"></text>信息类型
+        </view>
+        <view class="action">
+          <radio-group name="infoType">
+            <label class="margin-left-sm">
+              <radio class="purple sm radio" value="found" checked="{{check}}"></radio>
+              <text>捡到物品</text>
+            </label>
+            <label class="margin-left-sm">
+              <radio class="black sm radio" value="lost" checked="{{check}}"></radio>
+              <text>丢失物品</text>
+            </label>
+          </radio-group>
         </view>
       </view>
-      
-      <view class="page-section">
-        <view class="page-section-title">地点</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" name="place" placeholder="仙一/仙二/逸夫楼/图书馆/..." value="{{info}}" />
+
+      <view class="cu-form-group margin-top">
+        <view class="title">时间选择</view>
+        <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
+          <view class="picker">
+            {{time}}
+          </view>
+        </picker>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">日期选择</view>
+        <picker mode="date" value="{{date}}" start="2015-01-01" end="{{nowDate}}" bindchange="DateChange" name="date">
+          <view class="picker">
+            {{date}}
+          </view>
+        </picker>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">确认地点</view>
+        <input placeholder="仙一/仙二/逸夫楼/图书馆/..." value="{{info}}" />
+        <text class="icon-locationfill text-orange"></text>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">联系方式</view>
+        <input name="contact" placeholder="手机号/QQ/微信/邮箱/...(请注明类型)" value="{{info}}" />
+      </view>
+      <view class="cu-form-group">
+        <view class="title">简要描述</view>
+        <input name="title" placeholder="用一句话描述你捡到或丢失的东西" value="{{info}}" />
+      </view>
+      <view class="cu-form-group top">
+        <view class="title">详细描述</view>
+        <textarea maxlength="-1" placeholder-class="placeholder" class="{{textareaBValue?'value':''}}" name="description" bindblur="bindTextAreaBlur" value="{{info}}" />
+      </view>
+      <view class="cu-bar bg-white margin-top">
+        <view class="action">
+          上传图片
+        </view>
+        <view class="action">
+          {{imageList.length}}/{{count[index]}}
+        </view>
+      </view>
+      <view class="cu-form-group margin-bottom">
+        <view class="grid col-4 grid-square flex-sub">
+          <view class="padding-xs bg-img" style="background-image:url({{imageList[index]}})" wx:for="{{imageList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imageList[index]}}">
+            <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+              <text class="icon-close"></text>
             </view>
+          </view>
+          <view class="padding-xs solids" bindtap="ChooseImage" wx:if="{{imageList.length<9}}">
+            <text class="icon-cameraadd"></text>
           </view>
         </view>
       </view>
 
-      <view class="page-section">
-        <view class="page-section-title">简要描述</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" name="title" placeholder="用一句话描述你捡到或丢失的东西" value="{{info}}" />
-            </view>
-          </view>
+      <view class="box">
+        <view class="cu-bar btn-group">
+          <button class="cu-btn bg-green shadow-blur round lg" formType="submit">提交</button>
         </view>
-      </view>
-
-      <view class="page-body">
-        <view class="page-section">
-          <view class="page-section-title">详细描述</view>
-          <view class="textarea-wrp">
-            <textarea class="weui-input" name="description" bindblur="bindTextAreaBlur" auto-height value="{{info}}" />
-          </view>
-        </view>
-      </view>
-    
-      <view class="page-section">
-        <view class="page-section-title">联系方式（请注明类型）</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" name="contact" placeholder="手机号/QQ/微信/邮箱/..." value="{{info}}" />
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view class="weui-cells">
-        <view class="weui-cell">
-          <view class="weui-cell__bd">
-            <view class="weui-uploader">
-              <view class="weui-uploader__hd">
-                <view class="weui-uploader__title">上传图片</view>
-                <view class="weui-uploader__info">{{imageList.length}}/{{count[countIndex]}}</view>
-              </view>
-              <view class="weui-uploader__bd">
-                <view class="weui-uploader__files">
-                  <block wx:for="{{imageList}}" wx:for-item="image">
-                    <view class="weui-uploader__file">
-                      <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
-                    </view>
-                  </block>
-                </view>
-                <view class="weui-uploader__input-box">
-                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view class="btn-area">
-        <button formType="submit">提交</button>
         <!--<button formType="reset">重置</button>-->
       </view>
     </form>
   </view>
-
 </view>

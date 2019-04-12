@@ -8,14 +8,23 @@ const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 
 Page({
   data: {
+    multiIndex: [0, 0, 0],
+    time: '12:01',
+    date: '2018-12-25',
+    time: '12:01',
+    region: ['广东省', '广州市', '海珠区'],
+    modalName: null,
+    textareaAValue: '',
+    textareaBValue: '',
+
     //picker组件相关：
     pickerHidden: true,
     chosen: '',
-    nowDate: '2049-09-01', //onShow时修改为当前日期
+    nowDate: '2100-12-31', //onShow时修改为当前日期
 
     //image组件相关：
     imageList: [],
-    countIndex: 8,
+    index: 8,
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 
     //ID相关：
@@ -110,6 +119,83 @@ Page({
     })
   },
 
+  PickerChange(e) {
+    console.log(e);
+    this.setData({
+      index: e.detail.value
+    })
+  },
+  MultiChange(e) {
+    this.setData({
+      multiIndex: e.detail.value
+    })
+  },
+  TimeChange(e) {
+    this.setData({
+      time: e.detail.value
+    })
+  },
+  DateChange(e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  RegionChange: function (e) {
+    this.setData({
+      region: e.detail.value
+    })
+  },
+  ChooseImage() {
+    wx.chooseImage({
+      count: 9, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        if (this.data.imageList.length != 0) {
+          this.setData({
+            imageList: this.data.imageList.concat(res.tempFilePaths)
+          })
+        } else {
+          this.setData({
+            imageList: res.tempFilePaths
+          })
+        }
+      }
+    });
+  },
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.imageList,
+      current: e.target.dataset.url
+    });
+  },
+  DelImg(e) {
+    wx.showModal({
+      title: '召唤师',
+      content: '确定要删除这段回忆吗？',
+      cancelText: '再看看',
+      confirmText: '再见',
+      success: res => {
+        if (res.confirm) {
+          this.data.imageList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imageList: this.data.imageList
+          })
+        }
+      }
+    })
+  },
+  textareaAInput(e) {
+    this.setData({
+      textareaAValue: e.detail.value
+    })
+  },
+  textareaBInput(e) {
+    this.setData({
+      textareaBValue: e.detail.value
+    })
+  },
+
   bindDateChange(e) {
     this.setData({
       date: e.detail.value
@@ -119,31 +205,6 @@ Page({
   //textarea组件相关：
   bindTextAreaBlur(e) {
     console.log(e.detail.value)
-  },
-
-  //image组件相关：
-  chooseImage() {
-    const that = this
-    wx.chooseImage({
-      sourceType: sourceType[this.data.sourceTypeIndex],
-      sizeType: sizeType[this.data.sizeTypeIndex],
-      count: this.data.count[this.data.countIndex],
-      success(res) {
-        console.log(res)
-        that.setData({
-          imageList: res.tempFilePaths
-        })
-      }
-    })
-  },
-
-  previewImage(e) {
-    const current = e.target.dataset.src
-
-    wx.previewImage({
-      current,
-      urls: this.data.imageList
-    })
   },
 
   //form组件相关：
@@ -315,5 +376,7 @@ Page({
         }
       }, 1500)
     }
+    
   },
+
 })

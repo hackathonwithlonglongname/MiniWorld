@@ -1,4 +1,5 @@
 //app.js
+
 App({
   isAu: false,
   version: 'v0.0.3', //版本号
