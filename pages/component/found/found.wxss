@@ -1,9 +1,8 @@
 /* pages/component/found/found.wxss */
 @import "/pages/component/search/search.wxss";
-.smallimage{
-  width: 100rpx
-  
-}
-.frame{
-  margin: 20rpx 0rpx
+@import "/colorui/main.wxss";
+@import "/colorui/icon.wxss";
+
+.split{
+  height: 17rpx;
 }
