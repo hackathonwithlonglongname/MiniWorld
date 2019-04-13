@@ -2,7 +2,7 @@
 
 App({
   isAu: false,
-  version: 'v0.0.3', //版本号
+  version: 'v0.0.4', //版本号
   /**
    * 
    */
