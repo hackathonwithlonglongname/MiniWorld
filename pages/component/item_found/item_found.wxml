@@ -20,8 +20,7 @@
     </view>
     <view class='right'>{{item_contact}}</view>
   </view>
-</view>
-<view class='item'>
+  <view class='item'>
   <view class='left'>
     <image class='user_icon' src='/images/details.png'></image>
     <view>物品描述：</view>
@@ -71,4 +70,5 @@
   <view class="item_large" wx:if="{{item_openid==openid}}">
     <button type="warn" bindtap="deleteItem">已找到失主，删除信息</button>
   </view>
+</view>
 </view>
