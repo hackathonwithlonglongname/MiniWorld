@@ -42,3 +42,6 @@
     </view>
   </block>
 </view>
+<view class="footer">
+    <text>没有更多了</text>
+</view>
