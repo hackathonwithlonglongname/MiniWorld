@@ -1,4 +1,5 @@
 //app.js
+require('./utils/v-request.js')
 
 App({
   isAu: false,

@@ -9,7 +9,10 @@ const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 Page({
   data: {
     multiIndex: [0, 0, 0],
-    time: '12:00',
+    time: '12:01',
+    date: '2018-12-25',
+    time: '12:01',
+    region: ['广东省', '广州市', '海珠区'],
     modalName: null,
     textareaAValue: '',
     textareaBValue: '',
@@ -167,9 +170,19 @@ Page({
     });
   },
   DelImg(e) {
-    this.data.imageList.splice(e.currentTarget.dataset.index, 1);
-    this.setData({
-      imageList: this.data.imageList
+    wx.showModal({
+      title: '召唤师',
+      content: '确定要删除这段回忆吗？',
+      cancelText: '再看看',
+      confirmText: '再见',
+      success: res => {
+        if (res.confirm) {
+          this.data.imageList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imageList: this.data.imageList
+          })
+        }
+      }
     })
   },
   textareaAInput(e) {

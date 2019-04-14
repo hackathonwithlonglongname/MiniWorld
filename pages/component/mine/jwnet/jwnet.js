@@ -18,32 +18,22 @@ Page({
   },
   onLoad: function() {
     const _this = this;
-    wx.request({
+    wx.vrequest({
       method: 'GET',
-      //url: 'http://elite.nju.edu.cn/jiaowu/',
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Cookie': _this.data.cookie
       },
       success: res => {
         _this.setData({
-          cookie: res.header['Set-cookie'] + ',' + res.header['Set-Cookie'].replace(/ path=\//g, '')
+          cookie: res.header['set-cookie'].join(',').replace(/ path=\//g, ' ').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ')
         })
-        console.log(_this.data.cookie)
-        _this.setData({
-          cookie: _this.data.cookie.replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ')
-        })
-        console.log(_this.data.cookie)
-        _this.setData({
-          cookie: _this.data.cookie.replace(/Path=\/,/g, ' ')
-        })
-        console.log(_this.data.cookie)
         _this.requet()
       }
     })
   },
-  
+
   onReady: function() {
     const _this = this;
     setTimeout(function() {
@@ -68,33 +58,31 @@ Page({
 
   requet: function() {
     const _this = this;
-    wx.request({
+    wx.vrequest({
       method: 'GET',
       //url: 'http://elite.nju.edu.cn/jiaowu/ValidateCode.jsp',
       url: 'http://cer.nju.edu.cn/amserver/verify/image.jsp',
       responseType: 'arraybuffer',
       header: {
-        'Accept': 'image/jpg',
+        'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh',
+        'Content-Type': 'image/jpg',
         'Cookie': _this.data.cookie,
-        'Accept-Language': 'zh-CN,zh'
       },
-      success: function (res) {
-        console.log(_this.data.cookie)
-        //_this.data.img = 'data:image/png;base64,' + res.data
+      success: function(res) {
+        let buffer = wx.base64ToArrayBuffer(res.data)
+        let base64 = wx.arrayBufferToBase64(buffer)
         _this.setData({
-          cookie: _this.data.cookie + res.header['Set-cookie'] + ',' + res.header['Set-Cookie']
-        }),
+            cookie: _this.data.cookie + res.header['set-cookie'].join(',').replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/;Path=\//g, '')
+          }),
+          console.log(res.data)
+        console.log(base64)
+        console.log(buffer)
         _this.setData({
-          img: wx.arrayBufferToBase64(res.data)
-        }),
-        _this.setData({
-          cookie: _this.data.cookie.replace(/Path=\/,/g, ' '),
-          img: 'data:image/jpg;base64,' + _this.data.img
-        }),
-        _this.setData({
-          cookie: _this.data.cookie.replace(/Path=\//g, ''),
-        }),
-        console.log(_this.data.cookie)
+          img: 'data:image/jpg;base64,' + encodeURI(res.data)
+        })
+
       }
     });
   },
@@ -116,7 +104,7 @@ Page({
     }
     */
     app.showLoadToast('登录中');
-    wx.request({
+    wx.vrequest({
       method: 'POST',
       //url: 'http://elite.nju.edu.cn/jiaowu/login.do',
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
@@ -136,7 +124,7 @@ Page({
         'gx_charset': 'UTF-8'
       },
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Cookie': _this.data.cookie
       },
       success: function(res) {

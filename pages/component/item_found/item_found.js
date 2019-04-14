@@ -138,15 +138,18 @@ Page({
           //再次验证发布者ID与访问者ID是否一致
           if (that.data.item_openid == that.data.openid) {
             //从数据库中删除本条记录(Document)
-            wx.cloud.callFunction({
-              name: 'check',
-              data: {
-                _id: that.data.item_id,
-                property: 'complete'
-              },
-              success: res => {
-                console.log('更新数据成功')
-              }
+            db.collection('itemInfo').doc(that.data.item_id).remove()
+              .then(console.log)
+              .catch(console.error)
+
+            //从存储管理中删除图片
+            wx.cloud.deleteFile({
+              fileList: that.data.item_picture_url
+            }).then(res => {
+              // handle success
+              console.log(res.fileList)
+            }).catch(error => {
+              // handle error
             })
 
             //显示删除成功对话框

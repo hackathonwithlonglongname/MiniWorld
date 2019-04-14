@@ -20,53 +20,54 @@
     </view>
     <view class='right'>{{item_contact}}</view>
   </view>
-  <view class='item'>
-    <view class='left'>
-      <image class='user_icon' src='/images/details.png'></image>
-      <view>物品描述：</view>
-    </view>
+</view>
+<view class='item'>
+  <view class='left'>
+    <image class='user_icon' src='/images/details.png'></image>
+    <view>物品描述：</view>
   </view>
-  <view class='item_large'>
-    <view class='detail'> {{item_description}}</view>
-  </view>
-  <view wx:if="{{item_picture_url}}">
-    <view class='container' style='display:block;'>
-      <view class='item'>
-        <view class='left'>
-          <image class='user_icon' src='/images/img.png'></image>
-          <view>图片信息：</view>
-        </view>
+</view>
+<view class='item_large'>
+  <view class='detail'> {{item_description}}</view>
+</view>
+<view wx:if="{{item_picture_url}}">
+  <view class='container' style='display:block;'>
+    <view class='item'>
+      <view class='left'>
+        <image class='user_icon' src='/images/img.png'></image>
+        <view>图片信息：</view>
       </view>
     </view>
+  </view>
 
-    <view wx:if="{{item_picture_url.length==1}}">
-      <view class='image_view'>
-        <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
-          <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
-          </image>
-        </view>
+  <view wx:if="{{item_picture_url.length==1}}">
+    <view class='image_view'>
+      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+        </image>
       </view>
     </view>
-    <view wx:elif="{{item_picture_url.length==2 || item_picture_url.length==4}}">
-      <view class='image_view'>
-        <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
-          <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
-          </image>
-        </view>
-      </view>
-    </view>
+  </view>
 
-    <view wx:else>
-      <view class='image_view'>
-        <view class='image' wx:for="{{item_picture_url}}" mode="center" style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
-          <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
-          </image>
-        </view>
+  <view wx:elif="{{item_picture_url.length==2 || item_picture_url.length==4}}">
+    <view class='image_view'>
+      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
+        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
+        </image>
       </view>
     </view>
   </view>
-  <view class="item_large">
-    <button type="primary" bindtap="pass">通过</button>
-    <button type="warn" bindtap="illegal">违规</button>
+
+  <view wx:else>
+    <view class='image_view'>
+      <view class='image' wx:for="{{item_picture_url}}" mode="center" style='width:{{img_width_3}}px;height:{{img_width_3}}px' >
+        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
+        </image>
+      </view>
+    </view>
   </view>
+</view>
+<view class="item_large">
+  <button type="primary" bindtap="pass">通过</button>
+  <button type="warn" bindtap="illegal">违规</button>
 </view>
