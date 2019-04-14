@@ -2,7 +2,7 @@
 require('./utils/v-request.js')
 
 App({
-  isAu: false,
+  isAu: true,
   version: 'v0.0.4', //版本号
   /**
    * 
