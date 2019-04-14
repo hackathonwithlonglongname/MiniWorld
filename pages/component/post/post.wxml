@@ -30,9 +30,9 @@
       </view>
       <view class="cu-form-group">
         <view class="title">日期选择</view>
-        <picker mode="date" value="{{date}}" start="2015-01-01" end="{{nowDate}}" bindchange="DateChange" name="date">
+        <picker mode="date" value="{{nowDate}}" start="2015-01-01" end="{{nowDate}}" bindchange="DateChange" name="date">
           <view class="picker">
-            {{date}}
+            {{nowDate}}
           </view>
         </picker>
       </view>
