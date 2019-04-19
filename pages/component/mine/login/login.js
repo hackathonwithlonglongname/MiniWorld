@@ -9,7 +9,7 @@ Page({
     // 查看是否授权
     wx.getSetting({
       success: function(res) {
-        //app.isAu = wx.getStorageSync('isAu');
+        app.isAu = wx.getStorageSync('isAu');
         if (app.isAu) {
           wx.getUserInfo({
             success: function(res) {

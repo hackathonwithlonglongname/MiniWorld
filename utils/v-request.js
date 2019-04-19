@@ -7,10 +7,7 @@
  * 3. 没绑定域名，直接IP地址访问的
  * 注： 不可访问内网IP或腾讯云服务器无法连接的地址
  * ==========================
- * 注意：请勿使用此功能于非法用途！！仅供开发者学习使用！！
- * 开源地址和文档：https://github.com/guren-cloud/v-request
- * 古人云小程序（小程序推送等黑科技研究）：https://mssnn.cn
- * 更新时间：2018/12/29
+ * 更新时间：2019/04/12
  */
 
 /**
@@ -18,9 +15,6 @@
  * =======
  * 与官方的wx.request大致相同
  * 目前测试正常的get、post请求都OK，当然还可能会有其他小细节问题，不能应对全部的情况
- * 所以如果你在测试中无法得到自己想要的结果，可以参与这个项目一起反馈优化！
- * 项目地址：https://github.com/guren-cloud/v-request
- * 作者微信：hack_fish
  * -------
 // EXAMPLE
 // GET
@@ -78,8 +72,7 @@ wx.vrequest = function (options) {
           method: OPT['method'],
           headers: OPT['header'],
           responseType: OPT['responseType'],
-          encoding: null,
-          transform: 'arraybuffer'
+          encoding: null
         }, POST_DATA)
       },
       

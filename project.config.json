@@ -17,9 +17,13 @@
 		"newFeature": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"uglifyFileName": true
+		"uglifyFileName": true,
+		"checkInvalidKey": true
 	},
 	"appid": "wx5bac0b73ecf59914",
+	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

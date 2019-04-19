@@ -1,6 +1,5 @@
 //jwnet.js
 //获取应用实例
-
 var app = getApp();
 Page({
   data: {
@@ -23,7 +22,7 @@ Page({
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Cookie': _this.data.cookie
+        //'Cookie': _this.data.cookie
       },
       success: res => {
         _this.setData({
@@ -58,11 +57,11 @@ Page({
 
   requet: function() {
     const _this = this;
-    wx.vrequest({
+    wx.request({
       method: 'GET',
-      //url: 'http://elite.nju.edu.cn/jiaowu/ValidateCode.jsp',
-      url: 'http://cer.nju.edu.cn/amserver/verify/image.jsp',
+      url: 'https://cer.nju.edu.cn/amserver/verify/image.jsp',
       responseType: 'arraybuffer',
+      encoding: null,
       header: {
         'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate',
@@ -71,16 +70,18 @@ Page({
         'Cookie': _this.data.cookie,
       },
       success: function(res) {
-        let buffer = wx.base64ToArrayBuffer(res.data)
-        let base64 = wx.arrayBufferToBase64(buffer)
+        //let buffer = wx.base64ToArrayBuffer(res.data)
+        let base64 = wx.arrayBufferToBase64(res.data)
         _this.setData({
-            cookie: _this.data.cookie + res.header['set-cookie'].join(',').replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/;Path=\//g, '')
+            //cookie: _this.data.cookie + res.header['set-cookie'].join(',').replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/;Path=\//g, '')
+          cookie: _this.data.cookie + res.header['Set-cookie'].replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/Path=\//g, '')
           }),
           console.log(res.data)
         console.log(base64)
-        console.log(buffer)
+        console.log(_this.data.cookie)
+        //console.log(buffer)
         _this.setData({
-          img: 'data:image/jpg;base64,' + encodeURI(res.data)
+          img: 'data:image/jpg;base64,' + base64
         })
 
       }
@@ -107,7 +108,8 @@ Page({
     wx.vrequest({
       method: 'POST',
       //url: 'http://elite.nju.edu.cn/jiaowu/login.do',
-      url: 'http://cer.nju.edu.cn/amserver/UI/Login',
+      //url: 'http://cer.nju.edu.cn/amserver/UI/Login',
+      url: 'http://imp.nju.edu.cn/imp/authLogin.do',
       data: {
         /*'userName': _this.data.userid,
         'password': _this.data.passwd,
@@ -128,9 +130,7 @@ Page({
         'Cookie': _this.data.cookie
       },
       success: function(res) {
-        console.log(_this.data.cookie)
-        console.log(res.header)
-        if (!res.header['Am_client_type']) {
+        if (res.statusCode == 302) {
           app.showLoadToast('请稍候');
           wx.setStorageSync('isAu', true);
           wx.showToast({
