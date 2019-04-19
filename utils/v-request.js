@@ -38,6 +38,7 @@ wx.vrequest({
   }
 })
  */
+var util = require('util.js')
 
 wx.vrequest = function (options) {
   // 默认配置
@@ -60,7 +61,9 @@ wx.vrequest = function (options) {
   let POST_DATA = {
     body: options.data
   };
-  if (typeof options.data === 'object') POST_DATA['body'] = JSON.stringify(POST_DATA['body']);
+  //if (typeof options.data === 'object') POST_DATA['body'] = JSON.stringify(POST_DATA['body']);
+  if (typeof options.data === 'object') POST_DATA['body'] = util.json2Form(POST_DATA['body']);
+  console.log(POST_DATA['body'])
 
   // 开始请求
   return new Promise((RES, REJ) => {

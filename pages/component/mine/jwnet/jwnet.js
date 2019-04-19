@@ -1,4 +1,5 @@
 //jwnet.js
+
 //获取应用实例
 var app = getApp();
 Page({
@@ -22,13 +23,13 @@ Page({
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        //'Cookie': _this.data.cookie
+        'Cookie': _this.data.cookie
       },
       success: res => {
         _this.setData({
           cookie: res.header['set-cookie'].join(',').replace(/ path=\//g, ' ').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ')
         })
-        _this.requet()
+        _this.authcdRequest()
       }
     })
   },
@@ -39,7 +40,7 @@ Page({
       _this.setData({
         remind: ''
       });
-    }, 1000);
+    }, 1000)
     wx.onAccelerometerChange(function(res) {
       var angle = -(res.x * 30).toFixed(1);
       if (angle > 14) {
@@ -52,10 +53,10 @@ Page({
           angle: angle
         });
       }
-    });
+    })
   },
 
-  requet: function() {
+  authcdRequest: function() {
     const _this = this;
     wx.request({
       method: 'GET',
@@ -70,10 +71,10 @@ Page({
         'Cookie': _this.data.cookie,
       },
       success: function(res) {
-        let base64 = wx.arrayBufferToBase64(res.data);
-        let tmpCookie = '';
-        if (res.header['Set-Cookie']) tmpCookie = res.header['Set-Cookie'];
-        if (res.header['Set-cookie']) tmpCookie = res.header['Set-cookie'];
+        let base64 = wx.arrayBufferToBase64(res.data)
+        let tmpCookie = ''
+        if (res.header['Set-Cookie']) tmpCookie = res.header['Set-Cookie']
+        if (res.header['Set-cookie']) tmpCookie = res.header['Set-cookie']
         _this.setData({
           cookie: _this.data.cookie + tmpCookie.replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/Path=\//g, '')
           }),
@@ -98,26 +99,14 @@ Page({
       app.showErrorModal('账号、密码及验证码不能为空', '提醒');
       return false;
     }
-    /*
-    if(!app._user.openid){
-      app.showErrorModal('未能成功登录', '错误');
-      return false;
-    }
-    */
     app.showLoadToast('登录中');
     wx.vrequest({
       method: 'POST',
-      //url: 'http://elite.nju.edu.cn/jiaowu/login.do',
-      //url: 'http://cer.nju.edu.cn/amserver/UI/Login',
-      url: 'http://imp.nju.edu.cn/imp/authLogin.do',
+      url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       data: {
-        /*'userName': _this.data.userid,
-        'password': _this.data.passwd,
-        'returnUrl': "null",
-        'ValidateCode': _this.data.authcd*/
         'encoded': 'false',
-        'goto': 'aHR0cDovL3hzZ2wubmp1LmVkdS5jbi9pbmRleC5wb3J0YWw=',
-        'gotoOnFail': 'aHR0cDovL3hzZ2wubmp1LmVkdS5jbi9pZGVudGl0eS9sb2dpbmVyci5qc3A=',
+        'goto': '',
+        'gotoOnFail': '',
         'IDToken0': '',
         'IDButton': 'Submit',
         'IDToken1': _this.data.userid,
@@ -126,8 +115,13 @@ Page({
         'gx_charset': 'UTF-8'
       },
       header: {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Cookie': _this.data.cookie
+        'Cookie': _this.data.cookie,
+        'Referer': 'http://cer.nju.edu.cn/amserver/UI/Login',
+        'Origin': 'http://cer.nju.edu.cn',
       },
       success: function(res) {
         if (res.statusCode == 302) {
@@ -143,7 +137,6 @@ Page({
           })
         } else {
           wx.hideToast();
-          // app.showErrorModal(res.data.message, '登录失败');
           app.showErrorModal('您输入的账号或密码错误，请重新输入', '登录失败');
         }
       },
@@ -151,7 +144,7 @@ Page({
         wx.hideToast();
         app.showErrorModal(res.errMsg, '登录失败');
       }
-    });
+    })
   },
   useridInput: function(e) {
     this.setData({
