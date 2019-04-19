@@ -70,16 +70,16 @@ Page({
         'Cookie': _this.data.cookie,
       },
       success: function(res) {
-        //let buffer = wx.base64ToArrayBuffer(res.data)
-        let base64 = wx.arrayBufferToBase64(res.data)
+        let base64 = wx.arrayBufferToBase64(res.data);
+        let tmpCookie = '';
+        if (res.header['Set-Cookie']) tmpCookie = res.header['Set-Cookie'];
+        if (res.header['Set-cookie']) tmpCookie = res.header['Set-cookie'];
         _this.setData({
-            //cookie: _this.data.cookie + res.header['set-cookie'].join(',').replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/;Path=\//g, '')
-          cookie: _this.data.cookie + res.header['Set-cookie'].replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/Path=\//g, '')
+          cookie: _this.data.cookie + tmpCookie.replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/Path=\//g, '')
           }),
           console.log(res.data)
         console.log(base64)
         console.log(_this.data.cookie)
-        //console.log(buffer)
         _this.setData({
           img: 'data:image/jpg;base64,' + base64
         })
