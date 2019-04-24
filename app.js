@@ -8,14 +8,7 @@ App({
    * 
    */
   onLaunch: function () {
-    wx.getSystemInfo({
-      success: e => {
-        this.globalData.StatusBar = e.statusBarHeight;
-        let custom = wx.getMenuButtonBoundingClientRect();
-        this.globalData.Custom = custom;
-        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-      }
-    })
+
   },
   globalData: {
 
@@ -37,5 +30,4 @@ App({
   },
   util: require('./utils/util'),
   key: function (data) { return this.util.key(data) },
-  enCodeBase64: function (data) { return this.util.base64.encode(data) },
 });
