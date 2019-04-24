@@ -13,7 +13,8 @@ Page({
     lostitems:[],
     currentIndex:0,
     count:0,
-    searchTarget: ""
+    searchTarget: "",
+    card: []
   },
 
   /**
