@@ -12,9 +12,7 @@ Page({
   data: {
     lostitems:[],
     currentIndex:0,
-    count:0,
-    searchTarget: "",
-    card: []
+    count:0
   },
 
   /**
@@ -86,21 +84,23 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    const _this = this
     console.log("chudile")
-    var l = this.data.count - this.data.currentIndex
+    var l = _this.data.count - _this.data.currentIndex
     if (l <= 0) return
     if (l > 20) l = 20
     db.collection("itemInfo")
       .where({
         type: "lost",
         state: "pass"
-      }).skip(this.data.currentIndex).limit(l).orderBy("postTime","desc").get().then(res => {
-        var tmp = this.data.lostitems.concat(res.data)
+      }).skip(_this.data.currentIndex).limit(l).orderBy("postTime","desc").get().then(res => {
+        var tmp = _this.data.lostitems.concat(res.data)
         console.log(res.data)
         this.setData({
           lostitems: tmp,
-          currentIndex: this.data.currentIndex + l
+          currentIndex: _this.data.currentIndex + l
         })
+        _this.initItems()
       })
   },
 
@@ -112,7 +112,7 @@ Page({
   },
 
   initItems: function () {
-    for (let i = 0; i < this.data.count; i++) {
+    for (let i = 0; i < this.data.lostitems.length; i++) {
       var flag = "lostitems[" + i + "].isShow"
       this.setData({
         [flag]: true

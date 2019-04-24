@@ -15,12 +15,6 @@ Page({
     count: 0,
   },
 
-  isCard(e) {
-    this.setData({
-      isCard: e.detail.value
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -55,10 +49,10 @@ Page({
       .where({
         type: "found",
         state: "pass"
-      }).skip(_this.data.currentIndex).limit(20).orderBy("postTime","desc").get().then(res => {
+      }).skip(_this.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
         _this.setData({
           founditems: res.data,
-          currentIndex:20
+          currentIndex: 20
         })
         console.log(res.data)
         _this.initItems()
@@ -90,26 +84,28 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
+    const _this = this
     console.log("chudile")
-    var l = this.data.count - this.data.currentIndex
+    var l = _this.data.count - _this.data.currentIndex
     if (l <= 0) return
     if (l > 5) l = 5
 
-    var l=this.data.count-this.data.currentIndex
-    if(l<=0)return
-    if(l>20)l=20
+    var l = _this.data.count - _this.data.currentIndex
+    if (l <= 0) return
+    if (l > 20) l = 20
 
     db.collection("itemInfo")
       .where({
         type: "found",
-        state:"pass"
-      }).skip(this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
-        var tmp = this.data.founditems.concat(res.data)
+        state: "pass"
+      }).skip(_this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
+        var tmp = _this.data.founditems.concat(res.data)
         console.log(res.data)
         this.setData({
           founditems: tmp,
-          currentIndex: this.data.currentIndex + l
+          currentIndex: _this.data.currentIndex + l
         })
+        _this.initItems()
       })
   },
 
@@ -120,9 +116,9 @@ Page({
 
   },
 
-  initItems: function () {
-    for (let i = 0; i < this.data.count; i++) {
-      var flag = "founditems["+i+"].isShow"
+  initItems: function() {
+    for (let i = 0; i < this.data.founditems.length; i++) {
+      var flag = "founditems[" + i + "].isShow"
       this.setData({
         [flag]: true
       })

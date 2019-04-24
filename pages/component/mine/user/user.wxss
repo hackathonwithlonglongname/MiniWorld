@@ -19,7 +19,6 @@
 }
 
 .information-box{
-    
     color: #999;
     line-height: 90rpx;
     font-family: Courier;
