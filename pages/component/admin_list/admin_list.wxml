@@ -1,7 +1,7 @@
 <!--pages/component/found/found.wxml-->
 <!--<text>pages/component/found/found.wxml</text>-->
 
-<import src="../search/search.wxml"/>
+<!--<import src="../search/search.wxml"/>-->
 
 <view class="section2" style="background:#ececec">
   <block wx:for="{{founditems}}" >

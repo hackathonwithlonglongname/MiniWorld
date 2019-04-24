@@ -63,15 +63,6 @@ Page({
         })
       }
     })
-    /*wx.getStorage({
-      key: '_openid',
-      success: function(res) {
-        console.log(res.data)
-        that.setData({
-          openid: res.data,
-        })
-      }
-    })*/
     console.log(wx.getStorageSync('openid'))
     db.collection('itemInfo').where({
       _openid: wx.getStorageSync('openid'),
@@ -173,7 +164,6 @@ Page({
     this.setData({
       currentTab: e.detail.current
     });
-    // console.log("11111"+this.data.currentTab);
   },
   swithNav: function (e) {
     var that = this;
@@ -185,8 +175,6 @@ Page({
   // 事件处理函数
   itemTap: function (e) {
     var x = e.currentTarget.dataset.index
-    // console.log(e.currentTarget.dataset.index);
-
     var url
     if (this.data.currentTab == 0) {
       url = '../item_found/item_found?item=' + JSON.stringify(this.data.founditems[x])

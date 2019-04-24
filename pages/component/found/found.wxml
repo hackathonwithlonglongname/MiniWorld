@@ -1,19 +1,12 @@
-<!--pages/component/found/found.wxml-->
-<!--<text>pages/component/found/found.wxml</text>-->
-
-<import src="../search/search.wxml" />
-
-<view class="search-section">
-  <view class="search-pancel">
-    <icon class="search-icon" type="search"></icon>
-    <input bindinput="searchInput" bindfocus="serchFocus" value="{{searchData.value}}" bindblur="searchBlur" class="search-input" placeholder="搜索" />
-    <button class="search-button" bindtap="searchFn" style="font-size:26rpx">搜索</button>
+<view class="cu-bar bg-white search fixed">
+  <view class="search-form round">
+    <text class="icon-search"></text>
+    <input type="text" placeholder="搜索" confirm-type="search" bindinput="searchIcon"></input>
   </view>
 </view>
-<template is="search" data="{{searchData}}" />
 
-<view class="section2" style="background:#ececec">
-  <block wx:for="{{founditems}}">
+<view class="found">
+  <block wx:for="{{founditems}}" wx:key wx:if="{{item.isShow}}">
     <view class="cu-card article">
       <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
         <view class="title">

@@ -2,82 +2,58 @@
   <view bindtap="swithNav" wx:for="{{tabCont}}" wx:key="item.index" class="swiper-tab-list {{currentTab==item.index?'active':''}}" data-current='{{item.index}}'>{{item.title}}</view>
 </view>
 
-<view class="section2" style="background:#ececec">
-  <view wx:if="{{currentTab==0}}" wx:for="{{founditems}}">
-    <view class="frame" bindtap='itemTap' data-index="{{index}}">
-      <view class="flex" style='padding:10rpx 20rpx 5rpx 20rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#ffffff'>
-        <view style='display:flex;flex-direction:column'>
-          <view class="headtitle" style='font-size:30rpx;font-weight:bold;color:#424242;height:32rpx;width:180rpx;'>
-            <text style='background-color:#d8d8d8;border-radius:10px' decode="{{true}}">&nbsp;&nbsp;失物招领&nbsp;&nbsp;</text>
-          </view>
-
-          <view class="brief-content" style="margin:20rpx 0rpx 0rpx 25rpx;flex-wrap:wrap;height:150rpx;width:470rpx;line-height:32rpx">
-            <text class="content" style='font-size:27rpx'>{{item.briefInfo}}</text>
-          </view>
-          <view wx:if="{{item.address.length<8}}">
-            <view class="bottom-info" style='display:flex;flex-direction:row;'>
-              <view class="address" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.address}}&nbsp;&nbsp;&nbsp;</text>
-              </view>
-              <view class="posttime" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
-              </view>
-            </view>
-          </view>
-          <view wx:else>
-            <view class="bottom-info" style='display:flex;flex-direction:column'>
-              <view class="address" style='height:28rpx;color:#888888'>
-                <text class="address" decode="{{true}}" style="font-size:24rpx">{{item.address}}</text>
-              </view>
-              <view class="posttime" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
-              </view>
-            </view>
-          </view>
-
+<view class="section">
+  <block wx:if="{{currentTab==0}}" wx:for="{{founditems}}" wx:key wx:if="{{item.isShow}}">
+    <view class="cu-card article">
+      <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
+        <view class="title">
+          <view class="text-cut">{{item.briefInfo}}</view>
         </view>
-        <image mode='scaleToFill' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>
-      </view>
-
-    </view>
-  </view>
-  <view wx:if="{{currentTab==1}}" view wx:for="{{lostitems}}">
-    <view class="frame" bindtap='itemTap' data-index="{{index}}">
-      <view class="flex" style='padding:10rpx 20rpx 5rpx 20rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#ffffff'>
-        <view style='display:flex;flex-direction:column'>
-          <view class="headtitle" style='font-size:30rpx;font-weight:bold;color:#424242;height:32rpx;width:180rpx;'>
-            <text style='background-color:#d8d8d8;border-radius:10px' decode="{{true}}">&nbsp;&nbsp;寻物启事&nbsp;&nbsp;</text>
-          </view>
-
-          <view class="brief-content" style="margin:20rpx 0rpx 0rpx 25rpx;flex-wrap:wrap;height:150rpx;width:470rpx;line-height:32rpx">
-            <text class="content" style='font-size:27rpx'>{{item.briefInfo}}</text>
-          </view>
-          <view wx:if="{{item.address.length<8}}">
-            <view class="bottom-info" style='display:flex;flex-direction:row;'>
-              <view class="address" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.address}}&nbsp;&nbsp;&nbsp;</text>
+        <view class="content">
+          <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>
+          <view class="desc">
+            <view class="text-content">
+              <view class="cu-capsule">
+                <view class="cu-tag bg-red">
+                  <text class="icon-likefill"></text>
+                </view>
+                <view class="cu-tag line-red">失物招领</view>
               </view>
-              <view class="posttime" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
-              </view>
+              <view class='split'></view>
+              <view class="cu-tag bg-green light radius">{{item.address}}</view>
+              <view class='split'></view>
+              <view class="cu-tag bg-purple light radius">{{item.postTime}}</view>
             </view>
           </view>
-          <view wx:else>
-            <view class="bottom-info" style='display:flex;flex-direction:column'>
-              <view class="address" style='height:28rpx;color:#888888'>
-                <text class="address" decode="{{true}}" style="font-size:24rpx">{{item.address}}</text>
-              </view>
-              <view class="posttime" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
-              </view>
-            </view>
-          </view>
-
         </view>
-        <image mode='scaleToFill' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>
       </view>
-
-
     </view>
-  </view>
+  </block>
+
+  <block wx:if="{{currentTab==1}}" wx:for="{{lostitems}}"  wx:key wx:if="{{item.isShow}}">
+    <view class="cu-card article">
+      <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
+        <view class="title">
+          <view class="text-cut">{{item.briefInfo}}</view>
+        </view>
+        <view class="content">
+          <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>
+          <view class="desc">
+            <view class="text-content">
+              <view class="cu-capsule">
+                <view class="cu-tag bg-blue">
+                  <text class="icon-likefill"></text>
+                </view>
+                <view class="cu-tag line-blue">寻物启事</view>
+              </view>
+              <view class='split'></view>
+              <view class="cu-tag bg-green light radius">{{item.address}}</view>
+              <view class='split'></view>
+              <view class="cu-tag bg-purple light radius">{{item.postTime}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
 </view>
