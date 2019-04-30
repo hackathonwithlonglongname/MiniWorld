@@ -4,7 +4,7 @@
     <input type="text" placeholder="搜索" confirm-type="search" bindinput="searchIcon"></input>
   </view>
 </view>
-<!--hhh-->
+
 <view class="found">
   <block wx:for="{{founditems}}" wx:key wx:if="{{item.isShow}}">
     <view class="cu-card article">
