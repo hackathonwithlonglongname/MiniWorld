@@ -56,19 +56,17 @@
       </view>
     </view>
 
-  <view wx:else>
-    <view class='image_view'>
-      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
-        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
-        </image>
+    <view wx:else>
+      <view class='image_view'>
+        <view class='image' wx:for="{{item_picture_url}}" mode="center" style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
+          <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
+          </image>
+        </view>
       </view>
     </view>
   </view>
-
   <view class="item_large">
     <button type="primary" bindtap="pass">通过</button>
-  </view>
-  <view class="item_large">
     <button type="warn" bindtap="illegal">违规</button>
   </view>
 </view>
