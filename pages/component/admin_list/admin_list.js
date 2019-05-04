@@ -5,7 +5,6 @@ cloud.init()
 const db = cloud.database()
 const cmd = db.command
 Page({
-
   /**
    * 页面的初始数据
    */

@@ -1,0 +1,32 @@
+@import "/pages/component/found/found.wxss";
+
+page{
+  padding-top: 0rpx;
+}
+
+.swiper-tab {
+  line-height: 80rpx;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  color: #777;
+  text-align: center;
+}
+
+.active {
+  color: #6a005f;
+  border-bottom: 5rpx solid #6a005f;
+}
+
+.smallimage{
+  width: 100rpx
+  
+}
+.frame{
+  margin: 20rpx 0rpx
+}

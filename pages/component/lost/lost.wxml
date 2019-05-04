@@ -1,53 +1,35 @@
-<!--pages/component/lost/lost.wxml-->
-<!--<text>pages/component/lost/lost.wxml</text>-->
-
-<import src="../search/search.wxml"/>
-
-<view class="search-section">
-  <view class="search-pancel">
-    <!--<image src="/images/search-pic.png" class="search-icon" />-->
-    <icon class="search-icon" type="search"></icon>
-    <input bindinput="searchInput" bindfocus="searchFocus" value="{{searchData.value}}" bindblur="searchBlur" class="search-input" placeholder="搜索" />
-    <button class="search-button" bindtap="searchFn" style="font-size:26rpx">搜索</button>
+<view class="cu-bar bg-white search fixed">
+  <view class="search-form round">
+    <text class="icon-search"></text>
+    <input type="text" placeholder="搜索" confirm-type="search" bindinput="searchIcon"></input>
   </view>
 </view>
-<template is="search" data="{{searchData}}"/>
 
-<view class="section2" style="background:#ececec">
-  <block wx:for="{{lostitems}}" >
-    <view class="frame" bindtap='itemTap' data-index="{{index}}" >
-      <view class="flex" style='padding:10rpx 20rpx 5rpx 20rpx;display:flex;flex-direction:row;justify-content:space-between;height:200rpx;background:#ffffff'>
-        <view style='display:flex;flex-direction:column'>
-          <view class="headtitle" style='font-size:30rpx;font-weight:bold;color:#424242;height:32rpx;width:180rpx;'><text style='background-color:#d8d8d8;border-radius:10px' decode="{{true}}">&nbsp;&nbsp;寻物启事&nbsp;&nbsp;</text></view>
-          
-          <view class="brief-content" style="margin:20rpx 0rpx 0rpx 25rpx;flex-wrap:wrap;height:150rpx;width:470rpx;line-height:32rpx">         
-            <text class="content" style='font-size:27rpx'>{{item.briefInfo}}</text>
-          </view>
-          <view wx:if="{{item.address.length<8}}">
-            <view class="bottom-info" style='display:flex;flex-direction:row;'>
-              <view class="address" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.address}}&nbsp;&nbsp;&nbsp;</text>
-              </view>
-              <view class="posttime" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
-              </view>      
-            </view>
-          </view>
-          <view wx:else>
-            <view class="bottom-info" style='display:flex;flex-direction:column'>
-              <view class="address" style='height:28rpx;color:#888888'>
-                <text class="address" decode="{{true}}" style="font-size:24rpx">{{item.address}}</text>
-              </view>
-              <view class="posttime" style='color:#888888'>
-                <text decode="{{true}}" style="font-size:24rpx">{{item.postTime}} </text>
-              </view>      
-            </view>
-          </view>
-          
+<view class="lost">
+  <block wx:for="{{lostitems}}"  wx:key wx:if="{{item.isShow}}">
+    <view class="cu-card article">
+      <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
+        <view class="title">
+          <view class="text-cut">{{item.briefInfo}}</view>
         </view>
-        <image mode='scaleToFill' src="{{item.imgs[0]}}" style='height:200rpx;width:200rpx'></image>  
+        <view class="content">
+          <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>
+          <view class="desc">
+            <view class="text-content">
+              <view class="cu-capsule">
+                <view class="cu-tag bg-blue">
+                  <text class="icon-likefill"></text>
+                </view>
+                <view class="cu-tag line-blue">寻物启事</view>
+              </view>
+              <view class='split'></view>
+              <view class="cu-tag bg-green light radius">{{item.address}}</view>
+              <view class='split'></view>
+              <view class="cu-tag bg-purple light radius">{{item.postTime}}</view>
+            </view>
+          </view>
+        </view>
       </view>
-      
     </view>
   </block>
 </view>

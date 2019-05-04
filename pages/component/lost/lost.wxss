@@ -1,9 +1,12 @@
-/* pages/component/lost/lost.wxss */
-@import "/pages/component/search/search.wxss";
-.smallimage{
-  width: 100rpx
-  
+@import "/colorui/main.wxss";
+@import "/colorui/icon.wxss";
+
+page{
+  padding-top: 100rpx;
 }
-.frame{
-  margin: 20rpx 0rpx
+item.none{
+  display: none;
+}
+.split{
+  height: 17rpx;
 }
