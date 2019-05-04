@@ -14,7 +14,7 @@ Page({
     item_picture_url: null, //此处为网址
     img_width_2: wx.getSystemInfoSync().windowWidth / 2.6,
     img_width_3: wx.getSystemInfoSync().windowWidth / 4,
-    img_width_1: wx.getSystemInfoSync().windowWidth / 1.25,
+    img_width_1: wx.getSystemInfoSync().windowWidth / 1.3,
     item_id: '', //记录(Document)ID
     item_openid: '', //发布者ID
     openid: '', //访问者ID
@@ -133,16 +133,17 @@ Page({
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          wx.cloud.callFunction({
-            name: 'check',
-            data: {
-              _id: that.data.item_id,
-              property: 'pass'
-            },
-            success: res => {
-              console.log('更新数据成功')
-            }
-          })
+          db.collection('itemInfo').doc(that.data.item_id).update
+            ({
+              // data 传入需要局部更新的数据
+              data: {
+                // 表示将 done 字段置为 true
+                state: 'pass'
+              },
+              success(res) {
+                console.log(res.data)
+              }
+            })
 
           //显示删除成功对话框
           wx.showToast({
@@ -169,16 +170,17 @@ Page({
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          wx.cloud.callFunction({
-            name: 'check',
-            data: {
-              _id: that.data.item_id,
-              property: 'illegal'
-            },
-            success: res => {
-              console.log('更新数据成功')
-            }
-          })
+          db.collection('itemInfo').doc(that.data.item_id).update
+            ({
+              // data 传入需要局部更新的数据
+              data: {
+                // 表示将 done 字段置为 true
+                state: 'illegal'
+              },
+              success(res) {
+                console.log(res.data)
+              }
+            })
 
           //显示删除成功对话框
           wx.showToast({
