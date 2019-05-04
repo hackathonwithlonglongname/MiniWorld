@@ -18,22 +18,23 @@ Page({
   },
   onLoad: function() {
     const _this = this;
-    wx.vrequest({
+    wx.request({
       method: 'GET',
+      //url: 'http://elite.nju.edu.cn/jiaowu/',
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       header: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/x-www-form-urlencoded',
         'Cookie': _this.data.cookie
       },
       success: res => {
         _this.setData({
-          cookie: res.header['set-cookie'].join(',').replace(/ path=\//g, ' ').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ')
+          cookie: res.header['Set-cookie'] + ',' + res.header['Set-Cookie'].replace(/ path=\//g, '')
         })
         _this.authcdRequest()
       }
     })
   },
-
+  
   onReady: function() {
     const _this = this;
     setTimeout(function() {
@@ -69,6 +70,7 @@ Page({
         'Accept-Language': 'zh-CN,zh',
         'Content-Type': 'image/jpg',
         'Cookie': _this.data.cookie,
+        'Accept-Language': 'zh-CN,zh'
       },
       success: function(res) {
         let base64 = wx.arrayBufferToBase64(res.data)
@@ -100,7 +102,7 @@ Page({
       return false;
     }
     app.showLoadToast('登录中');
-    wx.vrequest({
+    wx.request({
       method: 'POST',
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       data: {
