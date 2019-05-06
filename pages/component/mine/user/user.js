@@ -3,6 +3,7 @@
 const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
+var app = getApp()
 
 Page({
   data: {
@@ -11,17 +12,12 @@ Page({
     orders: [],
     hasinformation: false,
     information: {},
-    is_admin_list: ['oMJfy5C6sNcexW04x_8qMdk7dsdc', 'oMJfy5CqZKQWSVslILzVOZVYbLGg', 'oMJfy5F1JvBNLLZaXoPS2tTKVU5o','oMJfy5BWgD0U61BqFS6WEYGk3Pao']
+    isAdmin: false,
   },
   onLoad() {
-    wx.cloud.callFunction({
-      name: 'get_id',
-      complete: res => {
-        console.log('callFunction test result: ', res)
-        this.setData({
-          openid: res.result.openid
-        })
-      }
+    console.log('isAdmin:', this.data.isAdmin)
+    this.setData({
+      isAdmin: app.globalData.isAdmin,
     })
   },
   onShow() {

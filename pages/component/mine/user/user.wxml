@@ -36,13 +36,11 @@
             <view>StuID: {{information.stuID}}</view>
         </view>-->
   </view>
-  <view wx:for="{{is_admin_list}}" wx:for-item="is_admin">
-    <view wx:if="{{openid==is_admin}}">
-      <view class='information-box'>
-        <!--这里留了个接口，是管理员才显示-->
-        <view class='information-manage'>
-          <navigator url="/pages/component/admin_list/admin_list">审核</navigator>
-        </view>
+  <view wx:if="{{isAdmin==true}}">
+    <view class='information-box'>
+      <!--这里留了个接口，是管理员才显示-->
+      <view class='information-manage'>
+        <navigator url="/pages/component/admin_list/admin_list">审核</navigator>
       </view>
     </view>
   </view>

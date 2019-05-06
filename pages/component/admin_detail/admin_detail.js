@@ -1,6 +1,8 @@
 const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
+var app = getApp()
+
 Page({
 
   /**
@@ -17,7 +19,7 @@ Page({
     img_width_1: wx.getSystemInfoSync().windowWidth / 1.25,
     item_id: '', //记录(Document)ID
     item_openid: '', //发布者ID
-    openid: '', //访问者ID
+    openid: app.globalData.openid, //访问者ID
   },
 
   /**
@@ -35,6 +37,7 @@ Page({
       item_id: item._id,
       item_openid: item._openid,
     })
+    /*
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
@@ -44,6 +47,7 @@ Page({
         })
       }
     })
+    */
   },
 
   /**

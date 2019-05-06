@@ -1,6 +1,7 @@
 // pages/component/item/item.js
 const cloud = wx.cloud
 const db = cloud.database()
+var app = getApp()
 
 Page({
 
@@ -36,6 +37,7 @@ Page({
       item_id: item._id,
       item_openid: item._openid,
     })
+    /*
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
@@ -44,6 +46,10 @@ Page({
           openid: res.result.openid
         })
       }
+    })
+    */
+    this.setData({
+      openid: app.globalData.openid,
     })
   },
 
