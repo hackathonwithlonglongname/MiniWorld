@@ -70,5 +70,10 @@
     <view class="item_large" wx:if="{{item_openid==openid}}">
       <button type="warn" bindtap="deleteItem">已找到物品，删除信息</button>
     </view>
+
+    <!--当当前用户为管理员且不是本条信息的发布者时才会显示此button-->
+    <view class="item_large" wx:elif="{{isAdmin==true}}">
+      <button type="warn" bindtap="deleteItem">删除信息（管理员操作）</button>
+    </view>
   </view>
 </view>
