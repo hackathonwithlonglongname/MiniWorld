@@ -20,6 +20,7 @@ Page({
     item_id: '', //记录(Document)ID
     item_openid: '', //发布者ID
     openid: '', //访问者ID
+    isAdmin: false,
   },
 
   /**
@@ -50,6 +51,7 @@ Page({
     */
     this.setData({
       openid: app.globalData.openid,
+      isAdmin: app.globalData.isAdmin,
     })
   },
 
@@ -167,6 +169,32 @@ Page({
               delta: 1,
             })
           }
+          else if (that.data.isAdmin == true) {
+            //从数据库中删除本条记录(Document)
+            wx.cloud.callFunction({
+              name: 'check',
+              data: {
+                _id: that.data.item_id,
+                property: 'adminDelete'
+              },
+              success: res => {
+                console.log('更新数据成功')
+              }
+            })
+
+            //显示删除成功对话框
+            wx.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 1500,
+            })
+
+            //返回列表页
+            wx.navigateBack({
+              delta: 1,
+            })
+          }
+
           else { //非正常功能，当删除按钮误显示在界面时报错
             wx.showToast({
               title: '错误：非本人发布信息。请联系开发者解决问题。',
