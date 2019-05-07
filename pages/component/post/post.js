@@ -183,8 +183,8 @@ Page({
                           //授权成功之后，再调用chooseLocation选择地方
                           wx.chooseLocation({
                             success: function (res) {
-                              obj.setData({
-                                addr: res.address
+                              _this.setData({
+                                place: res.address
                               })
                             },
                           })
