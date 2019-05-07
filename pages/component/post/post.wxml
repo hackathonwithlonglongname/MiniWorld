@@ -38,7 +38,7 @@
       <view class="cu-form-group">
         <view class="title">确认地点</view>
         <input placeholder="仙一/仙二/逸夫楼/图书馆/..." value="{{place}}" />
-        <text class="icon-locationfill text-orange"></text>
+        <text class="icon-locationfill text-orange" bindtap='selectlocation'></text>
       </view>
       <view class="cu-form-group">
         <view class="title">联系方式</view>

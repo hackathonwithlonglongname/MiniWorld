@@ -152,6 +152,24 @@ Page({
       region: e.detail.value
     })
   },
+  selectlocation: function () {
+    var _this = this
+    wx.chooseLocation({
+      success: function (res) {
+        // success
+        console.log(res.name)
+        _this.setData({
+          place: res.name,
+        })
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
   ChooseImage() {
     wx.chooseImage({
       count: 9, //默认9
