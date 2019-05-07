@@ -5,6 +5,7 @@ const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
 const cmd = db.command
+
 Page({
 
   /**
@@ -50,6 +51,8 @@ Page({
         type: "found",
         state: "pass"
       }).skip(_this.data.currentIndex).limit(20).orderBy("postTime", "desc").get().then(res => {
+        //_this.data.count-=removeExpiredItem(res.data)/////
+        //_this.removeExpiredItem(res.data)///
         _this.setData({
           founditems: res.data,
           currentIndex: 20
@@ -101,6 +104,7 @@ Page({
       }).skip(_this.data.currentIndex).limit(l).orderBy("postTime", "desc").get().then(res => {
         var tmp = _this.data.founditems.concat(res.data)
         console.log(res.data)
+       // _this.removeExpiredItem(res.data)
         this.setData({
           founditems: tmp,
           currentIndex: _this.data.currentIndex + l
@@ -150,5 +154,25 @@ Page({
     wx.navigateTo({
       url: '../item_found/item_found?item=' + JSON.stringify(this.data.founditems[x])
     }) /**/
-  }
+  },
+
+  //清除过期item
+  /*
+  removeExpiredItem: function(data){
+    var Y,M,D
+    var index1,index2
+    for(var i=0;i<data.length;i++){
+     // console.log(data[i].time)
+      index1 = data[i].time.indexOf('-')
+      index2 = data[i].time.lastIndexOf('-')
+      Y = data[i].time.substring(0, index1)
+      M = data[i].time.substring(index1, index2)
+      D = data[i].time.substring(index2)
+      if (app.globalData.time.year > Y || (app.globalData.time.month > M && app.globalData.time.month >= D)){
+        var count=data.length-i
+        //data.splice(i,count)
+        //return count
+      }
+    }
+  }*/
 })
