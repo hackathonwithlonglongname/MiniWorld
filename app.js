@@ -1,8 +1,9 @@
 //app.js
-require('./utils/v-request.js')
+
 const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
+require('./utils/v-request.js')
 
 App({
   isAu: false,
@@ -11,7 +12,7 @@ App({
    * 
    */
   onLaunch: function () {
-    wx.cloud.callFunction({
+    /*wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
         console.log('callFunction test result: ', res)
@@ -26,7 +27,7 @@ App({
         }
         console.log('isAdmin: ', this.globalData.isAdmin)
       }
-    })
+    })*/
   },
   globalData: {
     openid: '',
