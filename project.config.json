@@ -3,7 +3,7 @@
 	"packOptions": {
 		"ignore": []
 	},
-	"projectname": "MiniWorld",
+	"projectname": "LostAndFoundDemo",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -11,7 +11,7 @@
 	"cloudfunctionRoot": "functions/",
 	"setting": {
 		"urlCheck": true,
-		"es6": false,
+		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -24,6 +24,7 @@
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"libVersion": "2.6.6",
 	"condition": {
 		"search": {
