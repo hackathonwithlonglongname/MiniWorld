@@ -15,6 +15,11 @@
     "pages/component/admin_list/admin_list",
     "pages/component/mine/about/about"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "需要获取您的地理位置，请确认授权，否则地图功能将无法使用"
+    }
+  },
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#6a005f",
