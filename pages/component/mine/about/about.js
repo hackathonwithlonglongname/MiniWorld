@@ -6,7 +6,7 @@ Page({
   },
   onLoad: function(){
     this.setData({
-      version: app.version,
+      version: app.globalData.version,
       year: new Date().getFullYear()
     });
   },

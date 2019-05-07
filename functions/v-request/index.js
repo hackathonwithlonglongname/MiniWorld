@@ -8,13 +8,12 @@
  * ==========================
  * 更新时间：2019/04/12
  */
-
 const request = require('request');
 exports.main = (evt, ctx) => {
   return new Promise((RES, REJ) => {
-    request(options, (err, res, body) => {
+    request(evt.options, (err, res, body) => {
       if (err) return REJ(err);
-      RES(res, base64);
-    });
+      RES(res);
+    })
   });
 }

@@ -16,27 +16,6 @@
  * 与官方的wx.request大致相同
  * 目前测试正常的get、post请求都OK，当然还可能会有其他小细节问题，不能应对全部的情况
  * -------
-// EXAMPLE
-// GET
-wx.vrequest({
-  url: 'https://mssnn.cn',
-  success: res => {
-    console.log('data=', res.data);
-  }
-})
-// POST
-wx.vrequest({
-  url: 'https://wx5bbe79dd056cb238.mssnn.cn/v1/control/auth.php',
-  method: 'POST',
-  data: 'secret='+'a'.repeat(32),
-  dataType: 'json',
-  header: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  success: res => {
-    console.log('data=', res.data);
-  }
-})
  */
 var util = require('util.js')
 
@@ -78,7 +57,7 @@ wx.vrequest = function (options) {
           encoding: null
         }, POST_DATA)
       },
-      
+
       success: res => {
         const { result } = res;
         // 如果datatype='json'，则解析后

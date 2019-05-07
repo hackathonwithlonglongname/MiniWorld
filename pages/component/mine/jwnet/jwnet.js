@@ -16,33 +16,32 @@ Page({
     cookie: 'cookie',
     img: 'img'
   },
-  onLoad: function() {
+  onLoad: function () {
     const _this = this;
-    wx.request({
+    wx.vrequest({
       method: 'GET',
-      //url: 'http://elite.nju.edu.cn/jiaowu/',
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Cookie': _this.data.cookie
       },
       success: res => {
         _this.setData({
-          cookie: res.header['Set-cookie'] + ',' + res.header['Set-Cookie'].replace(/ path=\//g, '')
+          cookie: res.header['set-cookie'].join(',').replace(/ path=\//g, ' ').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ')
         })
         _this.authcdRequest()
       }
     })
   },
-  
-  onReady: function() {
+
+  onReady: function () {
     const _this = this;
-    setTimeout(function() {
+    setTimeout(function () {
       _this.setData({
         remind: ''
       });
     }, 1000)
-    wx.onAccelerometerChange(function(res) {
+    wx.onAccelerometerChange(function (res) {
       var angle = -(res.x * 30).toFixed(1);
       if (angle > 14) {
         angle = 14;
@@ -57,7 +56,7 @@ Page({
     })
   },
 
-  authcdRequest: function() {
+  authcdRequest: function () {
     const _this = this;
     wx.request({
       method: 'GET',
@@ -66,20 +65,18 @@ Page({
       encoding: null,
       header: {
         'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
-        //'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh',
         'Content-Type': 'image/jpg',
         'Cookie': _this.data.cookie,
-        'Accept-Language': 'zh-CN,zh'
       },
-      success: function(res) {
+      success: function (res) {
         let base64 = wx.arrayBufferToBase64(res.data)
         let tmpCookie = ''
         if (res.header['Set-Cookie']) tmpCookie = res.header['Set-Cookie']
         if (res.header['Set-cookie']) tmpCookie = res.header['Set-cookie']
         _this.setData({
           cookie: _this.data.cookie + tmpCookie.replace(/ path=\//g, '').replace(/Domain=.nju.edu.cn;Path=\/,/g, ' ').replace(/Path=\/,/g, ' ').replace(/Path=\//g, '')
-          }),
+        }),
           console.log(res.data)
         console.log(base64)
         console.log(_this.data.cookie)
@@ -91,7 +88,7 @@ Page({
     });
   },
 
-  bind: function() {
+  bind: function () {
     const _this = this;
     if (app.g_status == '未授权') {
       app.showErrorModal(app.g_status, '登录失败');
@@ -102,7 +99,7 @@ Page({
       return false;
     }
     app.showLoadToast('登录中');
-    wx.request({
+    wx.vrequest({
       method: 'POST',
       url: 'http://cer.nju.edu.cn/amserver/UI/Login',
       data: {
@@ -125,10 +122,10 @@ Page({
         'Referer': 'http://cer.nju.edu.cn/amserver/UI/Login',
         'Origin': 'http://cer.nju.edu.cn',
       },
-      success: function(res) {
+      success: function (res) {
         if (res.statusCode == 302) {
           app.showLoadToast('请稍候');
-          wx.setStorageSync('isAu', true);
+          wx.setStorageSync('isAuthened', true);
           wx.showToast({
             title: '登录成功',
             icon: 'success',
@@ -142,23 +139,23 @@ Page({
           app.showErrorModal('您输入的账号或密码错误，请重新输入', '登录失败');
         }
       },
-      fail: function(res) {
+      fail: function (res) {
         wx.hideToast();
         app.showErrorModal(res.errMsg, '登录失败');
       }
     })
   },
-  useridInput: function(e) {
+  useridInput: function (e) {
     this.setData({
       userid: e.detail.value
     });
   },
-  passwdInput: function(e) {
+  passwdInput: function (e) {
     this.setData({
       passwd: e.detail.value
     });
   },
-  authcdInput: function(e) {
+  authcdInput: function (e) {
     this.setData({
       authcd: e.detail.value
     });
@@ -166,7 +163,7 @@ Page({
       wx.hideKeyboard();
     }
   },
-  inputFocus: function(e) {
+  inputFocus: function (e) {
     if (e.target.id == 'userid') {
       this.setData({
         'userid_focus': true
@@ -181,7 +178,7 @@ Page({
       });
     }
   },
-  inputBlur: function(e) {
+  inputBlur: function (e) {
     if (e.target.id == 'userid') {
       this.setData({
         'userid_focus': false
@@ -196,17 +193,17 @@ Page({
       });
     }
   },
-  tapHelp: function(e) {
+  tapHelp: function (e) {
     if (e.target.id == 'help') {
       this.hideHelp();
     }
   },
-  showHelp: function(e) {
+  showHelp: function (e) {
     this.setData({
       'help_status': true
     });
   },
-  hideHelp: function(e) {
+  hideHelp: function (e) {
     this.setData({
       'help_status': false
     });

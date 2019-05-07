@@ -10,8 +10,8 @@
 	"isGameTourist": false,
 	"cloudfunctionRoot": "functions/",
 	"setting": {
-		"urlCheck": false,
-		"es6": true,
+		"urlCheck": true,
+		"es6": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -24,6 +24,8 @@
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"libVersion": "2.6.6",
 	"condition": {
 		"search": {
 			"current": -1,

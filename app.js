@@ -1,11 +1,11 @@
 //app.js
+
 const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
+require('./utils/v-request.js')
 
 App({
-  isAu: false,
-  version: 'v0.0.4', //版本号
   /**
    * 
    */
@@ -43,8 +43,10 @@ App({
     })
   },
   globalData: {
+    isAuthened: false,
+    version: 'v0.0.4', //版本号
     openid: '',
-    adminList: ['oMJfy5C6sNcexW04x_8qMdk7dsdc', 'oMJfy5CqZKQWSVslILzVOZVYbLGg', 'oMJfy5F1JvBNLLZaXoPS2tTKVU5o', 'oMJfy5BWgD0U61BqFS6WEYGk3Pao'],
+    adminList: ['oMJfy5C6sNcexW04x_8qMdk7dsdc', 'oMJfy5CqZKQWSVslILzVOZVYbLGg', 'oMJfy5F1JvBNLLZaXoPS2tTKVU5o', 'oMJfy5BWgD0U61BqFS6WEYGk3Pao', 'oMJfy5MbVMQ4a3GZoM3YPpyDwk58', 'oMJfy5CntvZOHj0NBDPiz010wL7U', 'oMJfy5EO6OYLUrRkcy-SEC_jwkzE', 'oMJfy5BRwhNjx_Pitku919zFLUeY','oMJfy5Ap4TWAvuwDT4y-irWREKjw'],
     isAdmin: false,
     time:{
       year:'',
@@ -69,4 +71,5 @@ App({
   },
   util: require('./utils/util'),
   key: function (data) { return this.util.key(data) },
+  enCodeBase64: function (data) { return this.util.base64.encode(data) },
 });

@@ -10,8 +10,6 @@ Page({
     thumb: '',
     nickname: '',
     orders: [],
-    hasinformation: false,
-    information: {},
     isAdmin: false,
   },
   onLoad() {
@@ -21,18 +19,6 @@ Page({
     })
   },
   onShow() {
-    var self = this;
-    /**
-     * 获取本地缓存 个人信息
-     */
-    wx.getStorage({
-      key: 'information',
-      success: function(res) {
-        self.setData({
-          hasInformation: true,
-          information: res.data,
-        })
-      }
-    })
+
   }
 })
