@@ -22,6 +22,7 @@
     "navigationBarTitleText": "Lost & Found in NJU",
     "navigationBarTextStyle": "white"
   },
+  "cloud": true,
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#6a005f",

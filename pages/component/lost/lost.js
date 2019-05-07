@@ -85,6 +85,7 @@ Page({
    */
   onReachBottom: function () {
     const _this = this
+    console.log("chudile")
     var l = _this.data.count - _this.data.currentIndex
     if (l <= 0) return
     if (l > 20) l = 20

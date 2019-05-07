@@ -8,7 +8,7 @@
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
-	"cloudfunctionRoot": "functions/",
+	"cloudfunctionRoot": "./functions/",
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
