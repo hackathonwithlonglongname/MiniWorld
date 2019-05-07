@@ -2,6 +2,7 @@
 const cloud = wx.cloud
 cloud.init()
 const db = cloud.database()
+var app = getApp()
 
 const sourceType = [['camera'], ['album'], ['camera', 'album']]
 const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
@@ -9,9 +10,8 @@ const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
 Page({
   data: {
     multiIndex: [0, 0, 0],
-    time: '12:01',
-    date: '2018-12-25',
-    time: '12:01',
+    time: '12:01', //onShow时修改为当前时间
+    date: '2018-12-25', //onShow时修改为当前日期
     region: ['广东省', '广州市', '海珠区'],
     modalName: null,
     textareaAValue: '',
@@ -20,7 +20,6 @@ Page({
     //picker组件相关：
     pickerHidden: true,
     chosen: '',
-    nowDate: '2100-12-31', //onShow时修改为当前日期
 
     //image组件相关：
     imageList: [],
@@ -28,9 +27,11 @@ Page({
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 
     //ID相关：
-    //openid: '',
+    openid: '',
     docID: '',
     //imageID: '',
+    
+    isAdmin: false,
 
     //提交后清空表单用：
     info: '',
@@ -55,10 +56,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //将nowDate修改为当前日期
-    var date = new Date()
+    var nowDate = new Date()
+
+    //将time修改为当前时间
     this.setData({
-      nowDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
+      time: nowDate.getHours() + ':' + nowDate.getSeconds(),
+    })
+
+    //将date修改为当前日期
+    this.setData({
+      date: nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate(),
     })
   },
 
@@ -171,10 +178,10 @@ Page({
   },
   DelImg(e) {
     wx.showModal({
-      title: '召唤师',
-      content: '确定要删除这段回忆吗？',
-      cancelText: '再看看',
-      confirmText: '再见',
+      title: '删除图片',
+      content: '确定要删除这张图片吗？',
+      cancelText: '取消',
+      confirmText: '确定',
       success: res => {
         if (res.confirm) {
           this.data.imageList.splice(e.currentTarget.dataset.index, 1);
@@ -218,7 +225,13 @@ Page({
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
 
-    /* 获取openid，暂不需要
+    this.setData({
+      openid: app.globalData.openid,
+      isAdmin: app.globalData.isAdmin,
+    })
+    console.log('openid: ', this.data.openid, 'isAdmin: ', this.data.isAdmin)
+
+    /* 获取openid
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
@@ -239,9 +252,17 @@ Page({
       })
     }
 
-    else if (e.detail.value['date'] == null) {
+    else if (e.detail.value['time'] == null) {
       wx.showToast({
         title: '请填写时间（如果时间不明可填写大致时间，并在[详细描述]中说明）',
+        icon: 'none',
+        duration: 3000,
+      })
+    }
+
+    else if (e.detail.value['date'] == null) {
+      wx.showToast({
+        title: '请填写日期（如果日期不明可填写大致日期，并在[详细描述]中说明）',
         icon: 'none',
         duration: 3000,
       })
@@ -279,40 +300,42 @@ Page({
       })
     }
 
-    else{
+    else {
       //获取当前时间戳
       var timestamp = Date.parse(new Date())
-      var date = new Date(timestamp)
+      var nowDate = new Date(timestamp)
       timestamp = timestamp / 1000
 
       //获取当前时间
       //年
-      var Y = date.getFullYear()
+      var Y = nowDate.getFullYear()
       //月
-      var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+      var M = (nowDate.getMonth() + 1 < 10 ? '0' + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1)
       //日
-      var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      var D = nowDate.getDate() < 10 ? '0' + nowDate.getDate() : nowDate.getDate()
       //时
-      var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours())
+      var h = (nowDate.getHours() < 10 ? '0' + nowDate.getHours() : nowDate.getHours())
       //分
-      var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+      var m = (nowDate.getMinutes() < 10 ? '0' + nowDate.getMinutes() : nowDate.getMinutes())
       //秒
-      var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+      var s = (nowDate.getSeconds() < 10 ? '0' + nowDate.getSeconds() : nowDate.getSeconds())
       var postTime = Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s
       console.log(postTime);
       
+      var state = this.data.isAdmin ? 'pass': 'uncheck'
       //将物品信息写入数据库
       db.collection('itemInfo').add({
         // data 字段表示需新增的 JSON 数据
         data: {
           postTime,
           type: e.detail.value["infoType"],
-          time: e.detail.value["date"],
+          time: e.detail.value['time'],
+          date: e.detail.value["date"],
           address: e.detail.value["place"],
           briefInfo: e.detail.value["title"],
           detail: e.detail.value["description"],
           contactMethod: e.detail.value["contact"],
-          state: 'uncheck',
+          state,
           imgs: []
         }
       }).then(res => {

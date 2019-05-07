@@ -1,6 +1,7 @@
 // pages/component/item/item.js
 const cloud = wx.cloud
 const db = cloud.database()
+var app = getApp()
 
 Page({
 
@@ -19,6 +20,7 @@ Page({
     item_id: '', //记录(Document)ID
     item_openid: '', //发布者ID
     openid: '', //访问者ID
+    isAdmin: false,
   },
 
   /**
@@ -36,6 +38,7 @@ Page({
       item_id: item._id,
       item_openid: item._openid,
     })
+    /*
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
@@ -44,6 +47,11 @@ Page({
           openid: res.result.openid
         })
       }
+    })
+    */
+    this.setData({
+      openid: app.globalData.openid,
+      isAdmin: app.globalData.isAdmin,
     })
   },
 
@@ -138,18 +146,15 @@ Page({
           //再次验证发布者ID与访问者ID是否一致
           if (that.data.item_openid == that.data.openid) {
             //从数据库中删除本条记录(Document)
-            db.collection('itemInfo').doc(that.data.item_id).remove()
-              .then(console.log)
-              .catch(console.error)
-
-            //从存储管理中删除图片
-            wx.cloud.deleteFile({
-              fileList: that.data.item_picture_url
-            }).then(res => {
-              // handle success
-              console.log(res.fileList)
-            }).catch(error => {
-              // handle error
+            wx.cloud.callFunction({
+              name: 'check',
+              data: {
+                _id: that.data.item_id,
+                property: 'complete'
+              },
+              success: res => {
+                console.log('更新数据成功')
+              }
             })
 
             //显示删除成功对话框
@@ -164,6 +169,32 @@ Page({
               delta: 1,
             })
           }
+          else if (that.data.isAdmin == true) {
+            //从数据库中删除本条记录(Document)
+            wx.cloud.callFunction({
+              name: 'check',
+              data: {
+                _id: that.data.item_id,
+                property: 'adminDelete'
+              },
+              success: res => {
+                console.log('更新数据成功')
+              }
+            })
+
+            //显示删除成功对话框
+            wx.showToast({
+              title: '删除成功',
+              icon: 'success',
+              duration: 1500,
+            })
+
+            //返回列表页
+            wx.navigateBack({
+              delta: 1,
+            })
+          }
+
           else { //非正常功能，当删除按钮误显示在界面时报错
             wx.showToast({
               title: '错误：非本人发布信息。请联系开发者解决问题。',
