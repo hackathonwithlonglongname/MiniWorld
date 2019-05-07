@@ -12,8 +12,7 @@ App({
    * 
    */
   onLaunch: function () {
-<<<<<<< HEAD
-    /*wx.cloud.callFunction({
+    wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
         console.log('callFunction test result: ', res)
@@ -28,17 +27,7 @@ App({
         }
         console.log('isAdmin: ', this.globalData.isAdmin)
       }
-    })*/
-=======
-    wx.getSystemInfo({
-      success: e => {
-        this.globalData.StatusBar = e.statusBarHeight;
-        let custom = wx.getMenuButtonBoundingClientRect();
-        this.globalData.Custom = custom;
-        this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-      }
     })
->>>>>>> parent of c539732... 刚才玩着玩着tabBar消失了，不知道什么梗。。。
   },
   globalData: {
     openid: '',
