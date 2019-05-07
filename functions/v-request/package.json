@@ -4,6 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "request": "latest"
+    "request": "^2.88.0"
   }
 }
