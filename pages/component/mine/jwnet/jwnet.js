@@ -65,7 +65,6 @@ Page({
       encoding: null,
       header: {
         'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
-        'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh',
         'Content-Type': 'image/jpg',
         'Cookie': _this.data.cookie,
