@@ -25,17 +25,6 @@
       <text>寻物</text>
     </navigator>
   </view>
-
-  <view class='information-box'>
-    <view class='information-manage'>
-      <navigator url="/pages/component/mine/information/information">信息管理</navigator>
-    </view>
-    <!--<view wx:if="{{hasInformation}}" class='information-list'>
-            <view>Name: {{information.name}}</view>
-            <view>Phone: {{information.phone}}</view>
-            <view>StuID: {{information.stuID}}</view>
-        </view>-->
-  </view>
   <view wx:if="{{isAdmin==true}}">
     <view class='information-box'>
       <!--这里留了个接口，是管理员才显示-->

@@ -125,7 +125,7 @@ Page({
       success: function (res) {
         if (res.statusCode == 302) {
           app.showLoadToast('请稍候');
-          wx.setStorageSync('isAu', true);
+          wx.setStorageSync('isAuthened', true);
           wx.showToast({
             title: '登录成功',
             icon: 'success',

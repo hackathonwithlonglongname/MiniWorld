@@ -7,7 +7,6 @@
     "pages/component/lost/lost",
     "pages/component/mine/user/user",
     "pages/component/index/index",
-    "pages/component/mine/information/information",
     "pages/component/mine/order/order",
     "pages/component/logs/logs",
     "pages/component/item_lost/item_lost",

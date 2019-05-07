@@ -9,8 +9,8 @@ Page({
     // 查看是否授权
     wx.getSetting({
       success: function(res) {
-        app.isAu = wx.getStorageSync('isAu');
-        if (app.isAu) {
+        app.globalData.isAuthened = wx.getStorageSync('isAuthened');
+        if (app.globalData.isAuthened) {
           wx.getUserInfo({
             success: function(res) {
               //从数据库获取用户信息
