@@ -1,5 +1,4 @@
 <view class="container">
-
   <view class="page-body">
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="cu-bar margin-top bg-white">
@@ -58,12 +57,13 @@
           上传图片
         </view>
         <view class="action">
-          {{imageList.length}}/{{count[index]}}
+          {{imageList.length}}/9
         </view>
       </view>
       <view class="cu-form-group margin-bottom">
         <view class="grid col-4 grid-square flex-sub">
-          <view class="padding-xs bg-img" style="background-image:url({{imageList[index]}})" wx:for="{{imageList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imageList[index]}}">
+          <view class="bg-img" wx:for="{{imageList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imageList[index]}}">
+            <image src='{{imageList[index]}}' mode='aspectFill'></image>
             <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
               <text class="icon-close"></text>
             </view>

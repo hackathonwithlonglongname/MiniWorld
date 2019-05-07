@@ -23,7 +23,7 @@ Page({
 
     //image组件相关：
     imageList: [],
-    index: 8,
+    index: null,
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 
     //ID相关：
@@ -173,7 +173,7 @@ Page({
   ViewImage(e) {
     wx.previewImage({
       urls: this.data.imageList,
-      current: e.target.dataset.url
+      current: e.currentTarget.dataset.url
     });
   },
   DelImg(e) {
