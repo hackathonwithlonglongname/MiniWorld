@@ -10,21 +10,6 @@ App({
    * 
    */
   onLaunch: function () {
-    var timestamp = Date.parse(new Date())
-    var nowDate = new Date(timestamp)
-    timestamp = timestamp / 1000
-
-    //获取当前时间
-    //年
-    var Y = nowDate.getFullYear()
-    //月
-    var M = (nowDate.getMonth() + 1 < 10 ? '0' + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1)
-    //日
-    var D = nowDate.getDate() < 10 ? '0' + nowDate.getDate() : nowDate.getDate()
-    this.globalData.time.year = Y
-    this.globalData.time.month = M
-    this.globalData.time.day = D
-    
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
@@ -48,11 +33,6 @@ App({
     openid: '',
     adminList: ['oMJfy5C6sNcexW04x_8qMdk7dsdc', 'oMJfy5CqZKQWSVslILzVOZVYbLGg', 'oMJfy5F1JvBNLLZaXoPS2tTKVU5o', 'oMJfy5BWgD0U61BqFS6WEYGk3Pao', 'oMJfy5MbVMQ4a3GZoM3YPpyDwk58', 'oMJfy5CntvZOHj0NBDPiz010wL7U', 'oMJfy5EO6OYLUrRkcy-SEC_jwkzE', 'oMJfy5BRwhNjx_Pitku919zFLUeY','oMJfy5Ap4TWAvuwDT4y-irWREKjw'],
     isAdmin: false,
-    time:{
-      year:'',
-      month:'',
-      day:''
-    }
   },
   showErrorModal: function (content, title) {
     wx.showModal({
