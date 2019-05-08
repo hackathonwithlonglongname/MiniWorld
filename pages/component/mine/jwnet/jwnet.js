@@ -1,7 +1,10 @@
 //jwnet.js
 
+const cloud = wx.cloud
+cloud.init()
+const db = cloud.database()
 //获取应用实例
-var app = getApp();
+var app = getApp()
 Page({
   data: {
     remind: '加载中',
@@ -134,6 +137,20 @@ Page({
           wx.switchTab({
             url: '/pages/component/found/found'
           })
+          // 绑定openid与学号 -> 将验证成功的学号写入学号集合
+          db.collection('userInfo').where({
+            description: db.RegExp({
+              "_openid": app.globalData.openid
+            })
+          }).get({
+            success: res => {
+              console.log('[数据库] [查询记录] 成功: ', res)
+            },
+            fail: err => {
+              console.error('[数据库] [查询记录] 失败：', err)
+              _this.addUserInfo
+            }
+          })
         } else {
           wx.hideToast();
           app.showErrorModal('您输入的账号或密码错误，请重新输入', '登录失败');
@@ -144,6 +161,16 @@ Page({
         app.showErrorModal(res.errMsg, '登录失败');
       }
     })
+  },
+  addUserInfo: function () {
+    db.collection('userInfo').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        stuid: _this.data.userid
+      }
+    }).then(res => {
+      console.log(res)
+    }).catch(console.error)
   },
   useridInput: function (e) {
     this.setData({

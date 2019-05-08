@@ -152,6 +152,7 @@ Page({
       region: e.detail.value
     })
   },
+
   selectLocation: function () {
     var _this = this
     wx.chooseLocation({
@@ -216,6 +217,7 @@ Page({
       }
     })
   },
+  
   ChooseImage() {
     wx.chooseImage({
       count: 9, //默认9
