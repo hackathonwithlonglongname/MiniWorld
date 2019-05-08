@@ -4,8 +4,16 @@ cloud.init()
 const db = cloud.database()
 var app = getApp()
 
-const sourceType = [['camera'], ['album'], ['camera', 'album']]
-const sizeType = [['compressed'], ['original'], ['compressed', 'original']]
+const sourceType = [
+  ['camera'],
+  ['album'],
+  ['camera', 'album']
+]
+const sizeType = [
+  ['compressed'],
+  ['original'],
+  ['compressed', 'original']
+]
 
 Page({
   data: {
@@ -30,7 +38,7 @@ Page({
     openid: '',
     docID: '',
     //imageID: '',
-    
+
     isAdmin: false,
 
     //提交后清空表单用：
@@ -41,21 +49,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad: function(options) {
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var nowDate = new Date()
 
     //将time修改为当前时间
@@ -72,35 +80,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
@@ -126,55 +134,41 @@ Page({
     })
   },
 
-  PickerChange(e) {
-    console.log(e);
-    this.setData({
-      index: e.detail.value
-    })
-  },
-  MultiChange(e) {
-    this.setData({
-      multiIndex: e.detail.value
-    })
-  },
   TimeChange(e) {
-    this.setData({
+    const _this = this
+    _this.setData({
       time: e.detail.value
     })
   },
+
   DateChange(e) {
-    this.setData({
+    const _this = this
+    _this.setData({
       date: e.detail.value
     })
   },
-  RegionChange: function (e) {
-    this.setData({
-      region: e.detail.value
-    })
-  },
 
-  selectLocation: function () {
-    var _this = this
+  selectLocation() {
+    const _this = this
     wx.chooseLocation({
-      success: function (res) {
-        // success
-        console.log(res.name)
+      success: function(res) {
+        console.log("Location:" + res.name)
         _this.setData({
           place: res.name,
         })
       },
-      fail: function () {
+      fail: function() {
         wx.getSetting({
-          success: function (res) {
+          success: function(res) {
             var statu = res.authSetting;
             if (!statu['scope.userLocation']) {
               wx.showModal({
                 title: '是否授权当前位置',
                 content: '需要获取地理位置，请确认授权，否则无法使用地图功能',
-                success: function (tip) {
+                success: function(tip) {
                   if (tip.confirm) {
                     wx.openSetting({
-                      success: function (data) {
+                      success: function(data) {
                         if (data.authSetting["scope.userLocation"] === true) {
                           wx.showToast({
                             title: '授权成功',
@@ -183,9 +177,9 @@ Page({
                           })
                           //授权成功之后，再调用chooseLocation选择地方
                           wx.chooseLocation({
-                            success: function (res) {
+                            success: function(res) {
                               _this.setData({
-                                place: res.address
+                                place: res.name
                               })
                             },
                           })
@@ -203,7 +197,7 @@ Page({
               })
             }
           },
-          fail: function (res) {
+          fail: function(res) {
             wx.showToast({
               title: '调用授权窗口失败',
               icon: 'success',
@@ -212,7 +206,7 @@ Page({
           }
         })
       },
-      complete: function () {
+      complete: function() {
         // complete
       }
     })
@@ -316,57 +310,43 @@ Page({
         icon: 'none',
         duration: 1500,
       })
-    }
-
-    else if (e.detail.value['time'] == null) {
+    } else if (e.detail.value['time'] == null) {
       wx.showToast({
         title: '请填写时间（如果时间不明可填写大致时间，并在[详细描述]中说明）',
         icon: 'none',
         duration: 3000,
       })
-    }
-
-    else if (e.detail.value['date'] == null) {
+    } else if (e.detail.value['date'] == null) {
       wx.showToast({
         title: '请填写日期（如果日期不明可填写大致日期，并在[详细描述]中说明）',
         icon: 'none',
         duration: 3000,
       })
-    }
-    
-    else if (e.detail.value['place'] == '') {
+    } else if (e.detail.value['place'] == '') {
       wx.showToast({
         title: '请填写地点（如果地点不明可填写大致地点，并在[详细描述]中说明）',
         icon: 'none',
         duration: 3000,
       })
-    }
-
-    else if (e.detail.value['title'] == '') {
+    } else if (e.detail.value['title'] == '') {
       wx.showToast({
         title: '请简要描述信息',
         icon: 'none',
         duration: 1500,
       })
-    }
-
-    else if (e.detail.value['infoType'] == 'lost' && e.detail.value['contact'] == '') {
+    } else if (e.detail.value['infoType'] == 'lost' && e.detail.value['contact'] == '') {
       wx.showToast({
         title: '请留下你的联系方式',
         icon: 'none',
         duration: 1500,
       })
-    }
-
-    else if (e.detail.value['infoType'] == 'found' && this.data.imageList.length == 0) {
+    } else if (e.detail.value['infoType'] == 'found' && this.data.imageList.length == 0) {
       wx.showToast({
         title: '请上传捡到物品的图片',
         icon: 'none',
         duration: 1500,
       })
-    }
-
-    else {
+    } else {
       //获取当前时间戳
       var timestamp = Date.parse(new Date())
       var nowDate = new Date(timestamp)
@@ -387,8 +367,8 @@ Page({
       var s = (nowDate.getSeconds() < 10 ? '0' + nowDate.getSeconds() : nowDate.getSeconds())
       var postTime = Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s
       console.log(postTime);
-      
-      var state = this.data.isAdmin ? 'pass': 'uncheck'
+
+      var state = this.data.isAdmin ? 'pass' : 'uncheck'
       //将物品信息写入数据库
       db.collection('itemInfo').add({
         // data 字段表示需新增的 JSON 数据
@@ -428,10 +408,11 @@ Page({
             data: {
               imgs: db.command.push([res.fileID])
             }
-          })/* 获取图片文件ID，暂不需要
-          this.setData({
-            imageID: res.fileID
-          })*/
+          })
+          /* 获取图片文件ID，暂不需要
+                    this.setData({
+                      imageID: res.fileID
+                    })*/
         }).catch(error => {
           // handle error
         })
@@ -446,7 +427,7 @@ Page({
 
       var that = this
       //延迟处理，等待消息框结束
-      setTimeout(function () {
+      setTimeout(function() {
         //跳转至found或lost页
         wx.switchTab({
           url: '../' + e.detail.value['infoType'] + '/' + e.detail.value['infoType'],
@@ -465,7 +446,7 @@ Page({
         }
       }, 1500)
     }
-    
+
   },
 
 })

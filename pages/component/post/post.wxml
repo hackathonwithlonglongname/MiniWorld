@@ -21,7 +21,7 @@
 
       <view class="cu-form-group margin-top">
         <view class="title">时间选择</view>
-        <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
+        <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange" name="time">
           <view class="picker">
             {{time}}
           </view>
@@ -37,7 +37,7 @@
       </view>
       <view class="cu-form-group">
         <view class="title">确认地点</view>
-        <input  placeholder="仙一/仙二/逸夫楼/图书馆/..." value="{{place}}" />
+        <input name="place" placeholder="仙一/仙二/逸夫楼/图书馆/..." value="{{place}}" />
         <text class="icon-locationfill text-orange" bindtap='selectLocation'></text>
       </view>
       <view class="cu-form-group">
