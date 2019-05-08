@@ -20,5 +20,17 @@ Page({
   },
   onShow() {
 
+  },
+  clearExitem(){
+    //自闭，这里并不能更新
+    cloud.callFunction({
+      // 需调用的云函数名
+      name: 'remove_exitem',
+      // 成功回调
+      complete: console.log
+    })
+    
   }
+  
+
 })
