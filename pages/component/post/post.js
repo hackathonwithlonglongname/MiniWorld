@@ -170,7 +170,7 @@ Page({
             if (!statu['scope.userLocation']) {
               wx.showModal({
                 title: '是否授权当前位置',
-                content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                content: '需要获取地理位置，请确认授权，否则无法使用地图功能',
                 success: function (tip) {
                   if (tip.confirm) {
                     wx.openSetting({
@@ -217,7 +217,7 @@ Page({
       }
     })
   },
-  
+
   ChooseImage() {
     wx.chooseImage({
       count: 9, //默认9
