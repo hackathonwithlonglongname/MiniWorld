@@ -25,6 +25,19 @@
       <text class="desc-content">南寻是一站式权服侠移动门户，适用于学生和教师，集招领、寻物等功能于一身。</text>
       <text class="desc-content">南寻更是/更有... （期待您的发现）</text>
     </view>
+    <view wx:if="{{!showLog}}">
+      <view class="cu-bar bg-white  margin-top">
+        <view class="action">
+          <text class="icon-title text-pink"></text> 联系我们
+        </view>
+      </view>
+      <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+        <swiper-item wx:for="{{swiperList}}" wx:key>
+          <image src="{{item.url}}" mode="scaleToFill" wx:if="{{item.type=='image'}}"></image>
+          <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+        </swiper-item>
+      </swiper>
+    </view>
     <view class="log-list" wx:else>
       <view class="describe">
         <view class="desc-title">

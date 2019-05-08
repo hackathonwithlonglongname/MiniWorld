@@ -1,9 +1,17 @@
 /**about.wxss**/
+@import "/colorui/main.wxss";
+@import "/colorui/icon.wxss";
 
 .container {
   background: #f4f4f4;
   padding: 0;
   font-size: 11pt;
+}
+
+.tower-swiper .tower-item {
+  transform: scale(calc(0.5 + var(--index) / 10));
+  margin-left: calc(var(--left) * 100rpx - 150rpx);
+  z-index: var(--index);
 }
 
 .header {
