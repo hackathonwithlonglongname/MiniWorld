@@ -21,9 +21,13 @@
       <view class="desc-list">
         <text class="desc-list-item">NJUer 认证：http://xsgl.nju.edu.cn/index.portal</text>
       </view>
-      <text class="desc-content">南寻是一款微信小程序，由队名超长组开发，有别于公众号的一种全新的连接用户与服务的方式，无需下载与安装即可在微信内被便捷地获取和传播，同时具有出色的使用体验。</text>
-      <text class="desc-content">南寻是一站式权服侠移动门户，适用于学生和教师，集招领、寻物等功能于一身。</text>
-      <text class="desc-content">南寻更是/更有... （期待您的发现）</text>
+      <text class="desc-content">南寻小程序的是我们团队在参加一次hackathon中的参赛作品，原本还只是一个的demo，我们在赛后继续完善了这个项目，并联系权服侠进行合作，使它成为能帮助到大家找寻失物和发布招领信息的一个小工具</text>
+      <text class="desc-content">南寻小程序我们还会继续完善，还有很多功能值得大家期待。另外，如果有什么建议或者在使用中出现了什么问题，非常欢迎联系我们进行反馈</text>
+      <text class="desc-content">联系方式（qq）：</text>
+      <text class="desc-content">lgt:644699280</text>
+      <text class="desc-content">wjr:924560709</text>
+      <text class="desc-content">lt:2508743897</text>
+      <text class="desc-content">yxc:1143264710</text>
     </view>
     <view wx:if="{{!showLog}}">
       <view class="cu-bar bg-white  margin-top">
@@ -93,9 +97,9 @@
   <view class="footer">
     <view class="footer-nanxun">
       <image src="/images/more/nanxun.png"></image>
-      <text>队名超长组</text>
+      <text>南寻</text>
     </view>
-    <text>权服侠 · 特聘团队</text>
+    <text>权服侠 · 特邀团队</text>
     <text>Copyright @ {{year}} All Rights Reserved</text>
   </view>
 </view>
