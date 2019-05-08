@@ -3,57 +3,61 @@
 </view>
 
 <view class="section">
-  <block wx:if="{{currentTab==0}}" wx:for="{{founditems}}" wx:key wx:if="{{item.isShow}}">
-    <view class="cu-card article">
-      <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
-        <view class="title">
-          <view class="text-cut">{{item.briefInfo}}</view>
-        </view>
-        <view class="content">
-          <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>
-          <view class="desc">
-            <view class="text-content">
-              <view class="cu-capsule">
-                <view class="cu-tag bg-red">
-                  <text class="icon-likefill"></text>
+  <block wx:if="{{currentTab==0}}" wx:for="{{founditems}}">
+    <block wx:key wx:if="{{item.state=='pass'}}">
+      <view class="cu-card article">
+        <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
+          <view class="title">
+            <view class="text-cut">{{item.briefInfo}}</view>
+          </view>
+          <view class="content">
+            <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>
+            <view class="desc">
+              <view class="text-content">
+                <view class="cu-capsule">
+                  <view class="cu-tag bg-red">
+                    <text class="icon-likefill"></text>
+                  </view>
+                  <view class="cu-tag line-red">失物招领</view>
                 </view>
-                <view class="cu-tag line-red">失物招领</view>
+                <view class='split'></view>
+                <view class="cu-tag bg-green light radius">{{item.address}}</view>
+                <view class='split'></view>
+                <view class="cu-tag bg-purple light radius">{{item.postTime}}</view>
               </view>
-              <view class='split'></view>
-              <view class="cu-tag bg-green light radius">{{item.address}}</view>
-              <view class='split'></view>
-              <view class="cu-tag bg-purple light radius">{{item.postTime}}</view>
             </view>
           </view>
         </view>
       </view>
-    </view>
+    </block>
   </block>
 
-  <block wx:if="{{currentTab==1}}" wx:for="{{lostitems}}"  wx:key wx:if="{{item.isShow}}">
-    <view class="cu-card article">
-      <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
-        <view class="title">
-          <view class="text-cut">{{item.briefInfo}}</view>
-        </view>
-        <view class="content">
-          <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>
-          <view class="desc">
-            <view class="text-content">
-              <view class="cu-capsule">
-                <view class="cu-tag bg-blue">
-                  <text class="icon-likefill"></text>
+  <block wx:if="{{currentTab==1}}" wx:for="{{lostitems}}">
+    <block wx:key wx:if="{{item.state=='pass'}}">
+      <view class="cu-card article">
+        <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
+          <view class="title">
+            <view class="text-cut">{{item.briefInfo}}</view>
+          </view>
+          <view class="content">
+            <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>
+            <view class="desc">
+              <view class="text-content">
+                <view class="cu-capsule">
+                  <view class="cu-tag bg-blue">
+                    <text class="icon-likefill"></text>
+                  </view>
+                  <view class="cu-tag line-blue">寻物启事</view>
                 </view>
-                <view class="cu-tag line-blue">寻物启事</view>
+                <view class='split'></view>
+                <view class="cu-tag bg-green light radius">{{item.address}}</view>
+                <view class='split'></view>
+                <view class="cu-tag bg-purple light radius">{{item.postTime}}</view>
               </view>
-              <view class='split'></view>
-              <view class="cu-tag bg-green light radius">{{item.address}}</view>
-              <view class='split'></view>
-              <view class="cu-tag bg-purple light radius">{{item.postTime}}</view>
             </view>
           </view>
         </view>
       </view>
-    </view>
+    </block>
   </block>
 </view>
