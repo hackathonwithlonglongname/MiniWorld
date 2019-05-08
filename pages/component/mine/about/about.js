@@ -15,11 +15,11 @@ Page({
     }, {
       id: 2,
       type: 'image',
-      url: '/images/team/Mr_Wang.jpg'
+      url: '/images/team/Mr_Liu.jpg',
     }, {
       id: 3,
       type: 'image',
-      url: '/images/team/Mr_Liu.jpg',
+      url: '/images/team/Mr_Wang.jpg'
     }, {
       id: 4,
       type: 'image',
