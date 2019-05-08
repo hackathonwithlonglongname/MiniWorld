@@ -7,29 +7,33 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: '/images/team/S_W_R.jpg'
+      url: '/images/team/Team.jpg'
     }, {
       id: 1,
       type: 'image',
-        url: '/images/team/Mr_Liu.jpg',
+      url: '/images/team/S_W_R.jpg'
     }, {
       id: 2,
       type: 'image',
-        url: '/images/team/Mr_Wang.jpg'
+      url: '/images/team/Mr_Wang.jpg'
     }, {
       id: 3,
       type: 'image',
-        url: '/images/team/Mr_Yue.jpg'
+      url: '/images/team/Mr_Liu.jpg',
+    }, {
+      id: 4,
+      type: 'image',
+      url: '/images/team/Mr_Yue.jpg'
     }]
   },
-  onLoad: function(){
+  onLoad: function() {
     this.towerSwiper('swiperList');
     this.setData({
       version: app.globalData.version,
       year: new Date().getFullYear()
     });
   },
-  toggleLog: function(){
+  toggleLog: function() {
     this.setData({
       showLog: !this.data.showLog
     });

@@ -23,21 +23,16 @@
       </view>
       <text class="desc-content">南寻小程序的是我们团队在参加一次hackathon中的参赛作品，原本还只是一个的demo，我们在赛后继续完善了这个项目，并联系权服侠进行合作，使它成为能帮助到大家找寻失物和发布招领信息的一个小工具</text>
       <text class="desc-content">南寻小程序我们还会继续完善，还有很多功能值得大家期待。另外，如果有什么建议或者在使用中出现了什么问题，非常欢迎联系我们进行反馈</text>
-      <text class="desc-content">联系方式（qq）：</text>
-      <text class="desc-content">lgt:644699280</text>
-      <text class="desc-content">wjr:924560709</text>
-      <text class="desc-content">lt:2508743897</text>
-      <text class="desc-content">yxc:1143264710</text>
     </view>
     <view wx:if="{{!showLog}}">
       <view class="cu-bar bg-white  margin-top">
         <view class="action">
-          <text class="icon-title text-pink"></text> 联系我们
+          <text class="icon-title text-purple"></text> 联系我们
         </view>
       </view>
-      <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
         <swiper-item wx:for="{{swiperList}}" wx:key>
-          <image src="{{item.url}}" mode="scaleToFill" wx:if="{{item.type=='image'}}"></image>
+          <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
           <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
         </swiper-item>
       </swiper>
