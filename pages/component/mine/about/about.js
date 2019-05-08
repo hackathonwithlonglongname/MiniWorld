@@ -2,7 +2,7 @@ var app = getApp();
 Page({
   data: {
     version: '',
-    showLog: false
+    showLog: false,
   },
   onLoad: function(){
     this.setData({
