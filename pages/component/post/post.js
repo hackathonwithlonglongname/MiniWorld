@@ -23,7 +23,7 @@ Page({
 
     //image组件相关：
     imageList: [],
-    index: 8,
+    index: null,
     count: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 
     //ID相关：
@@ -152,6 +152,72 @@ Page({
       region: e.detail.value
     })
   },
+
+  selectLocation: function () {
+    var _this = this
+    wx.chooseLocation({
+      success: function (res) {
+        // success
+        console.log(res.name)
+        _this.setData({
+          place: res.name,
+        })
+      },
+      fail: function () {
+        wx.getSetting({
+          success: function (res) {
+            var statu = res.authSetting;
+            if (!statu['scope.userLocation']) {
+              wx.showModal({
+                title: '是否授权当前位置',
+                content: '需要获取地理位置，请确认授权，否则无法使用地图功能',
+                success: function (tip) {
+                  if (tip.confirm) {
+                    wx.openSetting({
+                      success: function (data) {
+                        if (data.authSetting["scope.userLocation"] === true) {
+                          wx.showToast({
+                            title: '授权成功',
+                            icon: 'success',
+                            duration: 1000
+                          })
+                          //授权成功之后，再调用chooseLocation选择地方
+                          wx.chooseLocation({
+                            success: function (res) {
+                              _this.setData({
+                                place: res.address
+                              })
+                            },
+                          })
+                        } else {
+                          wx.showToast({
+                            title: '授权失败',
+                            icon: 'success',
+                            duration: 1000
+                          })
+                        }
+                      }
+                    })
+                  }
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: '调用授权窗口失败',
+              icon: 'success',
+              duration: 1000
+            })
+          }
+        })
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
+
   ChooseImage() {
     wx.chooseImage({
       count: 9, //默认9
@@ -173,7 +239,7 @@ Page({
   ViewImage(e) {
     wx.previewImage({
       urls: this.data.imageList,
-      current: e.target.dataset.url
+      current: e.currentTarget.dataset.url
     });
   },
   DelImg(e) {
