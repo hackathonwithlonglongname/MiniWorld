@@ -137,18 +137,19 @@ Page({
           wx.switchTab({
             url: '/pages/component/found/found'
           })
-          // 绑定openid与学号 -> 将验证成功的学号写入学号集合
           db.collection('userInfo').where({
-            description: db.RegExp({
-              "_openid": app.globalData.openid
-            })
+            _openid: app.globalData.openid,
+            stuid: _this.data.userid
           }).get({
             success: res => {
               console.log('[数据库] [查询记录] 成功: ', res)
+              // 绑定openid与学号 -> 将验证成功的学号写入学号集合
+              if (res.data.length == 0) {
+                _this.addUserInfo()
+              }
             },
             fail: err => {
               console.error('[数据库] [查询记录] 失败：', err)
-              _this.addUserInfo
             }
           })
         } else {
@@ -163,6 +164,7 @@ Page({
     })
   },
   addUserInfo: function () {
+    const _this = this;
     db.collection('userInfo').add({
       // data 字段表示需新增的 JSON 数据
       data: {
