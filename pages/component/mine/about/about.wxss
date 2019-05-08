@@ -130,7 +130,7 @@
   color: #545454;
   line-height: 175%;
   background: #fff;
-  margin-top: 15rpx;
+  margin-top: 30rpx;
   border-top: 1px #e5e5e5 solid;
   border-bottom: 1px #e5e5e5 solid;
 }

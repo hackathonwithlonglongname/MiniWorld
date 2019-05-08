@@ -25,7 +25,7 @@
       <text class="desc-content">南寻小程序我们还会继续完善，还有很多功能值得大家期待。另外，如果有什么建议或者在使用中出现了什么问题，非常欢迎联系我们进行反馈</text>
     </view>
     <view wx:if="{{!showLog}}">
-      <view class="cu-bar bg-white  margin-top">
+      <view class="cu-bar bg-white margin-top">
         <view class="action">
           <text class="icon-title text-purple"></text> 联系我们
         </view>
