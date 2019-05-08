@@ -20,7 +20,7 @@ Page({
     multiIndex: [0, 0, 0],
     time: '12:01', //onShow时修改为当前时间
     date: '2018-12-25', //onShow时修改为当前日期
-    region: ['广东省', '广州市', '海珠区'],
+    place: '',
     modalName: null,
     textareaAValue: '',
     textareaBValue: '',
@@ -435,9 +435,11 @@ Page({
 
         //重置并刷新post页
         that.setData({
+          time: '',
           info: '',
           date: '',
           check: false,
+          place: '',
           imageList: [],
         })
         if (getCurrentPages().length != 0) {
