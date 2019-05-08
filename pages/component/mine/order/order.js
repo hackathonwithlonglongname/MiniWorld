@@ -149,9 +149,9 @@ Page({
     var x = e.currentTarget.dataset.index
     var url
     if (this.data.currentTab == 0) {
-      url = '../item_found/item_found?item=' + JSON.stringify(this.data.founditems[x])
+      url = '../../item_found/item_found?item=' + JSON.stringify(this.data.founditems[x])
     } else {
-      url = '../item_lost/item_lost?item=' + JSON.stringify(this.data.lostitems[x])
+      url = '../../item_lost/item_lost?item=' + JSON.stringify(this.data.lostitems[x])
     }
     wx.navigateTo({
       url
