@@ -31,7 +31,7 @@ App({
     isAuthened: false,
     version: 'v0.0.4', //版本号
     openid: '',
-    adminList: ['oMJfy5C6sNcexW04x_8qMdk7dsdc', 'oMJfy5CqZKQWSVslILzVOZVYbLGg', 'oMJfy5F1JvBNLLZaXoPS2tTKVU5o', 'oMJfy5BWgD0U61BqFS6WEYGk3Pao', 'oMJfy5MbVMQ4a3GZoM3YPpyDwk58', 'oMJfy5CntvZOHj0NBDPiz010wL7U', 'oMJfy5EO6OYLUrRkcy-SEC_jwkzE', 'oMJfy5BRwhNjx_Pitku919zFLUeY','oMJfy5Ap4TWAvuwDT4y-irWREKjw'],
+    adminList: ['oMJfy5C6sNcexW04x_8qMdk7dsdc', 'oMJfy5CqZKQWSVslILzVOZVYbLGg', 'oMJfy5F1JvBNLLZaXoPS2tTKVU5o', 'oMJfy5BWgD0U61BqFS6WEYGk3Pao', 'oMJfy5MbVMQ4a3GZoM3YPpyDwk58', 'oMJfy5CntvZOHj0NBDPiz010wL7U', 'oMJfy5EO6OYLUrRkcy-SEC_jwkzE', 'oMJfy5BRwhNjx_Pitku919zFLUeY', 'oMJfy5Ap4TWAvuwDT4y-irWREKjw', 'oMJfy5Cav30nqPusqDNAOdO7WC8o', 'oMJfy5Ax0ONY21XATCcW_NI5hYt0', 'oMJfy5HTNDj09uph95DHushBnVbY',],
     isAdmin: false,
   },
   showErrorModal: function (content, title) {
