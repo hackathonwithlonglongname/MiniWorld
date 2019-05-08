@@ -9,7 +9,6 @@ page{
   border: 1px solid #ccc;
   display: flex;
   justify-content: space-around;
-  align-items: center;
 }
 
 .swiper-tab-list {
@@ -23,10 +22,7 @@ page{
   border-bottom: 5rpx solid #6a005f;
 }
 
-.smallimage{
-  width: 100rpx
-  
-}
+
 .frame{
   margin: 20rpx 0rpx
 }

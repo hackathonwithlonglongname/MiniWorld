@@ -3,8 +3,8 @@
 </view>
 
 <view class="section">
-  <block wx:if="{{currentTab==0}}" wx:for="{{founditems}}">
-    <block wx:key wx:if="{{item.state=='pass'}}">
+  <view wx:if="{{currentTab==0}}" wx:for="{{founditems}}">
+    <view wx:key wx:if="{{item.state=='pass'}}">
       <view class="cu-card article">
         <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
           <view class="title">
@@ -29,11 +29,11 @@
           </view>
         </view>
       </view>
-    </block>
-  </block>
+    </view>
+  </view>
 
-  <block wx:if="{{currentTab==1}}" wx:for="{{lostitems}}">
-    <block wx:key wx:if="{{item.state=='pass'}}">
+  <view wx:if="{{currentTab==1}}" wx:for="{{lostitems}}">
+    <view wx:key wx:if="{{item.state=='pass'}}">
       <view class="cu-card article">
         <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
           <view class="title">
@@ -58,6 +58,6 @@
           </view>
         </view>
       </view>
-    </block>
-  </block>
+    </view>
+  </view>
 </view>
