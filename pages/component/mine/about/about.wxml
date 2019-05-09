@@ -30,7 +30,7 @@
           <text class="icon-title text-purple"></text> 联系我们 (排名为字母序、不分先后)
         </view>
       </view>
-      <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="1000" duration="500">
+      <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="2500" duration="500">
         <swiper-item wx:for="{{swiperList}}" wx:key>
           <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
           <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
