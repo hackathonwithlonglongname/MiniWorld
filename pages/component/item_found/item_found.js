@@ -30,7 +30,7 @@ Page({
     console.log("接收到的参数是item=" + options.item); //此处打印出来的是字符串，解析如下    	
     var item = JSON.parse(options.item); //解析得到集合
     this.setData({
-      item_time: item.time,
+      item_time: item.date + " " + item.time,
       item_location: item.address,
       item_contact: item.contactMethod,
       item_description: item.briefInfo + "\n" + item.detail,

@@ -64,17 +64,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    const _this = this
     var nowDate = new Date()
+    var year = nowDate.getFullYear()
+    var month = nowDate.getMonth() + 1
+    var day = nowDate.getDate()
+    var hour = nowDate.getHours()
+    var minute = nowDate.getMinutes()
 
     //将time修改为当前时间
-    this.setData({
-      time: nowDate.getHours() + ':' + nowDate.getMinutes(),
+    _this.setData({
+      //time: _this.formatNumber(hour) + ':' + _this.formatNumber(minute)
+      time: [hour, minute].map(_this.formatNumber).join(':')
     })
 
     //将date修改为当前日期
-    this.setData({
-      date: nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate(),
+    _this.setData({
+      //date: nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate(),
+      date: [year, month, day].map(_this.formatNumber).join('-')
     })
+  },
+
+  formatNumber: function(str) {
+    str = str.toString()
+    return str[1] ? str : '0' + str
   },
 
   /**
