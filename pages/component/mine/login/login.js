@@ -7,10 +7,10 @@ Page({
   onLoad: function() {
     var that = this;
     // 查看是否授权
-    wx.getSetting({
-      success: function(res) {
-        app.globalData.isAuthened = wx.getStorageSync('isAuthened');
-        if (app.globalData.isAuthened) {
+    app.globalData.isAuthened = wx.getStorageSync('isAuthened');
+    if (app.globalData.isAuthened) {
+      wx.getSetting({
+        success: function(res) {
           wx.getUserInfo({
             success: function(res) {
               //从数据库获取用户信息
@@ -23,8 +23,8 @@ Page({
             }
           });
         }
-      }
-    })
+      })
+    }
   },
   bindGetUserInfo: function(e) {
     if (e.detail.userInfo) {
