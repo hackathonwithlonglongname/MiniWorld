@@ -27,7 +27,7 @@
     <view wx:if="{{!showLog}}">
       <view class="cu-bar bg-white margin-top">
         <view class="action">
-          <text class="icon-title text-purple"></text> 联系我们
+          <text class="icon-title text-purple"></text> 联系我们 (排名为字母序、不分先后)
         </view>
       </view>
       <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">

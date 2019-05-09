@@ -68,7 +68,7 @@ Page({
 
     //将time修改为当前时间
     this.setData({
-      time: nowDate.getHours() + ':' + nowDate.getSeconds(),
+      time: nowDate.getHours() + ':' + nowDate.getMinutes(),
     })
 
     //将date修改为当前日期
