@@ -433,11 +433,20 @@ Page({
       }
 
       //消息框提醒
-      wx.showToast({
-        title: '信息发布成功！请耐心等待管理员审核',
-        icon: 'success',
-        duration: 1500,
-      })
+      //if (this.data.isAdmin == false)
+        /*
+        wx.showToast({
+          title: '信息发布成功！\r\n请耐心等待管理员审核。',
+          icon: 'none',
+          duration: 3000,
+        })
+        */
+      //else
+        wx.showToast({
+          title: '信息发布成功！',
+          icon: 'success',
+          duration: 1500,
+        })
 
       var that = this
       //延迟处理，等待消息框结束
@@ -454,6 +463,9 @@ Page({
           date: '',
           check: false,
           place: '',
+          contact: '',
+          title: '',
+          description: '',
           imageList: [],
         })
         if (getCurrentPages().length != 0) {
