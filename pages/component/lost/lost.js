@@ -55,7 +55,7 @@ Page({
           currentIndex: 20
         })
         console.log(res.data)
-        _this.initItems()
+        //_this.initItems()
       })
   },
 
@@ -100,7 +100,7 @@ Page({
           lostitems: tmp,
           currentIndex: _this.data.currentIndex + l
         })
-        _this.initItems()
+        //_this.initItems()
       })
   },
 

@@ -300,7 +300,7 @@ Page({
 
     this.setData({
       openid: app.globalData.openid,
-      isAdmin: app.globalData.isAdmin,
+      isAdmin: true,
     })
     console.log('openid: ', this.data.openid, 'isAdmin: ', this.data.isAdmin)
 
@@ -394,6 +394,7 @@ Page({
           briefInfo: e.detail.value["title"],
           detail: e.detail.value["description"],
           contactMethod: e.detail.value["contact"],
+          isShow: true,
           state,
           imgs: []
         }
