@@ -4,17 +4,6 @@ cloud.init()
 const db = cloud.database()
 var app = getApp()
 
-const sourceType = [
-  ['camera'],
-  ['album'],
-  ['camera', 'album']
-]
-const sizeType = [
-  ['compressed'],
-  ['original'],
-  ['compressed', 'original']
-]
-
 Page({
   data: {
     infoType: '',
