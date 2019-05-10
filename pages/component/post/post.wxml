@@ -82,4 +82,12 @@
       </view>
     </form>
   </view>
+
+  <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <!-- 弹出层 -->
+  <view class="modalDlg" wx:if="{{showModal}}">
+    <image src="/images/in-progress-clip.png" />
+    <text class="text">信息发布后，需要经管理员审核后才会在列表中显示，请耐心等待！</text>
+    <view bindtap="ok" class="ok">好的</view>
+  </view>
 </view>

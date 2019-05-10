@@ -40,6 +40,7 @@ Page({
     //imageID: '',
 
     isAdmin: false,
+    showModal: false,
 
     //提交后清空表单用：
     info: '',
@@ -433,11 +434,17 @@ Page({
       }
 
       //消息框提醒
-      wx.showToast({
-        title: '信息发布成功！请耐心等待管理员审核',
-        icon: 'success',
-        duration: 1500,
-      })
+      if (this.data.isAdmin) {
+        wx.showToast({
+          title: '信息发布成功！请耐心等待管理员审核',
+          icon: 'success',
+          duration: 1500,
+        })
+      } else {
+        this.setData({
+          showModal: true
+        })
+      }
 
       var that = this
       //延迟处理，等待消息框结束
@@ -464,5 +471,16 @@ Page({
     }
 
   },
+
+  // 禁止屏幕滚动
+  preventTouchMove: function () {
+  },
+
+  // 弹出层里面的弹窗
+  ok: function () {
+    this.setData({
+      showModal: false
+    })
+  }
 
 })
