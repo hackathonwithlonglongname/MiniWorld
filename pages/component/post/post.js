@@ -12,8 +12,7 @@ Page({
     date: '2018-12-25', //onShow时修改为当前日期
     place: '',
     modalName: null,
-    textareaAValue: '',
-    textareaBValue: '',
+    textareaValue: '',
 
     //picker组件相关：
     pickerHidden: true,
@@ -262,14 +261,10 @@ Page({
       }
     })
   },
-  textareaAInput(e) {
+
+  textareaInput(e) {
     this.setData({
-      textareaAValue: e.detail.value
-    })
-  },
-  textareaBInput(e) {
-    this.setData({
-      textareaBValue: e.detail.value
+      textareaValue: e.detail.value
     })
   },
 
@@ -277,11 +272,6 @@ Page({
     this.setData({
       date: e.detail.value
     })
-  },
-
-  //textarea组件相关：
-  bindTextAreaBlur(e) {
-    console.log(e.detail.value)
   },
 
   //form组件相关：
@@ -297,7 +287,8 @@ Page({
 
     this.setData({
       openid: app.globalData.openid,
-      isAdmin: app.globalData.isAdmin
+      //isAdmin: app.globalData.isAdmin
+      isAdmin: false
     })
     console.log('openid: ', this.data.openid, 'isAdmin: ', this.data.isAdmin)
 
@@ -389,7 +380,7 @@ Page({
           date: e.detail.value["date"],
           address: e.detail.value["place"],
           briefInfo: e.detail.value["title"],
-          detail: e.detail.value["description"],
+          detail: e.detail.value["textareaValue"],
           contactMethod: e.detail.value["contact"],
           isShow: true,
           state,
@@ -474,7 +465,7 @@ Page({
       place: '',
       contact: '',
       title: '',
-      description: '',
+      textareaValue: '',
       imageList: [],
     })
     if (getCurrentPages().length != 0) {
