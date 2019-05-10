@@ -300,7 +300,7 @@ Page({
 
     this.setData({
       openid: app.globalData.openid,
-      isAdmin: true,
+      isAdmin: app.globalData.isAdmin,
     })
     console.log('openid: ', this.data.openid, 'isAdmin: ', this.data.isAdmin)
 
