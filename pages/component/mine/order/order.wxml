@@ -8,7 +8,9 @@
       <view class="cu-card article">
         <view class="cu-item shadow" bindtap='itemTap' data-index="{{index}}">
           <view class="title">
-            <view class="text-cut">{{item.briefInfo}}</view>
+            <view class="text-cut">{{item.briefInfo}}
+              <view class="cu-tag line-red" wx:if="{{item.state=='uncheck'}}">待审核</view>
+              </view>
           </view>
           <view class="content">
             <image mode='aspectFill' wx:if='{{item.imgs[0]}}' src="{{item.imgs[0]}}"></image>

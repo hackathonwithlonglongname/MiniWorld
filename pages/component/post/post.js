@@ -434,7 +434,7 @@ Page({
 
       //消息框提醒
       wx.showToast({
-        title: '信息发布成功！',
+        title: '信息发布成功！请耐心等待管理员审核',
         icon: 'success',
         duration: 1500,
       })
