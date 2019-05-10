@@ -80,6 +80,15 @@
         </view>
         <!--<button formType="reset">重置</button>-->
       </view>
+
+      <!--
+        <view wx:if="{{isAdmin==false}}">
+          信息发布后，需要经管理员审核后才会在列表中显示，请耐心等待。
+        </view>
+        <view wx:else>
+          管理员发布的信息将直接在列表中显示。
+        </view>
+      -->
     </form>
   </view>
 

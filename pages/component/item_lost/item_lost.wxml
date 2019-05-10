@@ -25,6 +25,7 @@
       <image class='user_icon' src='/images/details.png'></image>
       <view>失物描述：</view>
     </view>
+    <view class='right'>{{item_brief}}</view>
   </view>
   <view class='item_large'>
     <view class='detail'> {{item_description}}</view>

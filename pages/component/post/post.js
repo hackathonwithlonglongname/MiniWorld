@@ -461,6 +461,9 @@ Page({
           date: '',
           check: false,
           place: '',
+          contact: '',
+          title: '',
+          description: '',
           imageList: [],
         })
         if (getCurrentPages().length != 0) {
