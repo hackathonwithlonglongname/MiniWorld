@@ -6,7 +6,7 @@
           <text class="icon-title text-purple"></text>信息类型
         </view>
         <view class="action">
-          <radio-group name="infoType">
+          <radio-group bindchange="setInfoType" name="infoType">
             <label class="margin-left-sm">
               <radio class="purple sm radio" value="found" checked="{{check}}"></radio>
               <text>捡到物品</text>
@@ -78,17 +78,8 @@
         <view class="cu-bar btn-group">
           <button class="cu-btn bg-green shadow-blur round lg" formType="submit">提交</button>
         </view>
-        <!--<button formType="reset">重置</button>-->
       </view>
 
-      <!--
-        <view wx:if="{{isAdmin==false}}">
-          信息发布后，需要经管理员审核后才会在列表中显示，请耐心等待。
-        </view>
-        <view wx:else>
-          管理员发布的信息将直接在列表中显示。
-        </view>
-      -->
     </form>
   </view>
 
@@ -97,6 +88,7 @@
   <view class="modalDlg" wx:if="{{showModal}}">
     <image src="/images/in-progress-clip.png" />
     <text class="text">信息发布后，需要经管理员审核后才会在列表中显示，请耐心等待！</text>
+    <text class="text">可至【我的发布】页查看哦~</text>
     <view bindtap="ok" class="ok">好的</view>
   </view>
 </view>

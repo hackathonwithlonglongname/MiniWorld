@@ -17,6 +17,7 @@ const sizeType = [
 
 Page({
   data: {
+    infoType: '',
     multiIndex: [0, 0, 0],
     time: '12:01', //onShow时修改为当前时间
     date: '2018-12-25', //onShow时修改为当前日期
@@ -124,6 +125,12 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  setInfoType(e) {
+    this.setData({
+      infoType: e.detail.value
+    })
   },
 
   //picker组件相关：
@@ -301,7 +308,7 @@ Page({
 
     this.setData({
       openid: app.globalData.openid,
-      isAdmin: app.globalData.isAdmin,
+      isAdmin: app.globalData.isAdmin
     })
     console.log('openid: ', this.data.openid, 'isAdmin: ', this.data.isAdmin)
 
@@ -436,54 +443,55 @@ Page({
       //消息框提醒
       if (this.data.isAdmin) {
         wx.showToast({
-          title: '信息发布成功！请耐心等待管理员审核',
+          title: '信息发布成功！',
           icon: 'success',
           duration: 1500,
         })
+        this.back()
       } else {
         this.setData({
           showModal: true
         })
       }
-
-      var that = this
-      //延迟处理，等待消息框结束
-      setTimeout(function() {
-        //跳转至found或lost页
-        wx.switchTab({
-          url: '../' + e.detail.value['infoType'] + '/' + e.detail.value['infoType'],
-        })
-
-        //重置并刷新post页
-        that.setData({
-          time: '',
-          info: '',
-          date: '',
-          check: false,
-          place: '',
-          contact: '',
-          title: '',
-          description: '',
-          imageList: [],
-        })
-        if (getCurrentPages().length != 0) {
-          //刷新当前页面的数据
-          getCurrentPages()[getCurrentPages().length - 1].onLoad()
-        }
-      }, 1500)
     }
-
   },
 
   // 禁止屏幕滚动
-  preventTouchMove: function () {
-  },
+  preventTouchMove: function() {},
 
   // 弹出层里面的弹窗
-  ok: function () {
-    this.setData({
+  ok: function() {
+    const _this = this
+    _this.setData({
       showModal: false
     })
+    _this.back()
+  },
+
+  //等待消息框结束
+  back: function() {
+    const _this = this
+    //跳转至found或lost页
+    wx.switchTab({
+      url: '../' + _this.data.infoType + '/' + _this.data.infoType,
+    })
+
+    //重置并刷新post页
+    _this.setData({
+      time: '',
+      info: '',
+      date: '',
+      check: false,
+      place: '',
+      contact: '',
+      title: '',
+      description: '',
+      imageList: [],
+    })
+    if (getCurrentPages().length != 0) {
+      //刷新当前页面的数据
+      getCurrentPages()[getCurrentPages().length - 1].onLoad()
+    }
   }
 
 })
