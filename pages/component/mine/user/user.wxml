@@ -12,7 +12,7 @@
 
   <view class='orders-box'>
     <view class='orders-manage'>
-      <navigator url="/pages/component/mine/order/order?currentTab=0">我的公告</navigator>
+      <navigator url="/pages/component/mine/order/order?currentTab=0">我的发布</navigator>
     </view>
   </view>
   <view class='icon'>
