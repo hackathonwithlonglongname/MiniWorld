@@ -64,13 +64,11 @@ Page({
 
     //将time修改为当前时间
     _this.setData({
-      //time: _this.formatNumber(hour) + ':' + _this.formatNumber(minute)
       time: [hour, minute].map(_this.formatNumber).join(':')
     })
 
     //将date修改为当前日期
     _this.setData({
-      //date: nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate(),
       date: [year, month, day].map(_this.formatNumber).join('-')
     })
   },
@@ -287,8 +285,7 @@ Page({
 
     this.setData({
       openid: app.globalData.openid,
-      //isAdmin: app.globalData.isAdmin
-      isAdmin: false
+      isAdmin: app.globalData.isAdmin
     })
     console.log('openid: ', this.data.openid, 'isAdmin: ', this.data.isAdmin)
 
