@@ -46,7 +46,7 @@
       </view>
       <view class="cu-form-group">
         <view class="title">简要描述</view>
-        <input name="title" placeholder="用一句话描述你捡到或丢失的东西" value="{{title}}" />
+        <input name="title" placeholder="在10字以内描述你捡到或丢失的东西" value="{{title}}" />
       </view>
       <view class="cu-form-group align-start">
         <view class="title">详细描述</view>

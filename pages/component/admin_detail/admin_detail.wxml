@@ -66,9 +66,9 @@
       </view>
     </view>
   </view>
-</view>
 <view class='item'></view>
-<view class="cu-bar btn-group">
+<view class="cu-bar btn-group"  style='margin-top:20px'>
   <button class="cu-btn bg-green shadow-blur round lg" type="primary" bindtap="pass">通过</button>
   <button class="cu-btn bg-green shadow-blur round lg" type="warn" bindtap="illegal">违规</button>
+</view>
 </view>

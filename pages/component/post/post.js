@@ -344,6 +344,12 @@ Page({
         icon: 'none',
         duration: 1500,
       })
+    } else if (e.detail.value["title"].length > 10) {
+      wx.showToast({
+        title: '请将简要描述控制在10字以内',
+        icon: 'none',
+        duration: 1500,
+      })
     } else {
       //获取当前时间戳
       var timestamp = Date.parse(new Date())
