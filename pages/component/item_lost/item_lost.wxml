@@ -66,15 +66,15 @@
         </view>
       </view>
     </view>
+  </view>
+  <view class='item'></view>
+  <!--只有发布者ID与访问者ID一致时才会显示此button-->
+  <view class="cu-bar btn-group" wx:if="{{item_openid==openid}}">
+    <button class="cu-btn bg-green shadow-blur round lg" type="warn" bindtap="deleteItem">已找到</button>
+  </view>
 
-    <!--只有发布者ID与访问者ID一致时才会显示此button-->
-    <view class="item_large" wx:if="{{item_openid==openid}}">
-      <button type="warn" bindtap="deleteItem">已找到物品，删除信息</button>
-    </view>
-
-    <!--当当前用户为管理员且不是本条信息的发布者时才会显示此button-->
-    <view class="item_large" wx:elif="{{isAdmin==true}}">
-      <button type="warn" bindtap="deleteItem">删除信息（管理员操作）</button>
-    </view>
+  <!--当前用户为管理员且不是本条信息的发布者时才会显示此button-->
+  <view class="cu-bar btn-group" wx:elif="{{isAdmin==true}}">
+    <button class="cu-btn bg-green shadow-blur round lg" type="warn" bindtap="deleteItem">删除该信息</button>
   </view>
 </view>

@@ -1,4 +1,4 @@
-<view class='container' style='display:block;'>
+<view class='container' style='display:block'>
   <view class='item'>
     <view class='left'>
       <image class='user_icon' src='/images/time.png'></image>
@@ -21,60 +21,60 @@
     <view class='right'>{{item_contact}}</view>
   </view>
   <view class='item'>
-  <view class='left'>
-    <image class='user_icon' src='/images/details.png'></image>
-    <view>物品描述：</view>
+    <view class='left'>
+      <image class='user_icon' src='/images/details.png'></image>
+      <view>物品描述：</view>
+    </view>
+    <view class='right'>{{item_brief}}</view>
   </view>
-  <view class='right'>{{item_brief}}</view>
-</view>
-<view class='item_large'>
-  <view class='detail'> {{item_description}}</view>
-</view>
-<view wx:if="{{item_picture_url}}">
-  <view class='container' style='display:block;'>
-    <view class='item'>
-      <view class='left'>
-        <image class='user_icon' src='/images/img.png'></image>
-        <view>图片信息：</view>
+  <view class='item_large'>
+    <view class='detail'> {{item_description}}</view>
+  </view>
+  <view wx:if="{{item_picture_url}}">
+    <view class='container' style='display:block;'>
+      <view class='item'>
+        <view class='left'>
+          <image class='user_icon' src='/images/img.png'></image>
+          <view>图片信息：</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{item_picture_url.length==1}}">
+      <view class='image_view'>
+        <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+          <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
+          </image>
+        </view>
+      </view>
+    </view>
+
+    <view wx:elif="{{item_picture_url.length==2 || item_picture_url.length==4}}">
+      <view class='image_view'>
+        <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
+          <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
+          </image>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else>
+      <view class='image_view'>
+        <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
+          <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
+          </image>
+        </view>
       </view>
     </view>
   </view>
-
-  <view wx:if="{{item_picture_url.length==1}}">
-    <view class='image_view'>
-      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
-        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_1}}px;height:{{img_width_1}}px'>
-        </image>
-      </view>
-    </view>
-  </view>
-
-  <view wx:elif="{{item_picture_url.length==2 || item_picture_url.length==4}}">
-    <view class='image_view'>
-      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
-        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_2}}px;height:{{img_width_2}}px'>
-        </image>
-      </view>
-    </view>
-  </view>
-
-  <view wx:else>
-    <view class='image_view'>
-      <view class='image' wx:for="{{item_picture_url}}" style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
-        <image bindtap="previewImage" src="{{item}}" data-src='{{item}}' style='width:{{img_width_3}}px;height:{{img_width_3}}px'>
-        </image>
-      </view>
-    </view>
-  </view>
-
+  <view class='item'></view>
   <!--只有发布者ID与访问者ID一致时才会显示此button-->
-  <view class="item_large" wx:if="{{item_openid==openid}}">
-    <button type="warn" bindtap="deleteItem">已找到失主，删除信息</button>
+  <view class="cu-bar btn-group" wx:if="{{item_openid==openid}}">
+    <button class="cu-btn bg-green shadow-blur round lg" type="warn" bindtap="deleteItem">已归还</button>
   </view>
 
-  <!--当当前用户为管理员且不是本条信息的发布者时才会显示此button-->
-  <view class="item_large" wx:elif="{{isAdmin==true}}">
-    <button type="warn" bindtap="deleteItem">删除信息（管理员操作）</button>
+  <!--当前用户为管理员且不是本条信息的发布者时才会显示此button-->
+  <view class="cu-bar btn-group" wx:elif="{{isAdmin==true}}">
+    <button class="cu-btn bg-green shadow-blur round lg" type="warn" bindtap="deleteItem">删除该信息</button>
   </view>
-</view>
 </view>
