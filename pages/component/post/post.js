@@ -4,17 +4,6 @@ cloud.init()
 const db = cloud.database()
 var app = getApp()
 
-const sourceType = [
-  ['camera'],
-  ['album'],
-  ['camera', 'album']
-]
-const sizeType = [
-  ['compressed'],
-  ['original'],
-  ['compressed', 'original']
-]
-
 Page({
   data: {
     infoType: '',
@@ -23,8 +12,7 @@ Page({
     date: '2018-12-25', //onShow时修改为当前日期
     place: '',
     modalName: null,
-    textareaAValue: '',
-    textareaBValue: '',
+    textareaValue: '',
 
     //picker组件相关：
     pickerHidden: true,
@@ -76,13 +64,11 @@ Page({
 
     //将time修改为当前时间
     _this.setData({
-      //time: _this.formatNumber(hour) + ':' + _this.formatNumber(minute)
       time: [hour, minute].map(_this.formatNumber).join(':')
     })
 
     //将date修改为当前日期
     _this.setData({
-      //date: nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate(),
       date: [year, month, day].map(_this.formatNumber).join('-')
     })
   },
@@ -273,14 +259,10 @@ Page({
       }
     })
   },
-  textareaAInput(e) {
+
+  textareaInput(e) {
     this.setData({
-      textareaAValue: e.detail.value
-    })
-  },
-  textareaBInput(e) {
-    this.setData({
-      textareaBValue: e.detail.value
+      textareaValue: e.detail.value
     })
   },
 
@@ -288,11 +270,6 @@ Page({
     this.setData({
       date: e.detail.value
     })
-  },
-
-  //textarea组件相关：
-  bindTextAreaBlur(e) {
-    console.log(e.detail.value)
   },
 
   //form组件相关：
@@ -367,6 +344,12 @@ Page({
         icon: 'none',
         duration: 1500,
       })
+    } else if (e.detail.value["title"].length > 10) {
+      wx.showToast({
+        title: '请将简要描述控制在10字以内',
+        icon: 'none',
+        duration: 1500,
+      })
     } else {
       //获取当前时间戳
       var timestamp = Date.parse(new Date())
@@ -400,7 +383,7 @@ Page({
           date: e.detail.value["date"],
           address: e.detail.value["place"],
           briefInfo: e.detail.value["title"],
-          detail: e.detail.value["description"],
+          detail: e.detail.value["textareaValue"],
           contactMethod: e.detail.value["contact"],
           isShow: true,
           state,
@@ -485,7 +468,7 @@ Page({
       place: '',
       contact: '',
       title: '',
-      description: '',
+      textareaValue: '',
       imageList: [],
     })
     if (getCurrentPages().length != 0) {

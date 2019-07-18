@@ -12,6 +12,7 @@ Page({
     item_time: '',
     item_location: '',
     item_contact: '',
+    item_brief: '',
     item_description: '',
     item_picture_url: null, //此处为网址
     img_width_2: wx.getSystemInfoSync().windowWidth / 2.6,
@@ -29,10 +30,11 @@ Page({
     console.log("接收到的参数是item=" + options.item); //此处打印出来的是字符串，解析如下    	
     var item = JSON.parse(options.item); //解析得到集合
     this.setData({
-      item_time: item.time,
+      item_time: item.date + " " + item.time,
       item_location: item.address,
       item_contact: item.contactMethod,
-      item_description: item.briefInfo + "\n" + item.detail,
+      item_brief: item.briefInfo,
+      item_description: item.detail,
       item_picture_url: item.imgs, //此处为网址
       item_id: item._id,
       item_openid: item._openid,

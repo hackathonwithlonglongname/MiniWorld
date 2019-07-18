@@ -21,13 +21,14 @@
       <view class="desc-list">
         <text class="desc-list-item">NJUer 认证：http://xsgl.nju.edu.cn/index.portal</text>
       </view>
-      <text class="desc-content">南寻小程序的是我们团队在参加一次Hackathon中的参赛作品，原本还只是一个简单的demo，我们在赛后继续完善了这个项目，并联系权服侠进行合作，使它成为能帮助到大家找寻失物和发布招领信息的一个小工具</text>
-      <text class="desc-content">南寻小程序我们还会继续完善，还有很多功能值得大家期待。另外，如果有什么建议或者在使用中出现了什么问题，非常欢迎联系我们进行反馈</text>
+      <text class="desc-content">南寻小程序的前身是南寻团队的一份Hackathon作品，原本只是个简单的demo，我们在赛后继续完善了这个项目，后来我们与权服侠进行合作，希望它能帮到大家</text>
+      <text class="desc-content">即使你还没有丢失任何东西，也可以通过收藏小程序使之成为一个活跃的失物信息平台来帮助周围的人。</text>
+      <text class="desc-content">不久的将来，你甚至会获得一笔意外的奖励（可能是志愿时长哦~）</text>
     </view>
     <view wx:if="{{!showLog}}">
       <view class="cu-bar bg-white margin-top">
         <view class="action">
-          <text class="icon-title text-purple"></text> 联系我们 (排名为字母序、不分先后)
+          <text class="icon-title text-purple"></text> 和开发者交朋友 (字母序)
         </view>
       </view>
       <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="2500" duration="500">

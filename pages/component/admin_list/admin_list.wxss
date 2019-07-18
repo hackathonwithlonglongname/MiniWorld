@@ -1,18 +1,9 @@
-/* pages/component/found/found.wxss */
-/* @import "/pages/component/search/search.wxss"; */
-.smallimage{
-  width: 100rpx
-  
+@import "/colorui/main.wxss";
+@import "/colorui/icon.wxss";
+
+item.none{
+  display: none;
 }
-.frame{
-  margin: 20rpx 0rpx
-}
-.footer{
-    display: flex;
-    flex-direction: column;
-    font-size: 10pt;
-    line-height: 150%;
-    text-align: center;
-    padding: 100rpx 0 15rpx;
-    color: #c2c2c2;
+.split{
+  height: 17rpx;
 }

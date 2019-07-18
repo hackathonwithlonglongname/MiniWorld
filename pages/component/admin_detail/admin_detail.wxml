@@ -25,6 +25,7 @@
       <image class='user_icon' src='/images/details.png'></image>
       <view>物品描述：</view>
     </view>
+    <view class='right'>{{item_brief}}</view>
   </view>
   <view class='item_large'>
     <view class='detail'> {{item_description}}</view>
@@ -65,8 +66,9 @@
       </view>
     </view>
   </view>
-  <view class="item_large">
-    <button type="primary" bindtap="pass">通过</button>
-    <button type="warn" bindtap="illegal">违规</button>
-  </view>
+<view class='item'></view>
+<view class="cu-bar btn-group"  style='margin-top:20px'>
+  <button class="cu-btn bg-green shadow-blur round lg" type="primary" bindtap="pass">通过</button>
+  <button class="cu-btn bg-green shadow-blur round lg" type="warn" bindtap="illegal">违规</button>
+</view>
 </view>
