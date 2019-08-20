@@ -13,7 +13,8 @@
     "pages/component/item_found/item_found",
     "pages/component/admin_detail/admin_detail",
     "pages/component/admin_list/admin_list",
-    "pages/component/mine/about/about"
+    "pages/component/mine/about/about",
+    "pages/component/card/card"
   ],
   "permission": {
     "scope.userLocation": {
@@ -49,6 +50,12 @@
         "iconPath": "images/post.png",
         "pagePath": "pages/component/post/post",
         "text": "发布"
+      },
+      {
+        "selectedIconPath": "images/lost.png",
+        "iconPath": "images/lost.png",
+        "pagePath": "pages/component/card/card",
+        "text": "校园卡"
       },
       {
         "selectedIconPath": "images/user.png",

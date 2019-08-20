@@ -1,0 +1,5 @@
+/* pages/component/card/card.wxss */
+.container{
+  background-color: rgb(238, 220, 221);
+  text-align: center;
+}

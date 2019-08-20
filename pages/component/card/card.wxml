@@ -1,0 +1,6 @@
+<!--pages/component/card/card.wxml-->
+<view class="container">
+  <input id="card_id" placeholder='自动聚焦' type="text" bindconfirm='submit' confirm-type='done' auto-focus/>
+  
+  
+</view>
