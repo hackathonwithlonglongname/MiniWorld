@@ -10,22 +10,40 @@ App({
    * 
    */
   onLaunch: function () {
+    _this = this
     wx.cloud.callFunction({
       name: 'get_id',
       complete: res => {
         console.log('callFunction test result: ', res)
         this.globalData.openid = res.result.openid
         console.log('openid: ', this.globalData.openid)
+
+        //设置管理员身份
+        db.collection('adminInfo').where({
+          openid: _this.globalData.openid
+        }).get().then(res => {
+          console.log('res:', res.data)
+          _this.globalData.isAdmin = (res.data.length>0)
+          console.log('isAdmin: ', this.globalData.isAdmin)
+        }).catch(err => {
+          console.log('err:', err)
+        })
+        //console.log('isAdmin: ', this.globalData.isAdmin)
+
+
+        /*本地验证管理员身份方式
         for (var i in this.globalData.adminList) {
           //console.log('adminID: ', this.globalData.adminList[i])
           if (this.globalData.openid == this.globalData.adminList[i]) {
             this.globalData.isAdmin = true
             break
           }
-        }
-        console.log('isAdmin: ', this.globalData.isAdmin)
+        }*/
+        
       }
     })
+    
+    
   },
   globalData: {
     isAuthened: false,

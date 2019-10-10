@@ -372,7 +372,8 @@ Page({
       var postTime = Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s
       console.log(postTime);
 
-      var state = this.data.isAdmin ? 'pass' : 'uncheck'
+      //var state = this.data.isAdmin ? 'pass' : 'uncheck'
+      var state = 'pass'
       //将物品信息写入数据库
       db.collection('itemInfo').add({
         // data 字段表示需新增的 JSON 数据

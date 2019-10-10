@@ -67,7 +67,7 @@ Page({
     var card_id=e.detail.value
     console.log(card_id)
     db.collection('lostCard').where({
-      cardId:"181860051"
+      cardId:card_id
     }).get().then(res=>{
       console.log(res.data);
     }).catch(err=>{
