@@ -52,12 +52,6 @@
         "text": "发布"
       },
       {
-        "selectedIconPath": "images/lost.png",
-        "iconPath": "images/lost.png",
-        "pagePath": "pages/component/card/card",
-        "text": "校园卡"
-      },
-      {
         "selectedIconPath": "images/user.png",
         "iconPath": "images/user.png",
         "pagePath": "pages/component/mine/user/user",
