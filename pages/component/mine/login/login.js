@@ -14,14 +14,14 @@ Page({
           wx.getUserInfo({
             success: function(res) {
               //从数据库获取用户信息
-              that.queryUsreInfo();
-              app.g_status = '未授权';
-              //用户已经授权过
-              wx.switchTab({
-                url: '/pages/component/found/found'
-              })
+              that.queryUserInfo();
+              // app.g_status = '未授权';
             }
           });
+        } else {
+          wx.redirectTo({
+            url: '/pages/component/mine/jwnet/jwnet'
+          })
         }
       }
     })
@@ -31,27 +31,8 @@ Page({
       //用户按了允许授权按钮
       var that = this;
       app.g_status = '已授权';
-      //插入登录的用户的相关信息到数据库
-      /*wx.request({
-        data: {
-          openid: getApp().globalData.openid,
-          nickName: e.detail.userInfo.nickName,
-          avatarUrl: e.detail.userInfo.avatarUrl,
-          province: e.detail.userInfo.province,
-          city: e.detail.userInfo.city
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          //从数据库获取用户信息
-          that.queryUsreInfo();
-          console.log("插入小程序登录用户信息成功！");
-        }
-      });*/
-
-      wx.redirectTo({
-        url: '/pages/component/mine/jwnet/jwnet'
+      wx.switchTab({
+        url: '/pages/component/found/found'
       })
     } else {
       app.g_status = '未授权';

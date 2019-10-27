@@ -1,22 +1,3 @@
-/**
- * v-request::client code
- * 无限制的小程序HTTP请求云函数
- * 你可以使用此功能，在小程序上请求访问如下类型的HTTP数据：
- * 1. 未进行备案的
- * 2. 未上HTTPS证书的
- * 3. 没绑定域名，直接IP地址访问的
- * 注： 不可访问内网IP或腾讯云服务器无法连接的地址
- * ==========================
- * 更新时间：2019/04/12
- */
-
-/**
- * 使用方法
- * =======
- * 与官方的wx.request大致相同
- * 目前测试正常的get、post请求都OK，当然还可能会有其他小细节问题，不能应对全部的情况
- * -------
- */
 var util = require('util.js')
 
 wx.vrequest = function (options) {
@@ -42,7 +23,6 @@ wx.vrequest = function (options) {
   };
   //if (typeof options.data === 'object') POST_DATA['body'] = JSON.stringify(POST_DATA['body']);
   if (typeof options.data === 'object') POST_DATA['body'] = util.json2Form(POST_DATA['body']);
-  console.log(POST_DATA['body'])
 
   // 开始请求
   return new Promise((RES, REJ) => {
@@ -79,7 +59,6 @@ wx.vrequest = function (options) {
           statusCode: result.statusCode,
           header: result.headers
         }
-        console.log(result)
         options.success && options.success(RETURN_DATA);
         RES(RETURN_DATA);
       },
