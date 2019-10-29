@@ -28,9 +28,9 @@
   <view wx:if="{{isAdmin==true}}">
     <view class='information-box'>
       <!--这里留了个接口，是管理员才显示-->
-      <view class='information-manage'>
+      <!--view class='information-manage'>
         <navigator url="/pages/component/admin_list/admin_list">管理·审核</navigator>
-      </view>
+      </view-->
       <!--这个功能暂时由于一些玄学无法使用
       <view class='information-manage' bindtap='clearExitem'>
         <text>清除一个月前的信息</text>
